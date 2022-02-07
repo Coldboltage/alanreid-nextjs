@@ -5,15 +5,14 @@ const Header = () => {
   return <header>
     {/* Nav for the top of each page */}
     {/* >> Each Section  */}
-    <nav>
+    <nav className="grid grid-cols-2 p-2 space-between bg-black">
       {/* Divided into two section */}
-      <section>
+      <section className="text-white">
         Alan Reid
       </section>
-      <section className="grid grid-cols-3">
+      <section className="grid grid-cols-2 text-white">
         <div>Blog</div>
         <div>Projects</div>
-        <div>Journey</div>
       </section>
     </nav>
   </header>;
