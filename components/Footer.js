@@ -3,18 +3,17 @@ import Image from "next/image"
 
 const Footer = () => {
   return (
-    <footer className="">
-      //{" "}
-      <a
-        href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        Powered by{" "}
-        <span className="">
-          <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
-        </span>
-      </a>
+    <footer className="flex justify-between p-2">
+      <div>
+        <p className="text-xs">&copy; Alan Reid Portfolio {new Date().getFullYear()}</p>
+      </div>
+      <div>
+        <ul className="flex justify-between space-x-2 text-xs">
+          <li>Home</li>
+          <li>Blog</li>
+          <li>Projects</li>
+        </ul>
+      </div>
     </footer>
   );
 };
