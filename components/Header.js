@@ -4,7 +4,7 @@ const Header = () => {
   // Header for each page
   return (
     <header className="bg-black">
-      <div className="container mx-auto">
+      <div className="container mx-auto md:px-20">
         {/* Nav for the top of each page */}
         {/* >> Each Section  */}
         <nav className="grid grid-cols-2 p-4 space-between">
