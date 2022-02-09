@@ -7,7 +7,7 @@ const DevelopersCard = ({ image, name, title, description, socials }) => {
     <div className="bg-neutral-800">
       {/* Image and container */}
       <div>
-        <Image src={image} width={10} height={9} layout="responsive" />
+        <Image src={image} width={10} height={9} layout="responsive" alt={`${name}'s face`}/>
       </div>
       {/* Information and container */}
       <div className="flex flex-col content-between gap-1 p-4 h-max">
