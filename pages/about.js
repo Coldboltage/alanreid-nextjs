@@ -23,36 +23,36 @@ const About = () => {
         {/* Information */}
         <div className="max-w-screen-lg px-5 py-10 mx-auto text-lg md:px-36">
           <p className="leading-8">
-            I'm Alan Reid, a developer from Bangor, Northern Ireland and I'm
-            aiming to become as good of a developer as one can be.
+            {`I'm Alan Reid, a developer from Bangor, Northern Ireland and I'm
+            aiming to become as good of a developer as one can be.`}
           </p>
           <p className="leading-8 pt-7">
-            It's been something that I've wanted to do for the last couple of
+            {`It's been something that I've wanted to do for the last couple of
             years, to commit to become a developer. I took the plunge to full
             invest myself into web developement in 2021, learning Javascript and
             then React. I enjoyed using GatsbyJS but I've since moved onto
-            NextJS.
+            NextJS.`}
           </p>
           <p className="leading-8 pt-7">
-            Previously, I was an SEO of 10 years. I enjoyed SEO purely because
+            {`Previously, I was an SEO of 10 years. I enjoyed SEO purely because
             it filled my excitment for competition. Since 2003 to 2021, I have
             activately competed either as a player or a manager in different
             titles, playing as one of the best or working with some of the best.
             Later on, the challenge to work with underdogs was far more
             interesting. SEO felt competitive as I was working against companies
-            with budgets I'd laugh of the concept of working with.
+            with budgets I'd laugh of the concept of working with.`}
           </p>
           <p className="leading-8 pt-7">
-            My interest now is to become an Web Developer and also become better
+            {`My interest now is to become an Web Developer and also become better
             as a dancer. You'll hear more about my development here but abit of
             dancing here and there. This website will be the home for all things
-            Alan Reid, and my web development progression.
+            Alan Reid, and my web development progression.`}
           </p>
           <p className="leading-8 pt-7">
-            There will be sections of this site to allow you to know how I'm
+            {`There will be sections of this site to allow you to know how I'm
             doing and I hope to update it as soon as something new comes up
             which I feel is worth it. This will be my portfolio site for a
-            longtime to come and I do not intend to make a new one, again.
+            longtime to come and I do not intend to make a new one, again.`}
           </p>
         </div>
       </div>
