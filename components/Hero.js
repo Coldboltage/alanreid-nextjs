@@ -17,23 +17,26 @@ const Hero = () => {
           />
         </div>
         <div className="py-5">
-          {/* Title */}
-          <h2 className="pb-2 text-4xl">
-            {`Hi, I'm `}
-            <span className="underline underline-offset-2 decoration-[#26a8ed]">
-              {`Alan Reid`}
-            </span>
-          </h2>
-          {/* Sub Title */}
-          <p className="text-xl italic text-slate-400">
-           {`I'm a previous SEO who wishes to become a developer`}
-          </p>
+          <div className="flex flex-col gap-3 sm:gap-0">
+            {/* Title */}
+            <h2 className="pb-2 text-3xl sm:text-4xl">
+              {`Hi, I'm `}
+              <span className="underline underline-offset-2 decoration-[#26a8ed]">
+                {`Alan Reid`}
+              </span>
+            </h2>
+            {/* Sub Title */}
+            <p className="text-xl italic text-slate-400">
+              {`I'm a previous SEO who wishes to become a developer`}
+            </p>
+          </div>
         </div>
         {/* Who am I */}
-        <p className="leading-8 px-44 text-slate-300">
+        <p className="leading-8 lg:px-32 text-slate-300">
           {`I like the idea of making great experience for users while building
-          fundementally quick sites. I enjoy using both`}
-          <span className="font-semibold text-[#26a8ed]">{`NextJS`}</span> {`and`}
+          fundementally quick sites. I enjoy using both `}
+          <span className="font-semibold text-[#26a8ed]">{`NextJS`}</span>{" "}
+          {`and`}
           <span className=" font-semibold  text-[#26a8ed]">{` GatsbyJS`}</span>
         </p>
       </div>

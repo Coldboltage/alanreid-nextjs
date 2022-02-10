@@ -2,12 +2,12 @@ import React from "react";
 import Image from "next/image";
 import DeveloperSocials from "./DeveloperSocials";
 
-const DevelopersCard = ({ image, name, title, description, socials }) => {
+const InfoCardCopy = ({ image, name, title, description, socials, width, height }) => {
   return (
     <div className="bg-neutral-800">
       {/* Image and container */}
       <div>
-        <Image src={image} width={10} height={9} layout="responsive" alt={`${name}'s face`}/>
+        <Image src={image} width={width} height={height} layout="responsive" alt={`${name}'s face`}/>
       </div>
       {/* Information and container */}
       <div className="flex flex-col content-between gap-1 p-4 h-max">
@@ -20,10 +20,9 @@ const DevelopersCard = ({ image, name, title, description, socials }) => {
         <p className="pb-4 text-sm text-[#26a8ed]">{title}</p>
         {/* Description */}
         <p className="text-base">{description}</p>
-        {/* Socials */}
       </div>
     </div>
   );
 };
 
-export default DevelopersCard;
+export default InfoCardCopy;

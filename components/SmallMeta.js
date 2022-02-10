@@ -17,7 +17,7 @@ const SmallMeta = ({ frontmatter }) => {
     <div className="flex pt-5">
       <div className="">
         {/* Image */}
-        <Image src={`${frontmatter.authorImage} `} width={30} height={30} alt="authors face"/>
+        <Image src={`${frontmatter.authorImage} `} width={30} height={30}  alt="authors face"/>
       </div>
       <div className="flex flex-col pl-3 text-xs">
         {/* Name */}

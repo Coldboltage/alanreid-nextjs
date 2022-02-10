@@ -8,6 +8,8 @@ import Hero from "../components/Hero";
 import matter from "gray-matter";
 import ListOfPosts from "../components/ListOfPosts";
 import OtherDevelopers from "../components/OtherDevelopers";
+import Books from "../components/Books";
+import CallToAction from "../components/CallToAction";
 
 export default function Home({ indexPosts }) {
   return (
@@ -16,7 +18,10 @@ export default function Home({ indexPosts }) {
       <Hero />
       <ListOfPosts postData={indexPosts}/>
       <OtherDevelopers/>
-      <section>{/* Most Recent Posts*/}</section>
+      <Books title={`Books I'd recommend`} subtitle={`Strong fundamentals make everyday coding easier`}/>
+      <CallToAction/>
+      {/* <WhyFollow/> */}
+        
     </Layout>
   );
 }

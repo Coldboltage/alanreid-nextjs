@@ -5,18 +5,18 @@ const DeveloperSocials = ({ socials }) => {
   console.log(socials);
   return (
     <div className="flex items-center gap-2 text-sm lg:gap-4">
-      <a href={socials.homepage}>
+      {socials.homepage && <a href={socials.homepage}>
         <FaHome />
-      </a>
-      <a href={socials.gibhub}>
+      </a>}
+      {socials.gibhub && <a href={socials.gibhub}>
         <FaGithubSquare />
-      </a>
-      <a href={socials.linkedin}>
+      </a>}
+      {socials.linkedin && <a href={socials.linkedin}>
         <FaLinkedin />
-      </a>
-      <a href={socials.twitter}>
+      </a>}
+      {socials.twitter && <a href={socials.twitter}>
         <FaTwitter />
-      </a>
+      </a>}
     </div>
   );
 };

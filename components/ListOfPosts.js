@@ -5,7 +5,7 @@ import SectionTitle from "./SectionTitle";
 const ListOfPosts = ({ postData }) => {
   return (
     <section className="bg-[#191B1F] py-10">
-      <div className="max-w-screen-lg px-10 mx-auto text-white sm:px-0">
+      <div className="max-w-screen-lg px-5 mx-auto text-white sm:px-10">
         <SectionTitle title={"Some Blog Posts"} subTitle={"Here's a couple of things I wrote about"}/>
         <div className="grid grid-cols-2 gap-10 sm:grid-cols-4 lg:grid-cols-6 auto-rows-auto">
           {postData.map((singlePost, index) => {

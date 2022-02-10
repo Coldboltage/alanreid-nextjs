@@ -1,6 +1,6 @@
 import React from "react";
 import SectionTitle from "./SectionTitle";
-import DeveloperCard from "./DevelopersCard";
+import InfoCard from "./InfoCard";
 
 // Title - Developers worth knowing
 // Sub Title - These are the guys I talk to most while on this journey
@@ -12,23 +12,23 @@ import DeveloperCard from "./DevelopersCard";
 
 const OtherDevelopers = () => {
   return (
-    <section className="bg-[#191B1F] py-10">
-      <div className="max-w-screen-lg px-10 mx-auto text-white sm:px-10">
+    <section className="bg-[#191B1F] py-8 sm:py-16">
+      <div className="max-w-screen-lg px-10 mx-auto text-white sm:px-10 lg:px-5">
         <SectionTitle
           title={"Developers Worth Knowing"}
           subTitle={"These are the guys I talk to the most on this journey"}
         />
         {/*  */}
-        <div className="flex flex-col grid-cols-3 gap-7 md:grid">
+        <div className="flex flex-col grid-cols-3 gap-7 sm:px-20 md:px-0 md:grid">
           {/* Person One */}
-          <DeveloperCard
+          <InfoCard
             image={"/assets/alan-profile-picture.jpg"}
             name={"Alan Reid"}
             title={"ReactJS, NextJS Web Developer and SEO"}
             description={"I decided that it was worth becoming a programmer the moment I realised that I could work from anywhere. Being an SEO, I wanted to make faster sites so GatsbyJS was my jam"}
             socials={{twitter: "https://twitter.com/itscoldbolt", linkedin: "https://alanreid.dev", gibhub: "https://github.com/Coldboltage", homepage: "https://alanreid.dev"}}
           />
-          <DeveloperCard
+          <InfoCard
             image={"/assets/phil-headshot.jpg"}
             name={"Phil Collins"}
             title={"Software Engineer II for PEAK6, Evil Genuises"}
@@ -36,7 +36,7 @@ const OtherDevelopers = () => {
               "After working half of his life as a Chef, Phil got into crpytocurrency and from that point, wanted to get more involved with the techologies behind it."}
               socials={{twitter: "https://twitter.com/pcollinsTech/", linkedin: "https://www.linkedin.com/in/phil-collins-40a0b0139/", gibhub: "https://github.com/pcollinsTech", homepage: " https://www.pcollins.tech/"}}
           />
-          <DeveloperCard
+          <InfoCard
             image={"/assets/leo-headshot.jpg"}
             name={"Leo Pillar"}
             title={"ReactJS, NextJS Web Developer"}
