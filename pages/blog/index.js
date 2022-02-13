@@ -24,7 +24,7 @@ export async function getStaticProps(context) {
   // Read from a directory and then grab all the posts
   const files = fs.readdirSync(path.join("posts"));
   // Iterate over all the post names and then remove the .mdx
-  const posts = files.map((filename) => {
+  const initialPosts = files.map((filename) => {
     const slug = filename.replace(".mdx", "");
 
     const markdownWithMeta = fs.readFileSync(
@@ -40,9 +40,12 @@ export async function getStaticProps(context) {
     };
   });
 
-  const filteredCategories = [...new Set(posts.map(post => post.frontmatter.category))]
+  const filteredCategories = [...new Set(initialPosts.map(post => post.frontmatter.category))]
 
   // console.log(context)
+
+  const filterPosts = initialPosts.filter((post, index) => index < 16)
+  const posts = filterPosts.sort((post1, post2) => new Date(post2.frontmatter.date) - new Date(post1.frontmatter.date))  
   
 
   return {

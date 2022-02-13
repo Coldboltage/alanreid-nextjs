@@ -15,10 +15,19 @@
   .small {
     @apply flex flex-col col-span-4 sm:col-span-2;
   }
-  .markdown p {
-    @apply py-6
-  }
   .container-layout {
-    @apply max-w-screen-lg px-5 sm:px-10 mx-auto
+    @apply max-w-screen-lg px-5 mx-auto sm:px-10;
   }
-}
+
+  /* MARKDOWN PART
+  .markdown p,
+  .markdown h1,
+  .markdown h2,
+  .markdown h3,
+  .markdown h4,
+  .markdown h5,
+  .markdown h6,
+  .markdown h6 {
+    @apply py-6;
+  }*/
+} 

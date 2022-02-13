@@ -40,13 +40,14 @@ export async function getStaticProps() {
 
     const { data: frontmatter } = matter(markdownWithMeta);
 
+
     return {
       slug,
       frontmatter,
     };
   });
-
-  const indexPosts = posts.filter((post, index) => index < 6)
+  const filterPosts = posts.filter((post, index) => index < 6)
+  const indexPosts = filterPosts.sort((post1, post2) => new Date(post2.frontmatter.date) - new Date(post1.frontmatter.date))  
 
   return {
     props: { indexPosts },

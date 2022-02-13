@@ -10,5 +10,7 @@ module.exports = {
 //            "2xs": "350px"
 //     }
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/typography'),
+  ],
 };
