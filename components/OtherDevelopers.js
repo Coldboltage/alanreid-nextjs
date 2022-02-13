@@ -12,7 +12,7 @@ import InfoCard from "./InfoCard";
 
 const OtherDevelopers = () => {
   return (
-    <section className="bg-[#191B1F] py-8 sm:py-16">
+    <section className="bg-[#191B1F] py-8 sm:py-8">
       <div className="max-w-screen-lg px-10 mx-auto text-white sm:px-10 lg:px-5">
         <SectionTitle
           title={"Developers Worth Knowing"}

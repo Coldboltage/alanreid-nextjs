@@ -2,7 +2,7 @@ import React from "react";
 import Image from "next/image";
 import moment from "moment"
 
-const SmallMeta = ({ frontmatter }) => {
+const SmallMeta = ({ frontmatter, bigger }) => {
   const options = {
     weekday: "long",
     year: "numeric",
@@ -14,12 +14,12 @@ const SmallMeta = ({ frontmatter }) => {
   // console.log(postDate.toLocaleDateString('en-GB', options))
 
   return (
-    <div className="flex pt-5">
-      <div className="">
+    <div className={`flex pt-5 ${bigger && "border-t-2 mt-5 items-center"}`}>
+      <div>
         {/* Image */}
-        <Image src={`${frontmatter.authorImage} `} width={30} height={30}  alt="authors face"/>
+        <Image src={`${frontmatter.authorImage} `} width={bigger ? 45 : 30} height={bigger ? 45 : 30}  alt="authors face"/>
       </div>
-      <div className="flex flex-col pl-3 text-xs">
+      <div className={`flex flex-col pl-3 text-xs ${bigger && "gap-1 line-height"}`}>
         {/* Name */}
         <p>{frontmatter.name}</p>
         {/* Small Meta */}

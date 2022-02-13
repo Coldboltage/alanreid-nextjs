@@ -14,7 +14,7 @@ const Books = ({title, subtitle}) => {
         <div className="flex flex-col grid-cols-2 gap-20 sm:px-10 md:px-5 md:grid">
           {/* Person One */}
           <InfoCardCopy
-            image={"/assets/road-to-react.jpg"}
+            image={"/assets/road-to-react-2.webp"}
             name={"Road to React"}
             title={"2021 Edition with React Hooks"}
             description={

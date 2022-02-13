@@ -2,11 +2,12 @@ import React from "react";
 import PostItem from "./PostItem";
 import SectionTitle from "./SectionTitle";
 
-const ListOfPosts = ({ postData }) => {
+const ListOfPosts = ({ postData, title, subTitle, showTitle }) => {
   return (
-    <section className="bg-[#191B1F] py-10">
-      <div className="max-w-screen-lg px-5 mx-auto text-white sm:px-10">
-        <SectionTitle title={"Some Blog Posts"} subTitle={"Here's a couple of things I wrote about"}/>
+    <section className={`bg-[#191B1F] py-20 ${postData.length < 3 && "h-[70vh] sm:h-[60vh]"}`}>
+      <div className="max-w-screen-lg px-5 mx-auto text-white sm:px-10 xl:px-0">
+        {showTitle && <SectionTitle title={title} subTitle={subTitle}/>}
+        
         <div className="grid grid-cols-2 gap-10 sm:grid-cols-4 lg:grid-cols-6 auto-rows-auto">
           {postData.map((singlePost, index) => {
             return (

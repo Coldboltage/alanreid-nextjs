@@ -14,10 +14,8 @@ const Header = () => {
             <Link href="/">Alan Reid</Link>
           </section>
           <section className="flex justify-end gap-5 text-center text-white sm:gap-10">
-            <div>
-              <Link href="/about">About</Link>
-            </div>
-            <div>Projects</div>
+            <Link href="/about">About</Link>
+            <Link href="/blog">Blog</Link>
           </section>
         </nav>
       </div>

@@ -5,8 +5,8 @@ import ProfilePicture from "../assets/images/alan-profile-picture.jpg";
 const Hero = () => {
   return (
     <section className="bg-black md:px-20">
-      <div className="flex flex-col max-w-screen-lg px-10 py-10 mx-auto text-center text-white justify-items-center">
-        <div className="mx-auto max-w-fit">
+      <div className="flex flex-col max-w-screen-lg px-10 py-16 mx-auto text-center text-white justify-items-center">
+        {<div className="mx-auto max-w-fit">
           {/* Img */}
           <Image
             src={ProfilePicture}
@@ -15,7 +15,7 @@ const Hero = () => {
             className="rounded-full"
             alt="Alan Reid's face"
           />
-        </div>
+        </div>}
         <div className="py-5">
           <div className="flex flex-col gap-3 sm:gap-0">
             {/* Title */}

@@ -1,13 +1,12 @@
-import React, { useState, useRef } from "react";
 import * as styles from "../styles/PostItem.module.css";
 import Image from "next/image";
 import cx from "classnames";
 import SmallMeta from "./SmallMeta";
+import Link from "next/link";
 
 const PostItem = ({ data, index }) => {
-  const parentDiv = useRef(null);
-
   const { frontmatter } = data;
+  console.log(data.slug);
 
   const spanSetup = (value) => {
     // console.log(value)
@@ -44,23 +43,28 @@ const PostItem = ({ data, index }) => {
   });
 
   return (
-    <div
-      className={`${styles[test]} min-h-fit border-b-2 pb-3 border-sky-900`}
-    >
+    <div className={`${styles[test]} min-h-fit border-b-2 pb-3 border-sky-900`}>
       {/* <img src={LaptopImage} alt="test"></img> */}
       <div className={styles.imageContainer}>
-        <Image
-          src={data.frontmatter.image}
-          width={16}
-          height={9}
-          layout="responsive"
-          alt=""
-        />
+        <Link href={`/${data.slug}`}>
+          <Image
+            src={data.frontmatter.image}
+            width={16}
+            height={9}
+            layout="responsive"
+            alt=""
+            className="cursor-pointer"
+          />
+        </Link>
       </div>
-      <div className={`${styles.meta} p-5 `}>
+      <div className={`${styles.meta} py-5 `}>
         <p className={styles.category}>{frontmatter.category}</p>
         <h2 className={styles.title}>{frontmatter.title}</h2>{" "}
-        <p className={`py-2 text-sm italic text-slate-400 ${test === "big" && "lg:hidden"}`}>
+        <p
+          className={`py-2 text-sm italic text-slate-400 ${
+            test === "big" && "lg:hidden"
+          }`}
+        >
           {frontmatter.description}
         </p>
         <SmallMeta frontmatter={frontmatter} />

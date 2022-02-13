@@ -15,8 +15,8 @@ export default function Home({ indexPosts }) {
   return (
     <Layout>
       {/* Hero Section */}
-      <Hero />
-      <ListOfPosts postData={indexPosts}/>
+      <Hero/>
+      <ListOfPosts showTitle={true} postData={indexPosts} title={"Some Blog Posts"} subTitle={"Here's a couple of things I wrote about"}/>
       <OtherDevelopers/>
       <Books title={`Books I'd recommend`} subtitle={`Strong fundamentals make everyday coding easier`}/>
       <CallToAction/>

@@ -2,6 +2,7 @@ import React from "react";
 import Layout from "../components/Layout";
 import Image from "next/image";
 import AboutImage from "../assets/images/profile-picture-northern-ireland.jpg";
+import CallToAction from "../components/CallToAction";
 
 const About = () => {
   return (
@@ -56,6 +57,7 @@ const About = () => {
           </p>
         </div>
       </div>
+      <CallToAction/>
     </Layout>
   );
 };

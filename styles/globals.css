@@ -15,4 +15,7 @@
   .small {
     @apply flex flex-col col-span-4 sm:col-span-2;
   }
+  .markdown p {
+    @apply py-6
+  }
 }
