@@ -16,7 +16,7 @@ const Post = ({ frontmatter, content }) => {
       <div className="bg-[#191B1F] text-white pb-10">
         <div className="max-w-screen-lg py-10 mx-auto sm:px-5">
           {/* Title Hero */}
-          <div className="flex flex-col px-5 pt-5 pb-10 sm:py-16 sm:px-20 md:px-40">
+          <div className="flex flex-col px-5 pb-10 sm:pt-5 sm:py-16 sm:px-20 md:px-40">
             {/* Top Section */}
             <div className="">
               {" "}

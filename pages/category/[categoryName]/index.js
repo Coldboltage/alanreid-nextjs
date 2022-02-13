@@ -41,7 +41,7 @@ export async function getStaticProps(context) {
       frontmatter,
     };
   });
-  console.log(context.params.categoryName)
+  // console.log(context.params.categoryName)
 
   const posts = beforeFiltered.filter(post => context.params.categoryName.toLowerCase() === post.frontmatter.category.toLowerCase())
 
@@ -51,7 +51,7 @@ export async function getStaticProps(context) {
 }
 
 export async function getStaticPaths() {
-  console.log("loading");
+  // console.log("loading");
   const files = fs.readdirSync(path.join("posts"));
   // Iterate over all the post names and then remove the .mdx
   const posts = files.map((filename) => {
@@ -76,7 +76,7 @@ export async function getStaticPaths() {
   const paths = filteredCategories.map((category) => ({
     params: { categoryName: category.toLowerCase() },
   }));
-  console.log(paths);
+  // console.log(paths);
 
   return {
     paths,

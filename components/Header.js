@@ -5,7 +5,7 @@ const Header = () => {
   // Header for each page
   return (
     <header className="bg-black ">
-      <div className="max-w-screen-lg px-10 mx-auto xl:px-0">
+      <div className="max-w-screen-lg px-5 mx-auto xl:px-0">
         {/* Nav for the top of each page */}
         {/* >> Each Section  */}
         <nav className="grid grid-cols-2 py-4 space-between">
@@ -16,6 +16,7 @@ const Header = () => {
           <section className="flex justify-end gap-5 text-center text-white sm:gap-10">
             <Link href="/about">About</Link>
             <Link href="/blog">Blog</Link>
+            <Link href="/cv">CV</Link>
           </section>
         </nav>
       </div>

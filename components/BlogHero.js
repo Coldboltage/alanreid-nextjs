@@ -6,11 +6,11 @@ import Link from "next/link";
 const BlogHero = ({ categories, name }) => {
   return (
     <section className="bg-black md:px-20">
-      <div className="flex flex-col max-w-screen-lg px-10 py-16 mx-auto text-center text-white justify-items-center">
-        <div className="py-5">
+      <div className="flex flex-col max-w-screen-lg px-10 py-10 mx-auto text-center text-white sm:py-16 justify-items-center">
+        <div className="pb-5">
           <div className="flex flex-col gap-3 sm:gap-0">
             {/* Title */}
-            <h2 className="pb-4 font-medium text-3xl sm:text-5xl underline underline-offset-2 decoration-[#26a8ed]">
+            <h2 className="pb-4 sm:py-4 font-medium text-3xl sm:text-5xl underline underline-offset-2 decoration-[#26a8ed]">
               {name}
             </h2>
             {/* Sub Title */}

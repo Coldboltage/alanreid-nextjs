@@ -42,7 +42,7 @@ export async function getStaticProps(context) {
 
   const filteredCategories = [...new Set(posts.map(post => post.frontmatter.category))]
 
-  console.log(context)
+  // console.log(context)
   
 
   return {

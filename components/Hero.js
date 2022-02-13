@@ -5,7 +5,7 @@ import ProfilePicture from "../assets/images/alan-profile-picture.jpg";
 const Hero = () => {
   return (
     <section className="bg-black md:px-20">
-      <div className="flex flex-col max-w-screen-lg px-10 py-16 mx-auto text-center text-white justify-items-center">
+      <div className="py-10 mx-auto text-center text-white sm:py-16 container-layout justify-items-center">
         {<div className="mx-auto max-w-fit">
           {/* Img */}
           <Image

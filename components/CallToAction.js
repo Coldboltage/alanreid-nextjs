@@ -4,7 +4,7 @@ import SectionTitle from "./SectionTitle";
 const CallToAction = ({noTitle}) => {
   return (
     <section className="bg-[#3C3E41] ">
-      <div className={`max-w-screen-lg px-10 mx-auto text-white ${noTitle ? "sm:p-10" : "sm:pb-10"}`}>
+      <div className={`max-w-screen-lg px-10 mx-auto text-white ${noTitle ? "p-10" : "pb-10"}`}>
         <div>
           {noTitle ? <></> : <SectionTitle title={`Follow my updates per month`}/>}
           <p className="pb-10 text-center">{`Once per month, I'll post an update on this website which I'll talk about what exactly I've done for the month, how I've improved and how you can do that yourself.`}</p>

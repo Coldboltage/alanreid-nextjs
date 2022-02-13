@@ -6,7 +6,7 @@ import Link from "next/link";
 
 const PostItem = ({ data, index }) => {
   const { frontmatter } = data;
-  console.log(data.slug);
+  // console.log(data.slug);
 
   const spanSetup = (value) => {
     // console.log(value)
@@ -54,6 +54,7 @@ const PostItem = ({ data, index }) => {
             layout="responsive"
             alt=""
             className="cursor-pointer"
+            priority
           />
         </Link>
       </div>
