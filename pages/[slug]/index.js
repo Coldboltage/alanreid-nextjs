@@ -50,7 +50,7 @@ const Post = ({ frontmatter, content }) => {
             )}
           </div>
           <div>
-          <ReactMarkdown className="px-6 pt-10 text-lg md:px-36 sm:px-20 markdown" children={content}></ReactMarkdown>
+          <ReactMarkdown className="px-6 pt-10 text-lg md:px-36 sm:px-20 markdown">{content}</ReactMarkdown>
           </div>
         </div>
         

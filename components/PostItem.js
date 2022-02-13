@@ -46,7 +46,7 @@ const PostItem = ({ data, index }) => {
     <div className={`${styles[test]} min-h-fit border-b-2 pb-3 border-sky-900`}>
       {/* <img src={LaptopImage} alt="test"></img> */}
       <div className={styles.imageContainer}>
-        <Link href={`/${data.slug}`}>
+        <Link href={`/${data.slug}`} passHref>
           <Image
             src={data.frontmatter.image}
             width={16}

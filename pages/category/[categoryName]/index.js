@@ -8,7 +8,7 @@ import matter from "gray-matter";
 import { useRouter } from "next/router";
 import CallToAction from "../../../components/CallToAction";
 
-const category = ({ posts }) => {
+const Category = ({ posts }) => {
   const router = useRouter()
   const name = router.query.categoryName.charAt(0).toUpperCase() + router.query.categoryName.slice(1)
   return (
@@ -20,7 +20,7 @@ const category = ({ posts }) => {
   );
 };
 
-export default category;
+export default Category;
 
 export async function getStaticProps(context) {
   // Read from a directory and then grab all the posts

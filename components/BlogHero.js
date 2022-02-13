@@ -23,7 +23,7 @@ const BlogHero = ({ categories, name }) => {
         <div className="flex flex-col justify-center gap-2 text-sm sm:gap-5 sm:flex-row">
           {" "}
           {categories && categories.map((item) => (
-            <Link href={`/category/${item.toLowerCase()}`}>
+            <Link key={item} href={`/category/${item.toLowerCase()}`}>
               <a className="font-bold uppercase text-[#26a8ed]">{item}</a>
             </Link>
           ))}
