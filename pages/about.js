@@ -16,7 +16,7 @@ const About = () => {
         </div>
         {/* Picture */}
         <div className="sm:max-w-screen-lg sm:px-10 sm:mx-auto">
-          <Image src={AboutImage} alt="causeway"></Image>
+          <Image src={AboutImage} alt="causeway" quality={50} placeholder="blur"></Image>
           <p className="text-xs italic text-center underline underline-offset-2 decoration-orange-500">
             Giants Cosway - Northern Ireland
           </p>
