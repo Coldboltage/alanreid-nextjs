@@ -4,8 +4,8 @@ import ProfilePicture from "../assets/images/alan-profile-picture.jpg";
 
 const Hero = () => {
   return (
-    <section className="bg-black md:px-20">
-      <div className="py-10 mx-auto text-center text-white sm:py-16 containe0r-layout justify-items-center">
+    <section className="bg-black sm:px-10 md:px-20">
+      <div className="px-5 py-10 mx-auto text-center text-white sm:px-0 sm:py-16 containe0r-layout justify-items-center">
         {<div className="mx-auto max-w-fit">
           {/* Img */}
           <Image
@@ -32,7 +32,7 @@ const Hero = () => {
           </div>
         </div>
         {/* Who am I */}
-        <p className="leading-8 lg:px-32 text-slate-300">
+        <p className="leading-8 md:px-20 lg:px-56 text-slate-300">
           {`I like the idea of making great experience for users while building
           fundementally quick sites. I enjoy using both `}
           <span className="font-semibold text-[#26a8ed]">{`NextJS`}</span>{" "}

@@ -6,13 +6,30 @@ import Layout from "../../components/Layout";
 import CallToAction from "../../components/CallToAction";
 import SmallMeta from "../../components/SmallMeta";
 import Image from "next/image";
-import ReactMarkdown from 'react-markdown'
+import ReactMarkdown from "react-markdown";
+import Head from "next/head";
 
-const Post = ({ frontmatter, content }) => {
-
-
+const Post = ({ frontmatter, content, slug }) => {
+  console.log(slug)
   return (
     <Layout>
+      <Head>
+        <title></title>
+        <meta name="title" content={frontmatter.title} />
+        <meta name="description" content={frontmatter.description} />
+
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={`https://alanreid.dev/${slug}`} />
+        <meta property="og:title" content={frontmatter.title} />
+        <meta property="og:description" content={frontmatter.description} />
+        <meta property="og:image" content={`https://alanreid.dev${frontmatter.image}`} />
+
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:url" content={`https://alanreid.dev/${slug}`} />
+        <meta property="twitter:title" content={frontmatter.title} />
+        <meta property="twitter:description" content={frontmatter.description} />
+        <meta property="twitter:image" content={`https://alanreid.dev${frontmatter.image}`} />
+      </Head>
       <div className="bg-[#191B1F] text-white pb-10">
         <div className="max-w-screen-lg py-10 mx-auto sm:px-5">
           {/* Title Hero */}
@@ -50,11 +67,11 @@ const Post = ({ frontmatter, content }) => {
             )}
           </div>
           <div>
-          <ReactMarkdown className="px-6 pt-10 text-lg prose max-w-none dark:prose-invert prose-p:leading-8 sm:20 lg:px-36 sm:px-20 markdown">{content}</ReactMarkdown>
-          
+            <ReactMarkdown className="px-6 pt-10 text-lg prose max-w-none dark:prose-invert prose-p:leading-8 sm:20 lg:px-36 sm:px-20 markdown">
+              {content}
+            </ReactMarkdown>
           </div>
         </div>
-        
       </div>
       <CallToAction />
     </Layout>
