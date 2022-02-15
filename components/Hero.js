@@ -32,7 +32,7 @@ const Hero = () => {
           </div>
         </div>
         {/* Who am I */}
-        <p className="leading-8 md:px-20 lg:px-56 text-slate-300">
+        <p className="leading-8 md:px-20 lg:px-60 2xl:px-[26rem] text-slate-300">
           {`I like the idea of making great experience for users while building
           fundementally quick sites. I enjoy using both `}
           <span className="font-semibold text-[#26a8ed]">{`NextJS`}</span>{" "}
