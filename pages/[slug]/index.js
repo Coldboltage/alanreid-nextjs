@@ -8,10 +8,11 @@ import SmallMeta from "../../components/SmallMeta";
 import Image from "next/image";
 import ReactMarkdown from "react-markdown";
 import Head from "next/head";
+import sizeOf from "image-size"
 
-const Post = ({ frontmatter, content, slug }) => {
-  console.log(frontmatter.image)
-  console.log(slug)
+
+const Post = ({ frontmatter, content, slug, imageSize }) => {
+  console.log(imageSize)
   return (
     <Layout>
       <Head>
@@ -56,8 +57,8 @@ const Post = ({ frontmatter, content, slug }) => {
           <div className="sm:max-w-screen-lg sm:px-10 sm:mx-auto">
             <Image
               src={frontmatter.image}
-              width={16}
-              height={9}
+              width={imageSize.width}
+              height={imageSize.height}
               layout="responsive"
               alt="causeway"
             ></Image>
@@ -103,8 +104,12 @@ export async function getStaticProps({ params: { slug } }) {
   );
 
   const { data: frontmatter, content } = matter(markdownWithMeta);
+  
+  const imageSize = sizeOf(`public${frontmatter.image}`)
+  console.log(imageSize.width)
+  console.log(imageSize.height)
 
   return {
-    props: { frontmatter, content, slug },
+    props: { frontmatter, content, slug, imageSize },
   };
 }
