@@ -10,6 +10,7 @@ import ReactMarkdown from "react-markdown";
 import Head from "next/head";
 
 const Post = ({ frontmatter, content, slug }) => {
+  console.log(frontmatter.image)
   console.log(slug)
   return (
     <Layout>
@@ -55,7 +56,7 @@ const Post = ({ frontmatter, content, slug }) => {
           <div className="sm:max-w-screen-lg sm:px-10 sm:mx-auto">
             <Image
               src={frontmatter.image}
-              width={12}
+              width={16}
               height={9}
               layout="responsive"
               alt="causeway"
