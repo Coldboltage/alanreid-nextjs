@@ -22,7 +22,7 @@ export default [
   {
     icon: "/assets/icons/meteor.png",
     name: "MeteorJS",
-    description: "as my minimal vaiable products"
+    description: "when I need to build minimal vaiable products"
   },
   {
     icon: "/assets/icons/google.png",
