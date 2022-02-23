@@ -9,13 +9,15 @@ import { useRouter } from "next/router";
 import CallToAction from "../../../components/CallToAction";
 
 const Category = ({ posts }) => {
-  const router = useRouter()
-  const name = router.query.categoryName.charAt(0).toUpperCase() + router.query.categoryName.slice(1)
+  const router = useRouter();
+  const name =
+    router.query.categoryName.charAt(0).toUpperCase() +
+    router.query.categoryName.slice(1);
   return (
     <Layout>
       <BlogHero name={name} />
-      <ListOfPosts postData={posts} stop/>
-      <CallToAction/>
+      <ListOfPosts postData={posts} stop />
+      <CallToAction />
     </Layout>
   );
 };
@@ -43,7 +45,16 @@ export async function getStaticProps(context) {
   });
   // console.log(context.params.categoryName)
 
-  const posts = beforeFiltered.filter(post => context.params.categoryName.toLowerCase() === post.frontmatter.category.toLowerCase())
+  const posts = beforeFiltered
+    .filter(
+      (post) =>
+        context.params.categoryName.toLowerCase() ===
+        post.frontmatter.category.toLowerCase()
+    )
+    .sort(
+      (post1, post2) =>
+        new Date(post2.frontmatter.date) - new Date(post1.frontmatter.date)
+    );
 
   return {
     props: { posts },
