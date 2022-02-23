@@ -49,8 +49,8 @@ const PostItem = ({ data, index }) => {
         <Link href={`/${data.slug}`} passHref>
           <Image
             src={data.frontmatter.image}
-            width={16}
-            height={9}
+            width={2}
+            height={1}
             layout="responsive"
             alt=""
             className="cursor-pointer"
