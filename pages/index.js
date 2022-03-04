@@ -25,14 +25,14 @@ export default function Home({ indexPosts }) {
         <meta property="og:url" content="https://alanreid.dev" />
         <meta property="og:title" content="Alan Reid's Blog" />
         <meta property="og:description" content="A developers blog about their progress and how their getting better at becoming a Javascript Fullstack Developer" />
-        <meta property="og:image" content="https://alanreid.dev/_next/image?url=%2Fassets%2Falan-profile-picture.jpg&w=1920&q=75" />
+        <meta property="og:image" content="https://alanreid.dev/assets/alan-profile-picture.jpg" />
 
         {/* <!-- Twitter --/> */}
         <meta property="twitter:card" content="summary_large_image" />
         <meta property="twitter:url" content="https://alanreid.dev" />
         <meta property="twitter:title" content="Alan Reid's Blog" />
         <meta property="twitter:description" content="A developers blog about their progress and how their getting better at becoming a Javascript Fullstack Developer" />
-        <meta property="twitter:image" content="https://alanreid.dev/_next/image?url=%2Fassets%2Falan-profile-picture.jpg&w=1920&q=75" />
+        <meta property="twitter:image" content="https://alanreid.dev/assets/alan-profile-picture.jpg" />
       </Head>
       {/* Hero Section */}
       <Hero />
