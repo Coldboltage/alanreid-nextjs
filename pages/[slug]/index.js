@@ -7,6 +7,7 @@ import CallToAction from "../../components/CallToAction";
 import SmallMeta from "../../components/SmallMeta";
 import Image from "next/image";
 import ReactMarkdown from "react-markdown";
+import Markdown from 'markdown-to-jsx';
 import Head from "next/head";
 import sizeOf from "image-size"
 
@@ -98,6 +99,8 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params: { slug } }) {
+  // Go to the posts directory, read each file with slug "time-to-learn-nodejs.mdx"
+  // As the slug matches post name, the function can run
   const markdownWithMeta = fs.readFileSync(
     path.join("posts", slug + ".mdx"),
     "utf-8"
@@ -108,6 +111,7 @@ export async function getStaticProps({ params: { slug } }) {
   const imageSize = sizeOf(`public${frontmatter.image}`)
   console.log(imageSize.width)
   console.log(imageSize.height)
+  console.log(content)
 
   return {
     props: { frontmatter, content, slug, imageSize },
