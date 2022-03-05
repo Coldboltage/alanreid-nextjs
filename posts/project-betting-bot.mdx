@@ -1,0 +1,37 @@
+---
+title: "Betting bot for esports"
+date: "2022/03/05"
+image: /assets/blogpost-images/worlds-2019-arena.jpg
+authorImage: /assets/alan-profile-picture.jpg
+name: "Alan Reid"
+category: Project
+description: With the growth of esports, betting has become a major player. As betting optimisation is being built on, I feel there's a small chance to play the odds. 
+---
+
+League of Legends competitively is now in it's 12th season. I still remember playing my first ranked game and how great it felt to play the game then. Unfortunately I don't play LoL anymore for many of reasons but the major reason is I don't find it fun. Pretty easy reason why I don't want to play it. 
+
+### League of Legends is a young esports
+
+While there might be a lot of stakeholders where their interests are finicial in the success of esports and it's growth, there is no doubt esports is growing and it's a medium of content that people love to use their time up on. League of Legends is a very competitive title with professional and semi professional leagues all around the world. While dominated by the asian demographic, it's still a very popular worldwide game. 
+
+The game is very young though and younger is the arrival of betting api's which help online bookmarkets create markets for betting within these professional and semi professional leagues. Football has had decades to refine betting odds, the very best of people to create algo's to ensure the bookmakers also winning. Betting in these markets where decades of data and expertise have been spent, means the end user is always fighting and uphill battle. 
+
+### The oppurtunity
+
+With the lack of good betting services and data to help with creating good odds against the end user, there's a possibility that official betting API partners such as abiosgaming, haven't the right odds and margins. I am not a smart maths person nor do I bet a lot, but there's a possibility with the lack of expertise and the correct staff, the odds and margins between both teams playing, could be off. I'd expect it to be a very small edge and therefore doing this manually is a bad idea. 
+
+### Emotions are terrible when betting
+
+From the few times that I have betted, which is actually a lot now that I come to think about it, emotions play a terrible role when betting and it's usually when I lose out in money. This is where an automatic betting bot would be fantastic. It would rule out any need for me to watch the games nor get invested in the betting as betting full-time, takes a lot of mental fortitude. 
+
+## The betting bot
+
+I am going to make a betting bot that takes the odds of a site that I have found. I am also going to target a certain website which makes it's odds available fairly easily. An automatic bot would allow me to place bets on all games my "source" has odds for. I'll use the Kelly Criterion formula to manage the bets and bankroll, therefore when the bot starts, I'll not have to worry about betting. Kelly Criterion's formula is a very conservative betting formula. It never places a bet too much and if the bet is in some way bad, you simply don't bet. Therefore the gains will be very slow. As this will be automatic, this will be perfectly fine. While thre is still a lot of planning to go ahead, the bot will simply do the following.
+
+* Check source site for odds.
+* Save the information onto a database.
+* When it's one hour before the match begins, check source site again for odds to update
+* Use Kelly Criterion formula to find out if the bet is worth taking up and how much touse
+* Place bet on site.
+
+There a lot of small steps that I haven't added here. I'll most likely have two bots, one for getting information and placing bets. The database is for managing to manage the information and when to fire of the placing bot. I have no idea if I'm going to be able to make any of this but it'll certainly be an interesting project to help me learn more about NodeJS, FS, and plenty more which will in the process, make me a better frontend developer. I hate having to sive through google results for backend things when I could just learn NodeJS. 
