@@ -1,9 +1,12 @@
+/* This code controls the posts. The overarching grid is controlled in 
+listOfPosts.js as a tailwind syntax */
+
 .big {
   grid-column: span 6 / span 6;
   display: grid;
   grid-template-columns: 4fr 2fr;
   gap: 40px;
-  padding-bottom: 25px;
+  padding-bottom: 3rem;
 }
 
 .medium {

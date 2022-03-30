@@ -47,8 +47,9 @@ export default function Home({ indexPosts }) {
 }
 
 export async function getStaticProps() {
-  // Read from a directory and then grab all the posts
+  // Read from a directory and then grab all the posts names
   const files = fs.readdirSync(path.join("posts"));
+  console.log(files)
   // Iterate over all the post names and then remove the .mdx
   const posts = files.map((filename) => {
     const slug = filename.replace(".mdx", "");
@@ -58,12 +59,13 @@ export async function getStaticProps() {
       "utf-8"
     );
 
-    const { data: frontmatter } = matter(markdownWithMeta);
+    const { data: frontmatter, content } = matter(markdownWithMeta);
 
 
     return {
       slug,
       frontmatter,
+      content
     };
   });
   const filterPosts = posts.filter((post, index) => index < 6)

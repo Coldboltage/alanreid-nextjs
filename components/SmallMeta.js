@@ -1,17 +1,12 @@
 import React from "react";
 import Image from "next/image";
+import dayjs from "dayjs"
 
 const SmallMeta = ({ frontmatter, bigger }) => {
-  const options = {
-    weekday: "long",
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  };
 
-  const postDate =  new Date(frontmatter.date)
-  // console.log(postDate.toLocaleDateString('en-GB', options))
-
+  // Using dayjs to format YAML formatted date to UK type date.
+  const formattedDate = dayjs(frontmatter.date).format('DD/MM/YYYY');
+  
   return (
     <div className={`flex pt-5 ${bigger && "border-t-2 mt-5 items-center"}`}>
       <div>
@@ -22,7 +17,7 @@ const SmallMeta = ({ frontmatter, bigger }) => {
         {/* Name */}
         <p>{frontmatter.name}</p>
         {/* Small Meta */}
-        {frontmatter.date} - 10 min read
+        {formattedDate} - 10 min read
       </div>
     </div>
   );
