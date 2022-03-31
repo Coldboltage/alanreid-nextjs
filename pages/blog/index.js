@@ -8,6 +8,7 @@ import matter from "gray-matter";
 import {useRouter} from "next/router"
 import CallToAction from '../../components/CallToAction';
 import readingTime from 'reading-time';
+import sizeOf from 'image-size';
 
 const Blog = ({posts, filteredCategories:categories}) => {
   return (
@@ -35,11 +36,13 @@ export async function getStaticProps(context) {
 
     const { data: frontmatter, content } = matter(markdownWithMeta);
     const stats = readingTime(content)
+    const imageSize = sizeOf(`public${frontmatter.image}`)
 
     return {
       slug,
       frontmatter,
-      stats
+      stats,
+      imageSize
     };
   });
 
