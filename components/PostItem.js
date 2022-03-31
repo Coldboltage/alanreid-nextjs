@@ -4,7 +4,7 @@ import cx from "classnames";
 import SmallMeta from "./SmallMeta";
 import Link from "next/link";
 
-const PostItem = ({ data, index, data:{stats, listPage}}) => {
+const PostItem = ({ data, index, data:{stats, listPage, imageSize}}) => {
   const { frontmatter } = data;
   // console.log(data.slug);
 
@@ -42,6 +42,7 @@ const PostItem = ({ data, index, data:{stats, listPage}}) => {
     medium: test === "medium",
   });
 
+
   return (
     <div className={`${styles[test]} min-h-fit border-b-2 pb-3 border-sky-900`}>
       {/* <img src={LaptopImage} alt="test"></img> */}
@@ -49,7 +50,7 @@ const PostItem = ({ data, index, data:{stats, listPage}}) => {
         <Link href={`/${data.slug}`} passHref>
           <Image
             src={data.frontmatter.image}
-            width={2}
+            width={test === "big" ? imageSize.width / imageSize.height : 2}
             height={1}
             layout="responsive"
             alt=""

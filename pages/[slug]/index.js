@@ -14,7 +14,7 @@ import readingTime from 'reading-time';
 
 
 const Post = ({ frontmatter, content, slug, imageSize, stats }) => {
-  console.log(imageSize)
+
   return (
     <Layout>
       <Head>
@@ -112,9 +112,7 @@ export async function getStaticProps({ params: { slug } }) {
   const imageSize = sizeOf(`public${frontmatter.image}`)
   const stats = readingTime(content)
 
-  console.log(imageSize.width)
-  console.log(imageSize.height)
-  console.log(stats)
+
   
 
   return {

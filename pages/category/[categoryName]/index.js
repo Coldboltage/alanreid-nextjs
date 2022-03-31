@@ -40,7 +40,6 @@ export async function getStaticProps(context) {
 
     const { data: frontmatter, content } = matter(markdownWithMeta);
     const stats = readingTime(content)
-    console.log(stats)
 
     return {
       slug,
@@ -79,7 +78,6 @@ export async function getStaticPaths() {
     );
 
     const { data: frontmatter } = matter(markdownWithMeta);
-    
 
     return {
       slug,

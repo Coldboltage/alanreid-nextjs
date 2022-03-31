@@ -9,6 +9,7 @@ import OtherDevelopers from "../components/OtherDevelopers";
 import Books from "../components/Books";
 import CallToAction from "../components/CallToAction";
 import readingTime from 'reading-time';
+import sizeOf from "image-size"
 
 export default function Home({ indexPosts }) {
   return (
@@ -48,7 +49,6 @@ export default function Home({ indexPosts }) {
 export async function getStaticProps(context) {
   // Read from a directory and then grab all the posts names
   const files = fs.readdirSync(path.join("posts"));
-  console.log(files)
   // Iterate over all the post names and then remove the .mdx
   const posts = files.map((filename) => {
     const slug = filename.replace(".mdx", "");
@@ -59,8 +59,11 @@ export async function getStaticProps(context) {
     );
 
     const { data: frontmatter, content } = matter(markdownWithMeta);
+    // Reading time information
     const stats = readingTime(content)
     const listPage = true
+    // Info for size of image.
+    const imageSize = sizeOf(`public${frontmatter.image}`)
 
 
     return {
@@ -68,7 +71,8 @@ export async function getStaticProps(context) {
       frontmatter,
       content,
       stats,
-      listPage
+      listPage,
+      imageSize
     };
   });
   const filterPosts = posts.filter((post, index) => index < 6)
