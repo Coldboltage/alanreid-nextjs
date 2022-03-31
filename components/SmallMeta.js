@@ -2,13 +2,14 @@ import React from "react";
 import Image from "next/image";
 import dayjs from "dayjs"
 
-const SmallMeta = ({ frontmatter, bigger }) => {
+const SmallMeta = ({ frontmatter, bigger, stats, listpage }) => {
 
   // Using dayjs to format YAML formatted date to UK type date.
   const formattedDate = dayjs(frontmatter.date).format('DD/MM/YYYY');
+  // console.log(listpage)
   
   return (
-    <div className={`flex pt-5 ${bigger && "border-t-2 mt-5 items-center"}`}>
+    <div className={`flex ${listpage ? "pt-3": "pt-5"} ${bigger && "border-t-2 mt-5 items-center"}`}>
       <div>
         {/* Image */}
         <Image src={frontmatter.authorImage} width={bigger ? 45 : 30} height={bigger ? 45 : 30}  alt="authors face" />
@@ -17,7 +18,7 @@ const SmallMeta = ({ frontmatter, bigger }) => {
         {/* Name */}
         <p>{frontmatter.name}</p>
         {/* Small Meta */}
-        {formattedDate} - 10 min read
+        {formattedDate} - {stats.text}
       </div>
     </div>
   );

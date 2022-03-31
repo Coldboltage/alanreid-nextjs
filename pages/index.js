@@ -1,8 +1,6 @@
 import fs from "fs";
 import path from "path";
 import Head from "next/head";
-import Image from "next/image";
-import styles from "../styles/Home.module.css";
 import Layout from "../components/Layout";
 import Hero from "../components/Hero";
 import matter from "gray-matter";
@@ -10,6 +8,7 @@ import ListOfPosts from "../components/ListOfPosts";
 import OtherDevelopers from "../components/OtherDevelopers";
 import Books from "../components/Books";
 import CallToAction from "../components/CallToAction";
+import readingTime from 'reading-time';
 
 export default function Home({ indexPosts }) {
   return (
@@ -46,7 +45,7 @@ export default function Home({ indexPosts }) {
   );
 }
 
-export async function getStaticProps() {
+export async function getStaticProps(context) {
   // Read from a directory and then grab all the posts names
   const files = fs.readdirSync(path.join("posts"));
   console.log(files)
@@ -60,12 +59,16 @@ export async function getStaticProps() {
     );
 
     const { data: frontmatter, content } = matter(markdownWithMeta);
+    const stats = readingTime(content)
+    const listPage = true
 
 
     return {
       slug,
       frontmatter,
-      content
+      content,
+      stats,
+      listPage
     };
   });
   const filterPosts = posts.filter((post, index) => index < 6)

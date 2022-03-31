@@ -10,9 +10,10 @@ import ReactMarkdown from "react-markdown";
 import Markdown from 'markdown-to-jsx';
 import Head from "next/head";
 import sizeOf from "image-size"
+import readingTime from 'reading-time';
 
 
-const Post = ({ frontmatter, content, slug, imageSize }) => {
+const Post = ({ frontmatter, content, slug, imageSize, stats }) => {
   console.log(imageSize)
   return (
     <Layout>
@@ -51,7 +52,7 @@ const Post = ({ frontmatter, content, slug, imageSize }) => {
             </div>
             {/* Bottom Section */}
             <div>
-              <SmallMeta frontmatter={frontmatter} bigger={true} />
+              <SmallMeta frontmatter={frontmatter} bigger={true} stats={stats}/>
             </div>
           </div>
           {/* Picture */}
@@ -109,11 +110,14 @@ export async function getStaticProps({ params: { slug } }) {
   const { data: frontmatter, content } = matter(markdownWithMeta);
   
   const imageSize = sizeOf(`public${frontmatter.image}`)
+  const stats = readingTime(content)
+
   console.log(imageSize.width)
   console.log(imageSize.height)
-  console.log(content)
+  console.log(stats)
+  
 
   return {
-    props: { frontmatter, content, slug, imageSize },
+    props: { frontmatter, content, slug, imageSize, stats },
   };
 }

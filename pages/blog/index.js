@@ -7,6 +7,7 @@ import ListOfPosts from "../../components/ListOfPosts";
 import matter from "gray-matter";
 import {useRouter} from "next/router"
 import CallToAction from '../../components/CallToAction';
+import readingTime from 'reading-time';
 
 const Blog = ({posts, filteredCategories:categories}) => {
   return (
@@ -32,11 +33,13 @@ export async function getStaticProps(context) {
       "utf-8"
     );
 
-    const { data: frontmatter } = matter(markdownWithMeta);
+    const { data: frontmatter, content } = matter(markdownWithMeta);
+    const stats = readingTime(content)
 
     return {
       slug,
       frontmatter,
+      stats
     };
   });
 

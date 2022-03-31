@@ -7,6 +7,8 @@ import ListOfPosts from "../../../components/ListOfPosts";
 import matter from "gray-matter";
 import { useRouter } from "next/router";
 import CallToAction from "../../../components/CallToAction";
+import readingTime from 'reading-time';
+
 
 const Category = ({ posts }) => {
   const router = useRouter();
@@ -36,14 +38,17 @@ export async function getStaticProps(context) {
       "utf-8"
     );
 
-    const { data: frontmatter } = matter(markdownWithMeta);
+    const { data: frontmatter, content } = matter(markdownWithMeta);
+    const stats = readingTime(content)
+    console.log(stats)
 
     return {
       slug,
       frontmatter,
+      stats
     };
   });
-  // console.log(context.params.categoryName)
+
 
   const posts = beforeFiltered
     .filter(
@@ -74,6 +79,7 @@ export async function getStaticPaths() {
     );
 
     const { data: frontmatter } = matter(markdownWithMeta);
+    
 
     return {
       slug,

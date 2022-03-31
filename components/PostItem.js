@@ -4,7 +4,7 @@ import cx from "classnames";
 import SmallMeta from "./SmallMeta";
 import Link from "next/link";
 
-const PostItem = ({ data, index }) => {
+const PostItem = ({ data, index, data:{stats, listPage}}) => {
   const { frontmatter } = data;
   // console.log(data.slug);
 
@@ -58,7 +58,8 @@ const PostItem = ({ data, index }) => {
           />
         </Link>
       </div>
-      <div className={`${styles.meta} py-5 `}>
+      <div className={`${styles.meta} py-5 flex flex-col `}>
+        
         <p className={styles.category}>{frontmatter.category}</p>
         <h2 className={styles.title}>{frontmatter.title}</h2>{" "}
         <p
@@ -68,7 +69,7 @@ const PostItem = ({ data, index }) => {
         >
           {frontmatter.description}
         </p>
-        <SmallMeta frontmatter={frontmatter} />
+        <SmallMeta frontmatter={frontmatter} stats={stats} listpage={listPage}/>
       </div>
     </div>
   );
