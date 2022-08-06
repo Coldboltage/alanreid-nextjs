@@ -4,7 +4,7 @@ import Image from "next/image";
 import skills from "../constants/skills";
 import CallToAction from "../components/CallToAction";
 
-const About = () => {
+const CV = () => {
   return (
     <Layout>
       <div className="bg-[#191B1F] text-white pb-10">
@@ -46,4 +46,4 @@ const About = () => {
   );
 };
 
-export default About;
+export default CV;

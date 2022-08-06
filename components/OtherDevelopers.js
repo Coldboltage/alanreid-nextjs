@@ -40,7 +40,7 @@ const OtherDevelopers = () => {
             image={"/assets/leo-headshot.jpg"}
             name={"Leo Pillar"}
             title={"ReactJS, NextJS Web Developer"}
-            description={"Engineer SOAP waterfall package manager open source chmod blog middleware Ruby little Bobby Tables view-model time-to-interactive directed acyclic graph coding."}
+            description={"Leo's path has taken a few changes over the years - from doing 3 years I.C.T in college, to the last 12 years being a Commercial Diver. His passion and interest in web development has led him back to being a Front-end Developer.."}
             socials={{twitter: "https://twitter.com/leopillar", linkedin: "https://www.linkedin.com/in/leo-pillar-0298b051/", gibhub: "https://github.com/lpillar1990", homepage: " https://leopillar.netlify.app/"}}
           />
         </div>

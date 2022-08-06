@@ -86,7 +86,6 @@ export default Post;
 
 export async function getStaticPaths() {
   const files = fs.readdirSync(path.join("posts"));
-
   const paths = files.map((filename) => ({
     params: {
       slug: filename.replace(".mdx", ""),
@@ -108,12 +107,8 @@ export async function getStaticProps({ params: { slug } }) {
   );
 
   const { data: frontmatter, content } = matter(markdownWithMeta);
-  
   const imageSize = sizeOf(`public${frontmatter.image}`)
   const stats = readingTime(content)
-
-
-  
 
   return {
     props: { frontmatter, content, slug, imageSize, stats },
