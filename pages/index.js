@@ -75,8 +75,9 @@ export async function getStaticProps(context) {
       imageSize
     };
   });
-  const filterPosts = posts.filter((post, index) => index < 6)
-  const indexPosts = filterPosts.sort((post1, post2) => new Date(post2.frontmatter.date) - new Date(post1.frontmatter.date))
+  const sortedPosts = posts.sort((post1, post2) => new Date(post2.frontmatter.date) - new Date(post1.frontmatter.date))
+  const indexPosts = sortedPosts.filter((post, index) => index < 6)
+  // const indexPosts = filterPosts.sort((post1, post2) => new Date(post2.frontmatter.date) - new Date(post1.frontmatter.date))
 
   return {
     props: { indexPosts },
