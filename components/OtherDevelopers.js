@@ -24,7 +24,7 @@ const OtherDevelopers = () => {
           <InfoCard
             image={"/assets/alan-profile-picture.jpg"}
             name={"Alan Reid"}
-            title={"ReactJS, NextJS Web Developer and SEO"}
+            title={"Full stack Developer and SEO"}
             description={"I decided that it was worth becoming a programmer the moment I realised that I could work from anywhere. Being an SEO, I wanted to make faster sites so GatsbyJS was my jam"}
             socials={{twitter: "https://twitter.com/itscoldbolt", linkedin: "https://alanreid.dev", gibhub: "https://github.com/Coldboltage", homepage: "https://alanreid.dev"}}
           />
