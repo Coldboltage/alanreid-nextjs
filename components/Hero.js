@@ -27,7 +27,7 @@ const Hero = () => {
             </h2>
             {/* Sub Title */}
             <p className="text-xl italic text-slate-400">
-              {`I'm a previous SEO who wishes to become a developer`}
+              {`I'm a Javascript Full Stack Developer, previously an SEO of 10 years`}
             </p>
           </div>
         </div>
@@ -35,9 +35,12 @@ const Hero = () => {
         <p className="leading-8 md:px-20 lg:px-60 2xl:px-[26rem] text-slate-300">
           {`I like the idea of making great experience for users while building
           fundementally quick sites. I enjoy using both `}
-          <span className="font-semibold text-[#26a8ed]">{`NextJS`}</span>{" "}
+          <span className="font-semibold text-[#26a8ed]">{`Next`}</span>{" "}
           {`and`}
-          <span className=" font-semibold  text-[#26a8ed]">{` GatsbyJS`}</span>
+          <span className=" font-semibold  text-[#26a8ed]">{` Gatsby `}</span>
+          {`while using`} <span className="font-semibold text-[#26a8ed]">{`Node/Express`}</span>{" "}
+          {`and`}
+          <span className=" font-semibold  text-[#26a8ed]">{` Puppeteer `}</span>{`for backend work.`}
         </p>
       </div>
     </section>
