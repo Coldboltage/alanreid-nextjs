@@ -14,20 +14,20 @@ const CV = () => {
             <h1 className="text-3xl sm:text-5xl font-semibold underline-offset-4 underline decoration-[#26a8ed]">
               CV
             </h1>
-            <h2 className="text-xl sm:text-2xl">Frontend Developer and SEO</h2>
+            <h2 className="text-xl sm:text-2xl">Fullstack Developer and SEO</h2>
           </div>
           {/* Picture */}
           {/* Information */}
           <div className="py-10 text-lg">
             <p className="text-base leading-8">
-              {`I build solutions for businesses which will meet the highest of SEO conditions. GatsbyJS and NextJS are my means to help clients get to that point.`}
+              {`I build solutions for businesses which meet the highest of SEO standards. This is achieved using Gatsby or Next for the frontend. For backend work, I love using Node and Express with Puppeteer.`}
             </p>
           </div>
           <div className="pb-10 text-lg">
             <h2 className="pb-5 text-xl font-bold sm:text-2xl">
-              Frontend Developer and SEO
+              My Javascript Programming Stack
             </h2>
-            <div className="flex flex-col gap-2 text-sm">
+            <div className="flex flex-col gap-2 text-sm pt-5">
               {skills.map((skill, index) => (
                 <div key={index} className="flex gap-4 border-b-[1px] pb-2 items-center">
                   <Image src={skill.icon} width={40} height={40} alt={`${skill.name}'s icon`}/>

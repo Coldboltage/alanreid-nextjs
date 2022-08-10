@@ -1,5 +1,10 @@
 export default [
   {
+    icon: "/assets/icons/react-logo.png",
+    name: "React",
+    description: "as my general Javascript framework/library"
+  },
+  {
     icon: "/assets/icons/gatsby.png",
     name: "Gatsby",
     description: "as my frontend framework for non dynamic needs"
