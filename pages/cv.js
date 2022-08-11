@@ -27,7 +27,7 @@ const CV = () => {
             <h2 className="pb-5 text-xl font-bold sm:text-2xl">
               My Javascript Programming Stack
             </h2>
-            <div className="flex flex-col gap-2 text-sm pt-5">
+            <div className="flex flex-col gap-2 pt-5 text-sm">
               {skills.map((skill, index) => (
                 <div key={index} className="flex gap-4 border-b-[1px] pb-2 items-center">
                   <Image src={skill.icon} width={40} height={40} alt={`${skill.name}'s icon`}/>
