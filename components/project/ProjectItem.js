@@ -18,13 +18,13 @@ const ProjectItem = ({ name, link, tagLine, entryStatement, image, project }) =>
         <p className="text-lg">{entryStatement}</p>
       </div>
       <div className="py-10 sm:max-w-screen-lg sm:px-10 sm:mx-auto">
-        <Image src={image}/>
+        <Image src={image} alt={name}/>
       </div>
       <div className="sm:px-36 container-layout">
         <ul>
-          {skills.map((skill) => {
+          {skills.map((skill, index) => {
             return (
-              <li className="text-lg "><span className=" underline-offset-2 italic font-semibold underline decoration-[#26a8ed]">{`${skill.end}`}</span>{`: ${skill.stack}`}</li>
+              <li key={index} className="text-lg "><span className=" underline-offset-2 italic font-semibold underline decoration-[#26a8ed]">{`${skill.end}`}</span>{`: ${skill.stack}`}</li>
             )
           })}
         </ul>

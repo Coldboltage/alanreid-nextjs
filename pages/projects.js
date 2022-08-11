@@ -18,7 +18,7 @@ const Project = () => {
             <h1 className="text-3xl sm:text-5xl font-semibold underline-offset-4 underline decoration-[#26a8ed]">
               Projects
             </h1>
-            <h2 className="text-xl sm:text-2xl">My own personal projects I've worked on</h2>
+            <h2 className="text-xl sm:text-2xl">{`My own personal projects I've worked on`}</h2>
           </div>
           <ProjectItem name="Skyscanner Plus" link="https://skyscannerplus.com" tagLine="It's Skyscanner but cheaper" entryStatement="Skyscanner Plus operates as a toolset which works on top of Skyscanner. Skyscanner does all of the work while I leverage Skyscanner to do more than it already does." image={SkyscannerHomeOne} project={skyscannerPlus}/>
         </div>
