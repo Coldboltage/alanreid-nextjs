@@ -3,6 +3,7 @@ import Layout from "../components/Layout";
 import Image from "next/image";
 import CallToAction from "../components/CallToAction";
 import ProjectItem from "../components/project/ProjectItem"
+import {skyscannerPlus} from "../constants/projects"
 
 // Images
 import SkyscannerHomeOne from "../public/assets/projects-images/skyscannerplus-home.png"
@@ -19,7 +20,7 @@ const Project = () => {
             </h1>
             <h2 className="text-xl sm:text-2xl">My own personal projects I've worked on</h2>
           </div>
-          <ProjectItem name="Skyscanner Plus" link="https://skyscannerplus.com" tagLine="It's Skyscanner but cheaper" entryStatement="Skyscanner Plus operates as a toolset which works on top of Skyscanner. Skyscanner does all of the work while I leverage Skyscanner to do more than it already does." image={SkyscannerHomeOne}/>
+          <ProjectItem name="Skyscanner Plus" link="https://skyscannerplus.com" tagLine="It's Skyscanner but cheaper" entryStatement="Skyscanner Plus operates as a toolset which works on top of Skyscanner. Skyscanner does all of the work while I leverage Skyscanner to do more than it already does." image={SkyscannerHomeOne} project={skyscannerPlus}/>
         </div>
       </div>
       <CallToAction />

@@ -1,9 +1,9 @@
 import Image from "next/image";
-
 import React from "react";
 import Layout from "../Layout";
 
-const ProjectItem = ({ name, link, tagLine, entryStatement, image }) => {
+const ProjectItem = ({ name, link, tagLine, entryStatement, image, project }) => {
+  const {skills} = project
   return (
     <div>
       <div className="sm:px-36 container-layout">
@@ -22,8 +22,15 @@ const ProjectItem = ({ name, link, tagLine, entryStatement, image }) => {
       </div>
       <div className="sm:px-36 container-layout">
         <ul>
-          {}
+          {skills.map((skill) => {
+            return (
+              <li className="text-lg "><span className=" underline-offset-2 italic font-semibold underline decoration-[#26a8ed]">{`${skill.end}`}</span>{`: ${skill.stack}`}</li>
+            )
+          })}
         </ul>
+        <p className="py-5 text-lg ">{project.conclusion}</p>
+        <p className="py-5 text-lg ">{project.next}</p>
+
       </div>
     </div>
   );
