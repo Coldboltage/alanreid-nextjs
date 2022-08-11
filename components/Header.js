@@ -17,6 +17,9 @@ const Header = () => {
             <Link href="/about">About</Link>
             <Link href="/blog">Blog</Link>
             <Link href="/cv">CV</Link>
+            <Link href="/projects">Projects</Link>
+            <a target="_blank" rel="noopener" href="https://github.com/coldboltage">GitHub</a>
+
           </section>
         </nav>
       </div>
