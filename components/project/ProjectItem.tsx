@@ -1,8 +1,25 @@
 import Image from "next/image";
 import React from "react";
-import Layout from "../Layout";
 
-const ProjectItem = ({ name, link, tagLine, entryStatement, image, project }) => {
+interface skillsInteface {
+  end: string,
+  stack: string
+}
+
+interface projectItemInterface {
+  name: string,
+  link: string,
+  tagLine: string,
+  entryStatement: string,
+  image: StaticImageData,
+  project: {
+    skills: skillsInteface[]
+    conclusion: string,
+    next: string
+  }
+}
+
+const ProjectItem = ({ name, link, tagLine, entryStatement, image, project }: projectItemInterface) => {
   const {skills} = project
   return (
     <div>
