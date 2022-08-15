@@ -1,7 +1,7 @@
 import React from "react";
 import SectionTitle from "./SectionTitle";
 
-const CallToAction = ({noTitle}) => {
+const CallToAction = ({noTitle}: {noTitle?: boolean})  => {
   return (
     <section className="bg-[#3C3E41] ">
       <div className={`max-w-screen-lg px-10 mx-auto text-white ${noTitle ? "p-10" : "pb-10"}`}>

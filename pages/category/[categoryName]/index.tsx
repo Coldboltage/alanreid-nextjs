@@ -11,16 +11,18 @@ import readingTime from 'reading-time';
 import sizeOf from 'image-size';
 
 
-const Category = ({ posts }) => {
+const Category = ({ posts, categoryName: { categoryName } }) => {
+  console.log(categoryName)
   const router = useRouter();
   const name =
-    router.query.categoryName.charAt(0).toUpperCase() +
-    router.query.categoryName.slice(1);
+    categoryName.charAt(0).toUpperCase() +
+    categoryName.slice(1);
+  console.log(router.query.categoryName)
   return (
     <Layout>
       <BlogHero name={name} />
       <ListOfPosts postData={posts} stop />
-      <CallToAction />
+      <CallToAction noTitle={false} />
     </Layout>
   );
 };
@@ -28,6 +30,7 @@ const Category = ({ posts }) => {
 export default Category;
 
 export async function getStaticProps(context) {
+  console.log(context.params)
   // Read from a directory and then grab all the posts
   const files = fs.readdirSync(path.join("posts"));
   // Iterate over all the post names and then remove the .mdx
@@ -59,12 +62,17 @@ export async function getStaticProps(context) {
         post.frontmatter.category.toLowerCase()
     )
     .sort(
-      (post1, post2) =>
-        new Date(post2.frontmatter.date) - new Date(post1.frontmatter.date)
+      (post1, post2) => {
+        const date1 = new Date(post2.frontmatter.date)
+        const date2 = new Date(post1.frontmatter.date)
+        return date2.getTime() - date1.getTime()
+      }
+
     );
+  const categoryName = context.params
 
   return {
-    props: { posts },
+    props: { posts, categoryName },
   };
 }
 

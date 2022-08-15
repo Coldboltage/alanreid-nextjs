@@ -5,16 +5,23 @@ import fs from "fs";
 import path from "path";
 import ListOfPosts from "../../components/ListOfPosts";
 import matter from "gray-matter";
-import {useRouter} from "next/router"
+import type { NextPage } from 'next';
 import CallToAction from '../../components/CallToAction';
 import readingTime from 'reading-time';
 import sizeOf from 'image-size';
+import { GetStaticProps, GetStaticPaths, GetServerSideProps } from 'next'
 
-const Blog = ({posts, filteredCategories:categories}) => {
+
+interface BlogInterface {
+  posts: [],
+  filteredCategories: string[]
+}
+
+const Blog = ({posts, filteredCategories}: BlogInterface) => {
   return (
     <Layout>
-      <BlogHero name="Blog" categories={categories}/>
-      <ListOfPosts postData={posts} stop/>
+      <BlogHero name="Blog" categories={filteredCategories}/>
+      <ListOfPosts postData={posts} stop={true}/>
       <CallToAction/>
     </Layout>
   )
@@ -22,7 +29,7 @@ const Blog = ({posts, filteredCategories:categories}) => {
 
 export default Blog
 
-export async function getStaticProps(context) {
+export const getStaticProps: GetStaticProps = async (context) => {
   // Read from a directory and then grab all the posts
   const files = fs.readdirSync(path.join("posts"));
   // Iterate over all the post names and then remove the .mdx
@@ -51,7 +58,12 @@ export async function getStaticProps(context) {
   // console.log(context)
 
   const filterPosts = initialPosts.filter((post, index) => index < 16)
-  const posts = filterPosts.sort((post1, post2) => new Date(post2.frontmatter.date) - new Date(post1.frontmatter.date))  
+  const posts = filterPosts.sort((post1, post2) => {
+    const date1 = new Date(post1.frontmatter.date) 
+    const date2 =  new Date(post2.frontmatter.date)
+    return date2.getTime() - date1.getTime()
+  })  
+
   
 
   return {

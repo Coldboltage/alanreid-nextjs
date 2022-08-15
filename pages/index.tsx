@@ -10,8 +10,48 @@ import Books from "../components/Books";
 import CallToAction from "../components/CallToAction";
 import readingTime from 'reading-time';
 import sizeOf from "image-size"
+import type { NextPage } from 'next';
 
-export default function Home({ indexPosts }) {
+interface frontmatterInterface {
+  title: string,
+  date: string,
+  image: string,
+  authorImage: string,
+  name: string,
+  category: string,
+  description: string
+}
+
+interface imageSizeInterface {
+  width: number,
+  height: number
+}
+
+interface StatsInterface {
+  text: string
+}
+
+
+interface dataInterface {
+  slug: string,
+  content: string,
+  stats: StatsInterface,
+  listPage: boolean,
+  imageSize: imageSizeInterface,
+  frontmatter: frontmatterInterface
+}
+
+interface PostItemInterface {
+  data: dataInterface,
+  index: number,
+}
+
+interface HomeInterface {
+  indexPosts: []
+}
+
+
+const Home = ({ indexPosts }) => {
   return (
     <Layout>
       <Head>
@@ -46,6 +86,8 @@ export default function Home({ indexPosts }) {
   );
 }
 
+export default Home
+
 export async function getStaticProps(context) {
   // Read from a directory and then grab all the posts names
   const files = fs.readdirSync(path.join("posts"));
@@ -65,7 +107,6 @@ export async function getStaticProps(context) {
     // Info for size of image.
     const imageSize = sizeOf(`public${frontmatter.image}`)
 
-
     return {
       slug,
       frontmatter,
@@ -75,7 +116,11 @@ export async function getStaticProps(context) {
       imageSize
     };
   });
-  const sortedPosts = posts.sort((post1, post2) => new Date(post2.frontmatter.date) - new Date(post1.frontmatter.date))
+  const sortedPosts = posts.sort((post1, post2) => {
+    const date1 = new Date(post1.frontmatter.date) 
+    const date2 = new Date(post2.frontmatter.date)
+    return date2.getTime() - date1.getTime()
+  })
   const indexPosts = sortedPosts.filter((post, index) => index < 6)
   // const indexPosts = filterPosts.sort((post1, post2) => new Date(post2.frontmatter.date) - new Date(post1.frontmatter.date))
 

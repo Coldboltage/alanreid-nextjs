@@ -4,11 +4,13 @@ import Image from "next/image";
 import CallToAction from "../components/CallToAction";
 import ProjectItem from "../components/project/ProjectItem"
 import {skyscannerPlus} from "../constants/projects"
+import type { NextPage } from 'next';
+
 
 // Images
 import SkyscannerHomeOne from "../public/assets/projects-images/skyscannerplus-home.png"
 
-const Project = () => {
+const Project: NextPage = () => {
   return (
     <Layout>
       <div className="bg-[#191B1F] text-white pb-10">

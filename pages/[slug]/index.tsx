@@ -7,13 +7,41 @@ import CallToAction from "../../components/CallToAction";
 import SmallMeta from "../../components/SmallMeta";
 import Image from "next/image";
 import ReactMarkdown from "react-markdown";
-import Markdown from 'markdown-to-jsx';
+import type { NextPage } from 'next';
 import Head from "next/head";
 import sizeOf from "image-size"
 import readingTime from 'reading-time';
 
+interface frontmatterInterface {
+  title: string,
+  date: string,
+  image: string,
+  authorImage: string,
+  name: string,
+  category: string,
+  description: string,
+  figure?: string
+}
 
-const Post = ({ frontmatter, content, slug, imageSize, stats }) => {
+interface imageSizeInterface {
+  width: number,
+  height: number
+}
+
+interface StatsInterface {
+  text: string
+}
+
+interface postInteface {
+  frontmatter: frontmatterInterface,
+  content: string,
+  slug: string,
+  imageSize: imageSizeInterface,
+  stats: StatsInterface
+}
+
+
+const Post = ({ frontmatter, content, slug, imageSize, stats }: postInteface) => {
 
   return (
     <Layout>
@@ -52,7 +80,7 @@ const Post = ({ frontmatter, content, slug, imageSize, stats }) => {
             </div>
             {/* Bottom Section */}
             <div>
-              <SmallMeta frontmatter={frontmatter} bigger={true} stats={stats}/>
+              <SmallMeta frontmatter={frontmatter} bigger={true} stats={stats} listpage={false}/>
             </div>
           </div>
           {/* Picture */}

@@ -2,7 +2,16 @@ import React from "react";
 import PostItem from "./PostItem";
 import SectionTitle from "./SectionTitle";
 
-const ListOfPosts = ({ postData, title, subTitle, showTitle }) => {
+
+interface ListOfPostsInterface {
+  postData: [],
+  title?: string,
+  subTitle?: string,
+  showTitle?: boolean,
+  stop?: boolean
+}
+
+const ListOfPosts = ({ postData, title, subTitle, showTitle }: ListOfPostsInterface) => {
   return (
     // <section className={`bg-[#191B1F] py-20 ${postData.length < 3 && "h-[70vh] sm:h-[60vh]"}`}>
     <section

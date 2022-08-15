@@ -1,12 +1,45 @@
-import * as styles from "../styles/PostItem.module.css";
+import styles from "../styles/PostItem.module.css";
 import Image from "next/image";
 import cx from "classnames";
 import SmallMeta from "./SmallMeta";
 import Link from "next/link";
 
-const PostItem = ({ data, index, data:{stats, listPage, imageSize}}) => {
-  const { frontmatter } = data;
-  // console.log(data.slug);
+interface frontmatterInterface {
+  title: string,
+  date: string,
+  image: string,
+  authorImage: string,
+  name: string,
+  category: string,
+  description: string
+}
+
+interface imageSizeInterface {
+  width: number,
+  height: number
+}
+
+interface StatsInterface {
+  text: string
+}
+
+
+interface dataInterface {
+  slug: string,
+  content: string,
+  stats: StatsInterface,
+  listPage: boolean,
+  imageSize: imageSizeInterface,
+  frontmatter: frontmatterInterface
+}
+
+interface PostItemInterface {
+  data: dataInterface,
+  index: number,
+
+}
+
+const PostItem = ({ data, index, data: { stats, listPage, imageSize, frontmatter } }: PostItemInterface) => {
 
   const spanSetup = (value) => {
     // console.log(value)
@@ -46,7 +79,7 @@ const PostItem = ({ data, index, data:{stats, listPage, imageSize}}) => {
   return (
     <div className={`${styles[test]} min-h-fit border-b-2 pb-3 border-sky-900`}>
       {/* <img src={LaptopImage} alt="test"></img> */}
-      <div className={styles.imageContainer}>
+      <div className={`${styles.imageContainer}`}>
         <Link href={`/${data.slug}`} passHref>
           <Image
             src={data.frontmatter.image}
@@ -60,17 +93,16 @@ const PostItem = ({ data, index, data:{stats, listPage, imageSize}}) => {
         </Link>
       </div>
       <div className={`${styles.meta} py-5 flex flex-col `}>
-        
+
         <p className={styles.category}>{frontmatter.category}</p>
         <h2 className={styles.title}>{frontmatter.title}</h2>{" "}
         <p
-          className={`py-2 text-sm italic text-slate-400 ${
-            test === "big" && "lg:hidden"
-          }`}
+          className={`py-2 text-sm italic text-slate-400 ${test === "big" && "lg:hidden"
+            }`}
         >
           {frontmatter.description}
         </p>
-        <SmallMeta frontmatter={frontmatter} stats={stats} listpage={listPage}/>
+        <SmallMeta frontmatter={frontmatter} stats={stats} listpage={listPage} />
       </div>
     </div>
   );

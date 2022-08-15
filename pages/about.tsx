@@ -1,10 +1,11 @@
 import React from "react";
+import type { NextPage } from 'next';
 import Layout from "../components/Layout";
 import Image from "next/image";
 import AboutImage from "../assets/images/profile-picture-northern-ireland.jpg";
 import CallToAction from "../components/CallToAction";
 
-const About = () => {
+const About: NextPage = () => {
   return (
     <Layout>
       <div className="bg-[#191B1F] text-white pb-10">

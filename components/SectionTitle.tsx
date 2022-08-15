@@ -1,6 +1,12 @@
 import React from "react";
 
-const SectionTitle = ({ title, subTitle, stop }) => {
+interface SectionTitleInterface {
+  title: String,
+  subTitle?: String,
+  stop? : Boolean
+}
+
+const SectionTitle = ({ title, subTitle, stop }: SectionTitleInterface) => {
   if (stop) return <div></div>
 
   return (
