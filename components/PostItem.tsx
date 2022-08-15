@@ -36,7 +36,6 @@ interface dataInterface {
 interface PostItemInterface {
   data: dataInterface,
   index: number,
-
 }
 
 const PostItem = ({ data, index, data: { stats, listPage, imageSize, frontmatter } }: PostItemInterface) => {

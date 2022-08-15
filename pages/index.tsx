@@ -51,7 +51,7 @@ interface HomeInterface {
 }
 
 
-const Home = ({ indexPosts }) => {
+const Home = ({ indexPosts }: HomeInterface) => {
   return (
     <Layout>
       <Head>
@@ -88,9 +88,10 @@ const Home = ({ indexPosts }) => {
 
 export default Home
 
-export async function getStaticProps(context) {
+export async function getStaticProps() {
   // Read from a directory and then grab all the posts names
-  const files = fs.readdirSync(path.join("posts"));
+  console.log(__dirname)
+  const files = fs.readdirSync(path.join(__dirname, "..", "..", "..", "posts"));
   // Iterate over all the post names and then remove the .mdx
   const posts = files.map((filename) => {
     const slug = filename.replace(".mdx", "");
