@@ -2,7 +2,12 @@ import React from "react";
 import SectionTitle from "./SectionTitle";
 import InfoCardCopy from "./InfoCardCopy";
 
-const Books = ({title, subtitle}) => {
+interface BooksInterface {
+  title: String,
+  subtitle: String
+}
+
+const Books = ({title, subtitle}: BooksInterface) => {
   return (
     <section className="bg-[#191B1F] py-8 pb-14 sm:py-14">
       <div className="max-w-screen-lg px-10 mx-auto text-white sm:p-10">

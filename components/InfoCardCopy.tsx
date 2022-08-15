@@ -2,7 +2,24 @@ import React from "react";
 import Image from "next/image";
 import DeveloperSocials from "./DeveloperSocials";
 
-const InfoCardCopy = ({ image, name, title, description, socials, width, height }) => {
+interface socialsInterface {
+  twitter?: string,
+  linkedin?: string,
+  github?: string,
+  homepage?: string
+}
+
+interface InfoCardInterface {
+  image: string,
+  name: string,
+  title: string,
+  description: string,
+  socials: socialsInterface,
+  width?: number,
+  height?: number
+}
+
+const InfoCardCopy = ({ image, name, title, description, socials, width, height }: InfoCardInterface) => {
   return (
     <div className="bg-neutral-800">
       {/* Image and container */}
