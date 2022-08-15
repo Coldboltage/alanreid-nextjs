@@ -10,10 +10,10 @@ interface socialsInterface {
 }
 
 interface InfoCardInterface {
-  image: StaticImageData,
-  name: String,
-  title: String,
-  description: String,
+  image: string,
+  name: string,
+  title: string,
+  description: string,
   socials: socialsInterface
 }
 

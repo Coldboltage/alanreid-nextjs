@@ -2,8 +2,6 @@ import React from "react";
 import SectionTitle from "./SectionTitle";
 import InfoCard from "./InfoCard";
 
-
-
 const OtherDevelopers = () => {
   return (
     <section className="bg-[#191B1F] py-8 sm:py-8">
