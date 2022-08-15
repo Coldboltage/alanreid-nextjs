@@ -3,8 +3,10 @@ import Layout from "../components/Layout";
 import Image from "next/image";
 import skills from "../constants/skills";
 import CallToAction from "../components/CallToAction";
+import type { NextPage } from 'next';
 
-const CV = () => {
+
+const CV: NextPage = () => {
   return (
     <Layout>
       <div className="bg-[#191B1F] text-white pb-10">
