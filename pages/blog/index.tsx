@@ -14,7 +14,7 @@ const Blog = ({posts, filteredCategories:categories}) => {
   return (
     <Layout>
       <BlogHero name="Blog" categories={categories}/>
-      <ListOfPosts postData={posts} stop/>
+      <ListOfPosts postData={posts} stop={true}/>
       <CallToAction/>
     </Layout>
   )
@@ -51,7 +51,12 @@ export async function getStaticProps(context) {
   // console.log(context)
 
   const filterPosts = initialPosts.filter((post, index) => index < 16)
-  const posts = filterPosts.sort((post1, post2) => new Date(post2.frontmatter.date) - new Date(post1.frontmatter.date))  
+  const posts = filterPosts.sort((post1, post2) => {
+    const date1 = new Date(post2.frontmatter.date) 
+    const date2 =  new Date(post1.frontmatter.date)
+    return date2.getTime() - date1.getTime()
+  })  
+
   
 
   return {

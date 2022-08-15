@@ -65,7 +65,6 @@ export async function getStaticProps(context) {
     // Info for size of image.
     const imageSize = sizeOf(`public${frontmatter.image}`)
 
-
     return {
       slug,
       frontmatter,
@@ -75,7 +74,11 @@ export async function getStaticProps(context) {
       imageSize
     };
   });
-  const sortedPosts = posts.sort((post1, post2) => new Date(post2.frontmatter.date) - new Date(post1.frontmatter.date))
+  const sortedPosts = posts.sort((post1, post2) => {
+    const date1 = new Date(post2.frontmatter.date) 
+    const date2 = new Date(post1.frontmatter.date)
+    return date2.getTime() - date1.getTime()
+  })
   const indexPosts = sortedPosts.filter((post, index) => index < 6)
   // const indexPosts = filterPosts.sort((post1, post2) => new Date(post2.frontmatter.date) - new Date(post1.frontmatter.date))
 

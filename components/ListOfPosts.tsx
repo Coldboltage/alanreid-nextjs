@@ -5,9 +5,10 @@ import SectionTitle from "./SectionTitle";
 
 interface ListOfPostsInterface {
   postData: [],
-  title: string,
-  subTitle: string,
-  showTitle?: boolean
+  title?: string,
+  subTitle?: string,
+  showTitle?: boolean,
+  stop?: boolean
 }
 
 const ListOfPosts = ({ postData, title, subTitle, showTitle }: ListOfPostsInterface) => {

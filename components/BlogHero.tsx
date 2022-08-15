@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link"
 
 interface blogHeroInterface  {
-  categories: string[],
+  categories?: string[],
   name: String
 }
 
