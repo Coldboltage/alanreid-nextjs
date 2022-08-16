@@ -1,12 +1,13 @@
 const puppeteer = require("puppeteer")
 const fs = require("fs") 
-const path = require("path") 
+const path = require("path")
+const pageLinks = require("../constants/pageLinks")
+
 
 jest.useRealTimers();
 jest.setTimeout(30000)  
-describe('Google', () => {
-  
-  let browser, page, files, posts, slug
+describe('Test Blog Pages and Page work', () => {
+  let browser, page, files, posts
   beforeAll(async () => {
     // Get all the posts.
      files = fs.readdirSync(path.join(__dirname, "..", "posts"));
@@ -18,17 +19,20 @@ describe('Google', () => {
     page = await browser.newPage()
   });
 
-  it("Should Load Google", async () => {
-    await page.goto('https://google.com');
-  })
-
-  it('should be titled "Google"', async () => {
-    await expect(page.title()).resolves.toMatch('Google');
-  });
-
   it("Should load every blog post", async () => {
     for await (let post of posts) {
       await page.goto(`http://localhost:3000/${post}`)
+      const finalResponse = await page.waitForResponse(async response => {
+        return await response.ok()
+      });
+      const answer = finalResponse.ok()
+      await expect(answer).toBe(true)
+    }
+  })
+
+  it("Should open every page assigned", async () => {
+    for await (let links of pageLinks) {
+      await page.goto(links.href)
       const finalResponse = await page.waitForResponse(async response => {
         return await response.ok()
       });

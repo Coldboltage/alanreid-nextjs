@@ -5,9 +5,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+    "serve": "npm run build && npm run lint && npm run start",
     "lint": "next lint",
-    "test": "jest",
-    "test-ci": "start-server-and-test dev http://localhost:3000 test"
+    "test": "jest --verbose=true",
+    "test-ci": "start-server-and-test serve http://localhost:3000 test"
   },
   "dependencies": {
     "@mdx-js/loader": "^2.0.0",

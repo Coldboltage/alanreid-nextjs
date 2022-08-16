@@ -1,0 +1,28 @@
+---
+title: "Adding Tests to the site!"
+date: "2022/08/16"
+image: /assets/blogpost-images/jest-puppeteer.png
+authorImage: /assets/alan-profile-picture.jpg
+name: "Alan Reid"
+category: "Development"
+description: A wee test here and there keeps the wee bugs at bay. 
+---
+
+I know how important testing is to building software and given my interest to Puppeteer, I decided to start working with Jest properly and place the theroy to practise. 
+
+#### My experience with Jest?
+
+Jest itself isn't that hard to use. For the most part, you can get by with simple end to end tests but I've come to learn there's probably a better way to do things than what I'm actually doing. Still, it's better to have a test rather than no test and then to improve on the tests whenever I get a better idea. I'm going to need to look at a proper Jest guide/course. I feel very confident using Jest but I also feel if I wish to improve in the immediate, it's probably best I take up the theory now. 
+
+#### The actual difficulity!
+
+The most difficult part was getting Next to play nicely with the tests. In the CI process with GitHub Actions, I had difficulity figuring out how to get Next to start the server while run the tests. I'm working with only one Node terminal but thankfully there was an npm package, "start-server-and-test" which saved my bacon. 
+
+#### What am I currently testing?
+
+Two things as of now.
+
+* Test that all pages and posts are being rendered.
+* Frontmatter from posts are being established without being missed out. 
+
+I'll think of more tests in the future but for now, that's good enough!
