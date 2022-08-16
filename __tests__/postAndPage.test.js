@@ -28,12 +28,12 @@ describe("Test Blog Pages and Page work", () => {
       console.log(post);
       const response = await page.goto(`http://localhost:3000/${post}`);
       console.log("Page Loaded");
-      const answer = await response.statusText();
+      const answer = await response.ok();
       // const finalResponse = await page.waitForResponse(async response => {
       //   return await response.ok()
       // });
       // const answer = finalResponse.ok()
-      await expect(answer).toBe("OK");
+      await expect(answer).toBe(true);
     }
   });
 
@@ -42,12 +42,12 @@ describe("Test Blog Pages and Page work", () => {
       console.log(links.href);
       const response = await page.goto(links.href);
       console.log("Page Loaded");
-      const answer = await response.statusText();
+      const answer = await response.ok();
       // const finalResponse = await page.waitForResponse(async response => {
       //   return await response.ok()
       // });
       // const answer = finalResponse.ok()
-      await expect(answer).toBe("OK");
+      await expect(answer).toBe(true);
     }
   });
 
