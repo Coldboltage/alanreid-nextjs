@@ -39,6 +39,7 @@ describe('Test Blog Pages and Page work', () => {
     for await (let links of pageLinks) {
       console.log(links.href)
       await page.goto(links.href)
+      console.log("Page Loaded")
       const finalResponse = await page.waitForResponse(async response => {
         return await response.ok()
       });
