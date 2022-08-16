@@ -7,7 +7,7 @@ const sizeOf = require("image-size");
 const matter = require("gray-matter");
 
 jest.useRealTimers();
-jest.setTimeout(30000);
+jest.setTimeout(60000);
 describe("Test Blog Pages and Page work", () => {
   let files, posts;
   beforeAll(async () => {
