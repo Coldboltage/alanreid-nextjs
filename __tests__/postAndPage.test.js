@@ -16,7 +16,10 @@ describe('Test Blog Pages and Page work', () => {
   });
 
   beforeEach(async () => {
-    browser = await puppeteer.launch({headless: true})
+    browser = await puppeteer.launch({headless: true , args: [
+      `--no-sandbox`,
+      `--disable-setuid-sandbox`,
+    ],})
     page = await browser.newPage()
   });
 
@@ -44,6 +47,4 @@ describe('Test Blog Pages and Page work', () => {
   })
 
   afterEach(async () => await browser.close());
-
-  afterAll(async () => await browser.close())
 });
