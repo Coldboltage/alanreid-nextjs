@@ -37,6 +37,7 @@ describe('Test Blog Pages and Page work', () => {
 
   it("Should open every page assigned", async () => {
     for await (let links of pageLinks) {
+      console.log(links.href)
       await page.goto(links.href)
       const finalResponse = await page.waitForResponse(async response => {
         return await response.ok()
