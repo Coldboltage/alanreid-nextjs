@@ -1,8 +1,7 @@
 const puppeteer = require("puppeteer")
 const fs = require("fs") 
 const path = require("path")
-import pageLinks from "../constants/pageLinks"
-
+const pageLinks = require("../constants/pageLinks") 
 
 jest.useRealTimers();
 jest.setTimeout(30000)  

@@ -1,4 +1,4 @@
-export default  [{
+module.exports =  [{
     name: "Home",
     href: "http://localhost:3000/"
   },{
@@ -17,5 +17,4 @@ export default  [{
     name: "Github",
     href: "https://github.com/coldboltage"
   }
-  
 ]
