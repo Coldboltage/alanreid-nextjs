@@ -1,4 +1,4 @@
-module.exports = [{
+export default  [{
     name: "Home",
     href: "http://localhost:3000/"
   },{
@@ -10,9 +10,6 @@ module.exports = [{
   },{
     name: "CV",
     href: "http://localhost:3000/cv"
-  },{
-    name: "Projects",
-    href: "http://localhost:3000/projects"
   },{
     name: "Projects",
     href: "http://localhost:3000/projects"

@@ -1,7 +1,7 @@
 const puppeteer = require("puppeteer")
 const fs = require("fs") 
 const path = require("path")
-const pageLinks = require("../constants/pageLinks")
+import pageLinks from "../constants/pageLinks"
 
 
 jest.useRealTimers();
@@ -14,7 +14,9 @@ describe('Test Blog Pages and Page work', () => {
      posts = files.map((filename) => {
        return filename.replace(".mdx", "");
     })
+  });
 
+  beforeEach(async () => {
     browser = await puppeteer.launch({headless: true})
     page = await browser.newPage()
   });
@@ -40,6 +42,8 @@ describe('Test Blog Pages and Page work', () => {
       await expect(answer).toBe(true)
     }
   })
+
+  afterEach(async () => await browser.close());
 
   afterAll(async () => await browser.close())
 });
