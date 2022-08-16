@@ -4,7 +4,7 @@ const path = require("path")
 const pageLinks = require("../constants/pageLinks") 
 
 jest.useRealTimers();
-jest.setTimeout(30000)  
+jest.setTimeout(60000)  
 describe('Test Blog Pages and Page work', () => {
   let browser, page, files, posts
   beforeAll(async () => {
