@@ -13,8 +13,5 @@ module.exports =  [{
   },{
     name: "Projects",
     href: "http://localhost:3000/projects"
-  },{
-    name: "Github",
-    href: "https://github.com/coldboltage"
   }
 ]
