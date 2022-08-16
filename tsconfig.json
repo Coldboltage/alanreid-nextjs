@@ -24,7 +24,7 @@
     "**/*.ts",
     "**/*.tsx",
     "additional.d.ts"
-  ],
+, "jest.config.js", "constants/pageLinks.js"  ],
   "exclude": [
     "node_modules"
   ]
