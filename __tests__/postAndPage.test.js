@@ -22,6 +22,7 @@ describe('Test Blog Pages and Page work', () => {
 
   it("Should load every blog post", async () => {
     for await (let post of posts) {
+      console.log(post)
       await page.goto(`http://localhost:3000/${post}`)
       const finalResponse = await page.waitForResponse(async response => {
         return await response.ok()
