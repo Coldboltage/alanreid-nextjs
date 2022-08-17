@@ -3,7 +3,9 @@ import Image from "next/image";
 import cx from "classnames";
 import SmallMeta from "./SmallMeta";
 import Link from "next/link";
+import { PostItemInterface } from "../types/Post";
 
+<<<<<<< Updated upstream
 interface frontmatterInterface {
   title: string,
   date: string,
@@ -38,10 +40,12 @@ interface PostItemInterface {
   index: number,
 
 }
+=======
+>>>>>>> Stashed changes
 
 const PostItem = ({ data, index, data: { stats, listPage, imageSize, frontmatter } }: PostItemInterface) => {
 
-  const spanSetup = (value) => {
+  const spanSetup = (value: number) => {
     // console.log(value)
     switch (value) {
       case 0:
@@ -63,6 +67,8 @@ const PostItem = ({ data, index, data: { stats, listPage, imageSize, frontmatter
       case 8:
       case 9:
         return "medium";
+      default:
+        return ""
     }
   };
 

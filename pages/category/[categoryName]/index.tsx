@@ -12,7 +12,6 @@ import sizeOf from 'image-size';
 
 
 const Category = ({ posts, categoryName: { categoryName } }) => {
-  console.log(categoryName)
   const router = useRouter();
   const name =
     categoryName.charAt(0).toUpperCase() +
