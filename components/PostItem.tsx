@@ -1,6 +1,5 @@
 import styles from "../styles/PostItem.module.css";
 import Image from "next/image";
-import cx from "classnames";
 import SmallMeta from "./SmallMeta";
 import Link from "next/link";
 import { PostItemInterface } from "../types/Post";
@@ -36,12 +35,12 @@ const PostItem = ({ index, slug, frontmatter, imageSize, stats, listPage }: Post
 
   const test = spanSetup(index);
 
-  const itemClasses = cx({
-    "min-h-fit": true,
-    big: test === "big",
-    small: test === "small",
-    medium: test === "medium",
-  });
+  // const itemClasses = cx({
+  //   "min-h-fit": true,
+  //   big: test === "big",
+  //   small: test === "small",
+  //   medium: test === "medium",
+  // });
 
 
   return (

@@ -7,7 +7,6 @@ import CallToAction from "../../components/CallToAction";
 import SmallMeta from "../../components/SmallMeta";
 import Image from "next/image";
 import ReactMarkdown from "react-markdown";
-import type { NextPage } from 'next';
 import Head from "next/head";
 import sizeOf from "image-size"
 import readingTime from 'reading-time';

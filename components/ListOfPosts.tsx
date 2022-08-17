@@ -1,5 +1,3 @@
-import { darkScrollbar } from "@mui/material";
-import { DiffieHellmanGroup } from "crypto";
 import React from "react";
 import { ListOfPostsInterface } from "../types/Post";
 import PostItem from "./PostItem";
