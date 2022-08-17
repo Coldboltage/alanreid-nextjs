@@ -1,10 +1,12 @@
 import React from "react";
+import { PostItemInterface } from "../types/Post";
 import PostItem from "./PostItem";
 import SectionTitle from "./SectionTitle";
 
 
+
 interface ListOfPostsInterface {
-  postData: [],
+  postData: PostItemInterface[],
   title?: string,
   subTitle?: string,
   showTitle?: boolean,

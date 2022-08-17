@@ -39,6 +39,7 @@ describe("Test Blog Pages and Page work", () => {
       };
     });
   });
+  
   it("Should test all posts for valid frontmatter", async () => {
     for await (let post of posts) {
       const { title, date, image, authorImage, name, category, description } =
