@@ -1,21 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import DeveloperSocials from "./DeveloperSocials";
-
-interface socialsInterface {
-  twitter: string,
-  linkedin: string,
-  github: string,
-  homepage: string
-}
-
-interface InfoCardInterface {
-  image: string,
-  name: string,
-  title: string,
-  description: string,
-  socials: socialsInterface
-}
+import { InfoCardInterface } from "../types/Post";
 
 const InfoCardCopy = ({ image, name, title, description, socials }: InfoCardInterface) => {
   return (

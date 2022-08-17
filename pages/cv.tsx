@@ -30,8 +30,8 @@ const CV: NextPage = () => {
               My Javascript Programming Stack
             </h2>
             <div className="flex flex-col gap-2 pt-5 text-sm">
-              {skills.map((skill, index) => (
-                <div key={index} className="flex gap-4 border-b-[1px] pb-2 items-center">
+              {skills.map((skill) => (
+                <div key={skill.name} className="flex gap-4 border-b-[1px] pb-2 items-center">
                   <Image src={skill.icon} width={40} height={40} alt={`${skill.name}'s icon`}/>
                   <p><span className="italic font-bold">{skill.name}</span>{` ${skill.description}`}</p>
                 </div>

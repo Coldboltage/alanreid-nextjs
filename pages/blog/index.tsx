@@ -5,11 +5,10 @@ import fs from "fs";
 import path from "path";
 import ListOfPosts from "../../components/ListOfPosts";
 import matter from "gray-matter";
-import type { NextPage } from 'next';
 import CallToAction from '../../components/CallToAction';
 import readingTime from 'reading-time';
 import sizeOf from 'image-size';
-import { GetStaticProps, GetStaticPaths, GetServerSideProps } from 'next'
+import { GetStaticProps } from 'next'
 
 
 interface BlogInterface {
@@ -48,6 +47,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
     return {
       slug,
       frontmatter,
+      content,
       stats,
       imageSize
     };

@@ -3,7 +3,7 @@ import Header from "./Header";
 import Footer from "./Footer";
 
 
-const Layout = ({ children }) => {
+const Layout = ({ children }: any) => {
   return (
     <div>
       <Header />

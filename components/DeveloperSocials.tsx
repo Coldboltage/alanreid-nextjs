@@ -1,19 +1,8 @@
 import React from "react";
 import { FaHome, FaTwitter, FaLinkedin, FaGithubSquare } from "react-icons/fa";
-
-interface socialsInterface {
-  twitter?: string,
-  linkedin?: string,
-  github?: string,
-  homepage?: string
-}
-
-interface DeveloperSocials {
-  socials: socialsInterface
-}
+import { DeveloperSocials } from "../types/Post";
 
 const DeveloperSocials = ({ socials }: DeveloperSocials) => {
-  // console.log(socials);
   return (
     <div className="flex items-center gap-2 text-sm lg:gap-4">
       {socials.homepage && <a href={socials.homepage}>

@@ -11,43 +11,12 @@ import CallToAction from "../components/CallToAction";
 import readingTime from 'reading-time';
 import sizeOf from "image-size"
 import type { NextPage } from 'next';
-
-interface frontmatterInterface {
-  title: string,
-  date: string,
-  image: string,
-  authorImage: string,
-  name: string,
-  category: string,
-  description: string
-}
-
-interface imageSizeInterface {
-  width: number,
-  height: number
-}
-
-interface StatsInterface {
-  text: string
-}
+import { PostItemInterface } from "../types/Post";
 
 
-interface dataInterface {
-  slug: string,
-  content: string,
-  stats: StatsInterface,
-  listPage: boolean,
-  imageSize: imageSizeInterface,
-  frontmatter: frontmatterInterface
-}
-
-interface PostItemInterface {
-  data: dataInterface,
-  index: number,
-}
 
 interface HomeInterface {
-  indexPosts: []
+  indexPosts: PostItemInterface[]
 }
 
 

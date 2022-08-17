@@ -25,7 +25,7 @@ const About: NextPage = () => {
         {/* Information */}
         <div className="max-w-screen-lg px-5 py-10 mx-auto text-lg md:px-36">
           <p className="leading-8">
-            {`I'm Alan Reid, a developer from Bangor, Northern Ireland and I'm
+           {`I'm Alan Reid, a developer from Bangor, Northern Ireland and I'm
             aiming to become as good of a developer as one can be.`}
           </p>
           <p className="leading-8 pt-7">

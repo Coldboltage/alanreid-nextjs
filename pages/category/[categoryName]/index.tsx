@@ -9,15 +9,14 @@ import { useRouter } from "next/router";
 import CallToAction from "../../../components/CallToAction";
 import readingTime from 'reading-time';
 import sizeOf from 'image-size';
+import { CategoryInterface } from "../../../types/Post";
 
 
-const Category = ({ posts, categoryName: { categoryName } }) => {
-  console.log(categoryName)
+const Category = ({ posts, categoryName: { categoryName } }: CategoryInterface) => {
   const router = useRouter();
   const name =
     categoryName.charAt(0).toUpperCase() +
     categoryName.slice(1);
-  console.log(router.query.categoryName)
   return (
     <Layout>
       <BlogHero name={name} />
@@ -29,8 +28,7 @@ const Category = ({ posts, categoryName: { categoryName } }) => {
 
 export default Category;
 
-export async function getStaticProps(context) {
-  console.log(context.params)
+export async function getStaticProps(context: {params: {categoryName: string}}) {
   // Read from a directory and then grab all the posts
   const files = fs.readdirSync(path.join("posts"));
   // Iterate over all the post names and then remove the .mdx
