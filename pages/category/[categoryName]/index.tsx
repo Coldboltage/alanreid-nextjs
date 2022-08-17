@@ -63,8 +63,8 @@ export async function getStaticProps(context) {
     )
     .sort(
       (post1, post2) => {
-        const date1 = new Date(post2.frontmatter.date)
-        const date2 = new Date(post1.frontmatter.date)
+        const date1 = new Date(post1.frontmatter.date)
+        const date2 = new Date(post2.frontmatter.date)
         return date2.getTime() - date1.getTime()
       }
 
