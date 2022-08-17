@@ -943,6 +943,13 @@
   "resolved" "https://registry.npmjs.org/@types/prop-types/-/prop-types-15.7.4.tgz"
   "version" "15.7.4"
 
+"@types/puppeteer@^5.4.6":
+  "integrity" "sha512-98Kghehs7+/GD9b56qryhqdqVCXUTbetTv3PlvDnmFRTHQH0j9DIp1f7rkAW3BAj4U3yoeSEQnKgdW8bDq0Y0Q=="
+  "resolved" "https://registry.npmjs.org/@types/puppeteer/-/puppeteer-5.4.6.tgz"
+  "version" "5.4.6"
+  dependencies:
+    "@types/node" "*"
+
 "@types/react@>=16":
   "integrity" "sha512-UVavlfAxDd/AgAacMa60Azl7ygyQNRwC/DsHZmKgNvPmRR5p70AJ5Q9EAmL2NWOJmeV+vVUI4IAP7GZrN8h8Ug=="
   "resolved" "https://registry.npmjs.org/@types/react/-/react-17.0.39.tgz"

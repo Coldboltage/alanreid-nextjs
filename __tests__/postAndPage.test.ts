@@ -7,7 +7,7 @@ jest.useRealTimers();
 jest.setTimeout(60000);
 
 describe("Test Blog Pages and Page work", () => {
-  let browser, page, files, posts;
+  let browser, page, files: string[], posts: string[];
   beforeAll(async () => {
     // Get all the posts.
     files = fs.readdirSync(path.join(__dirname, "..", "posts"));
@@ -34,7 +34,7 @@ describe("Test Blog Pages and Page work", () => {
       //   return await response.ok()
       // });
       // const answer = finalResponse.ok()
-      await expect(answer).toBe(true);
+      expect(answer).toBe(true);
     }
   });
 
@@ -48,7 +48,7 @@ describe("Test Blog Pages and Page work", () => {
       //   return await response.ok()
       // });
       // const answer = finalResponse.ok()
-      await expect(answer).toBe(true);
+      expect(answer).toBe(true);
     }
   });
 
