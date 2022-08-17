@@ -10,7 +10,7 @@ jest.useRealTimers();
 jest.setTimeout(60000);
 
 describe("Test Blog Pages and Page work", () => {
-  let files, posts;
+  let files, posts:any[];
   beforeAll(async () => {
     // Get all the posts.
     files = fs.readdirSync(path.join(__dirname, "..", "posts"));
