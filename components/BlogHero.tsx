@@ -1,10 +1,6 @@
 import React from "react";
 import Link from "next/link"
-
-interface BlogHeroInterface  {
-  categories?: string[],
-  name: String
-}
+import { BlogHeroInterface } from "../types/Post";
 
 const BlogHero = ({ categories, name }: BlogHeroInterface) => {
   return (

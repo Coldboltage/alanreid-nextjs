@@ -25,8 +25,8 @@ const About: NextPage = () => {
         {/* Information */}
         <div className="max-w-screen-lg px-5 py-10 mx-auto text-lg md:px-36">
           <p className="leading-8">
-            I'm Alan Reid, a developer from Bangor, Northern Ireland and I'm
-            aiming to become as good of a developer as one can be.
+           {`I'm Alan Reid, a developer from Bangor, Northern Ireland and I'm
+            aiming to become as good of a developer as one can be.`}
           </p>
           <p className="leading-8 pt-7">
             {`It's been something that I've wanted to do for the last couple of

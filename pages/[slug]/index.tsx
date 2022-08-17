@@ -11,6 +11,7 @@ import type { NextPage } from 'next';
 import Head from "next/head";
 import sizeOf from "image-size"
 import readingTime from 'reading-time';
+import { StatsInterface } from "../../types/Post";
 
 interface frontmatterInterface {
   title: string,
@@ -28,9 +29,6 @@ interface imageSizeInterface {
   height: number
 }
 
-interface StatsInterface {
-  text: string
-}
 
 interface postInteface {
   frontmatter: frontmatterInterface,
@@ -126,7 +124,7 @@ export async function getStaticPaths() {
   };
 }
 
-export async function getStaticProps({ params: { slug } }) {
+export async function getStaticProps({ params: { slug } }: {params: { slug: string}}) {
   // Go to the posts directory, read each file with slug "time-to-learn-nodejs.mdx"
   // As the slug matches post name, the function can run
   const markdownWithMeta = fs.readFileSync(

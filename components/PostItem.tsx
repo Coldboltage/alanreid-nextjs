@@ -5,48 +5,10 @@ import SmallMeta from "./SmallMeta";
 import Link from "next/link";
 import { PostItemInterface } from "../types/Post";
 
-<<<<<<< Updated upstream
-interface frontmatterInterface {
-  title: string,
-  date: string,
-  image: string,
-  authorImage: string,
-  name: string,
-  category: string,
-  description: string
-}
-
-interface imageSizeInterface {
-  width: number,
-  height: number
-}
-
-interface StatsInterface {
-  text: string
-}
-
-
-interface dataInterface {
-  slug: string,
-  content: string,
-  stats: StatsInterface,
-  listPage: boolean,
-  imageSize: imageSizeInterface,
-  frontmatter: frontmatterInterface
-}
-
-interface PostItemInterface {
-  data: dataInterface,
-  index: number,
-
-}
-=======
->>>>>>> Stashed changes
-
-const PostItem = ({ data, index, data: { stats, listPage, imageSize, frontmatter } }: PostItemInterface) => {
+const PostItem = ({ index, slug, frontmatter, imageSize, stats, listPage }: PostItemInterface) => {
 
   const spanSetup = (value: number) => {
-    // console.log(value)
+
     switch (value) {
       case 0:
       case 6:
@@ -86,9 +48,9 @@ const PostItem = ({ data, index, data: { stats, listPage, imageSize, frontmatter
     <div className={`${styles[test]} min-h-fit border-b-2 pb-3 border-sky-900`}>
       {/* <img src={LaptopImage} alt="test"></img> */}
       <div className={`${styles.imageContainer}`}>
-        <Link href={`/${data.slug}`} passHref>
+        <Link href={`/${slug}`} passHref>
           <Image
-            src={data.frontmatter.image}
+            src={frontmatter.image}
             width={test === "big" ? imageSize.width / imageSize.height : 2}
             height={1}
             layout="responsive"

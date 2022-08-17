@@ -1,17 +1,10 @@
+import { darkScrollbar } from "@mui/material";
+import { DiffieHellmanGroup } from "crypto";
 import React from "react";
-import { PostItemInterface } from "../types/Post";
+import { ListOfPostsInterface } from "../types/Post";
 import PostItem from "./PostItem";
 import SectionTitle from "./SectionTitle";
 
-
-
-interface ListOfPostsInterface {
-  postData: PostItemInterface[],
-  title?: string,
-  subTitle?: string,
-  showTitle?: boolean,
-  stop?: boolean
-}
 
 const ListOfPosts = ({ postData, title, subTitle, showTitle }: ListOfPostsInterface) => {
   return (
@@ -24,7 +17,9 @@ const ListOfPosts = ({ postData, title, subTitle, showTitle }: ListOfPostsInterf
 
         <div className="grid grid-cols-2 gap-10 sm:grid-cols-4 lg:grid-cols-6 auto-rows-auto">
           {postData.map((singlePost, index) => {
-            return <PostItem key={index} data={singlePost} index={index} />;
+
+            // console.log(singlePost)
+            return <PostItem key={index} {...singlePost} index={index} />;
             // Each post comes in
             // Determine via index what className it'll get
             // Result of switch function based upon index

@@ -1,11 +1,7 @@
 import React from "react";
 import SectionTitle from "./SectionTitle";
 import InfoCardCopy from "./InfoCardCopy";
-
-interface BooksInterface {
-  title: String,
-  subtitle: String
-}
+import { BooksInterface } from "../types/Post";
 
 const Books = ({title, subtitle}: BooksInterface) => {
   return (

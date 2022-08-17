@@ -1,33 +1,96 @@
-export interface frontmatterInterface {
-  title: string,
-  date: string,
-  image: string,
-  authorImage: string,
-  name: string,
-  category: string,
-  description: string
+export interface FrontmatterInterface {
+  title: string;
+  date: string;
+  image: string;
+  authorImage: string;
+  name: string;
+  category: string;
+  description: string;
 }
 
 export interface imageSizeInterface {
-  width: number,
-  height: number
+  width: number;
+  height: number;
+}
+
+export interface StatsInterface {
+  text: string;
+  minutes: number;
+  time: number;
+  words: number
+}
+
+export interface DataInterface {
+  slug: string;
+  content?: string;
+  stats: StatsInterface;
+  listPage?: boolean;
+  imageSize: imageSizeInterface;
+  frontmatter: FrontmatterInterface;
+}
+
+export interface PostItemInterface {
+  slug: string;
+  content?: string;
+  stats: StatsInterface;
+  listPage?: boolean;
+  imageSize: imageSizeInterface;
+  frontmatter: FrontmatterInterface;
+  index: number;
+}
+
+export interface BlogHeroInterface {
+  categories?: string[];
+  name: string;
+}
+
+export interface BooksInterface {
+  title: string;
+  subtitle: string;
+}
+
+export interface SocialsInterface {
+  twitter?: string;
+  linkedin?: string;
+  github?: string;
+  homepage?: string;
+}
+
+export interface DeveloperSocials {
+  socials: SocialsInterface;
+}
+
+export interface InfoCardInterface {
+  image: string;
+  name: string;
+  title: string;
+  description: string;
+  socials: SocialsInterface;
+  width?: number;
+  height?: number;
+}
+
+export interface ListOfPostsInterface {
+  postData: PostItemInterface[],
+  title?: string,
+  subTitle?: string,
+  showTitle?: boolean,
+  stop?: boolean
 }
 
 export interface StatsInterface {
   text: string
 }
 
-export interface dataInterface {
-  slug: string,
-  content: string,
+export interface SmallMetaInterface {
+  frontmatter: FrontmatterInterface, 
+  bigger?: boolean, 
   stats: StatsInterface,
-  listPage: boolean,
-  imageSize: imageSizeInterface,
-  frontmatter: frontmatterInterface
+  listpage?: boolean
 }
 
-export interface PostItemInterface {
-  data: dataInterface,
-  index: number,
+export interface CategoryInterface {
+  posts: [],
+  categoryName: { categoryName: string }
 }
 

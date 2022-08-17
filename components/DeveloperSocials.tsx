@@ -1,16 +1,6 @@
 import React from "react";
 import { FaHome, FaTwitter, FaLinkedin, FaGithubSquare } from "react-icons/fa";
-
-interface socialsInterface {
-  twitter?: string,
-  linkedin?: string,
-  github?: string,
-  homepage?: string
-}
-
-interface DeveloperSocials {
-  socials: socialsInterface
-}
+import { DeveloperSocials } from "../types/Post";
 
 const DeveloperSocials = ({ socials }: DeveloperSocials) => {
   // console.log(socials);

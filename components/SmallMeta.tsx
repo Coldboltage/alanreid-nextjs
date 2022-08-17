@@ -1,32 +1,8 @@
 import React from "react";
 import Image from "next/image";
 import dayjs from "dayjs"
+import { SmallMetaInterface } from "../types/Post";
 
-interface frontmatterInterface {
-  title: string,
-  date: string,
-  image: string,
-  authorImage: string,
-  name: string,
-  category: string,
-  description: string
-}
-
-interface imageSizeInterface {
-  width: number,
-  height: number
-}
-
-interface statsInterface {
-  text: string
-}
-
-interface SmallMetaInterface {
-  frontmatter: frontmatterInterface, 
-  bigger?: boolean, 
-  stats: statsInterface,
-  listpage: boolean
-}
 
 const SmallMeta = ({ frontmatter, bigger, stats, listpage }: SmallMetaInterface) => {
 

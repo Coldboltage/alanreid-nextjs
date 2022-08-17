@@ -1,9 +1,9 @@
 import React from "react";
 
 interface SectionTitleInterface {
-  title: String,
-  subTitle?: String,
-  stop? : Boolean
+  title?: string,
+  subTitle?: string,
+  stop? : boolean
 }
 
 const SectionTitle = ({ title, subTitle, stop }: SectionTitleInterface) => {
