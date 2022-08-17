@@ -49,6 +49,7 @@ describe("Test Blog Pages and Page work", () => {
       expect(typeof authorImage).toBe("string")
       expect(typeof name).toBe("string")
       expect(typeof category).toBe("string")
+      expect(typeof description).toBe("string")
     }
   });
   afterAll(() => console.log("Complete"));
