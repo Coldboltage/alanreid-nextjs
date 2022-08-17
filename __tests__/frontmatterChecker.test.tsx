@@ -1,13 +1,14 @@
 // const puppeteer = require("puppeteer");
-const fs = require("fs");
-const path = require("path");
+import fs from  "fs";
+import path from "path";
 // const pageLinks = require("../constants/pageLinks");
-const readingTime = require("reading-time");
-const sizeOf = require("image-size");
-const matter = require("gray-matter");
+import readingTime from "reading-time";
+import sizeOf from "image-size";
+import matter from "gray-matter";
 
 jest.useRealTimers();
 jest.setTimeout(60000);
+
 describe("Test Blog Pages and Page work", () => {
   let files, posts;
   beforeAll(async () => {

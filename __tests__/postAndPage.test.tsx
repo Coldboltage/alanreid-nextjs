@@ -1,10 +1,11 @@
-const puppeteer = require("puppeteer");
-const fs = require("fs");
-const path = require("path");
-const pageLinks = require("../constants/pageLinks");
+import puppeteer from "puppeteer";
+import fs from "fs";
+import path from "path";
+import pageLinks from "../constants/pageLinks";
 
 jest.useRealTimers();
 jest.setTimeout(60000);
+
 describe("Test Blog Pages and Page work", () => {
   let browser, page, files, posts;
   beforeAll(async () => {
