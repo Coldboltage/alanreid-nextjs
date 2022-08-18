@@ -38,13 +38,19 @@ const CV: NextPage = () => {
               ))}
             </div>
           </div>
-          <p className="container-layout sm:px-36  pb-5 text-base">
+          <p className="container-layout sm:px-36 pb-5 text-base">
             {` With 10 years of SEO experience, I'm able to shape marketing departments and help them to become more SEO aware. `}
           </p>
-          <div className="container-layout sm:px-36 pb-10 text-lg">
-            <h2 className="pb-5 text-xl font-bold sm:text-2xl">
-              Courses I've taken
+          <div className=" pb-10 text-lg">
+            <h2 className="container-layout sm:px-36 py-5 text-xl font-bold sm:text-2xl">
+              Courses I've taken from Udemy
             </h2>
+            {/* Add courses */}
+            <div className="containerless-layout sm:px-36 grid gap-4 grid-cols-3 grid-rows-3">
+                <p className="bg-white text-black">hello</p>
+                <p className="bg-white text-black">hello</p>
+                <p className="bg-white text-black">hello</p>
+            </div>
           </div>
         </div>
       </div>
