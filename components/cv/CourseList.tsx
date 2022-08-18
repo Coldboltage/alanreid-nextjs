@@ -4,7 +4,7 @@ import InfoCard from "../InfoCardCopy"
 
 const CourseList: NextPage = () => {
   return (
-    <div className="containerless-layout grid gap-4 grid-cols-3">
+    <div className="py-5 containerless-layout grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
       {courses.map((course, index) => {
         const {name, title, description, socials, image, width, height} = course
         console.log(socials.homepage)
