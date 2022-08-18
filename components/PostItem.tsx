@@ -4,8 +4,13 @@ import SmallMeta from "./SmallMeta";
 import Link from "next/link";
 import { PostItemInterface } from "../types/Post";
 
-const PostItem = ({ index, slug, frontmatter, imageSize, stats, listPage }: PostItemInterface) => {
+interface PostItemInterfaceProps {
+  post: PostItemInterface
+  index: number
+}
 
+const PostItem = ({ post, index }: PostItemInterfaceProps) => {
+  const {slug, frontmatter, imageSize, stats, listPage} = post
   const spanSetup = (value: number) => {
 
     switch (value) {

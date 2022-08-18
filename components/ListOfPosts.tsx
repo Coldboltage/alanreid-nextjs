@@ -17,7 +17,9 @@ const ListOfPosts = ({ postData, title, subTitle, showTitle }: ListOfPostsInterf
           {postData.map((singlePost, index) => {
 
             // console.log(singlePost)
-            return <PostItem key={index} {...singlePost} index={index} />;
+            // return <PostItem key={index} {...singlePost} index={index} />;
+            return <PostItem key={index} post={singlePost}  index={index}/>;
+
             // Each post comes in
             // Determine via index what className it'll get
             // Result of switch function based upon index
