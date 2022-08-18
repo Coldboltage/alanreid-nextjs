@@ -4,7 +4,7 @@ import Image from "next/image";
 import skills from "../constants/skills";
 import CallToAction from "../components/CallToAction";
 import type { NextPage } from 'next';
-
+import CourseList from "../components/cv/CourseList"
 
 const CV: NextPage = () => {
   return (
@@ -46,11 +46,7 @@ const CV: NextPage = () => {
               Courses I've taken from Udemy
             </h2>
             {/* Add courses */}
-            <div className="containerless-layout sm:px-36 grid gap-4 grid-cols-3 grid-rows-3">
-                <p className="bg-white text-black">hello</p>
-                <p className="bg-white text-black">hello</p>
-                <p className="bg-white text-black">hello</p>
-            </div>
+            <CourseList/>
           </div>
         </div>
       </div>
