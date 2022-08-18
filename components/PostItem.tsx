@@ -32,7 +32,7 @@ const PostItem = ({ post, index }: PostItemInterfaceProps) => {
       case 7:
       case 8:
       case 9:
-        return "medium";
+        return "medium"
       default:
         return ""
     }

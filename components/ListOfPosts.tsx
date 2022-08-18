@@ -15,7 +15,7 @@ const ListOfPosts = ({ postData, title, subTitle, showTitle }: ListOfPostsInterf
 
         <div className="grid grid-cols-2 gap-10 sm:grid-cols-4 lg:grid-cols-6 auto-rows-auto">
           {postData.map((singlePost, index) => {
-
+            
             // console.log(singlePost)
             // return <PostItem key={index} {...singlePost} index={index} />;
             return <PostItem key={index} post={singlePost}  index={index}/>;
