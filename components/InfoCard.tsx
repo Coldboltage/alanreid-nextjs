@@ -8,7 +8,7 @@ const InfoCardCopy = ({ image, name, title, description, socials }: InfoCardInte
     <div className="bg-neutral-800">
       {/* Image and container */}
       <div>
-        <Image src={image} width={10} height={9} layout="responsive" alt={`${name}'s face`}/>
+        <Image src={image} width={12} height={9} layout="responsive" alt={`${name}'s face`}/>
       </div>
       {/* Information and container */}
       <div className="flex flex-col content-between gap-1 p-4 h-max">

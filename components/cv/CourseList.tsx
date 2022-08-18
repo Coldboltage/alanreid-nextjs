@@ -1,12 +1,12 @@
 import { NextPage } from "next"
 import courses from "../../constants/courses"
-import InfoCard from "../InfoCard"
+import InfoCard from "../InfoCardCopy"
 
 const CourseList: NextPage = () => {
   return (
-    <div className="containerless-layout sm:px-36 grid gap-4 grid-cols-3 grid-rows-3">
+    <div className="containerless-layout grid gap-4 grid-cols-3">
       {courses.map((course, index) => {
-        const {name, title, description, socials, image} = course
+        const {name, title, description, socials, image, width, height} = course
         console.log(socials.homepage)
         return <InfoCard image={image}
         name={name}
@@ -15,8 +15,8 @@ const CourseList: NextPage = () => {
           description
         }
         socials={{homepage: socials.homepage}}
-        width={969} 
-        height={1280}/>
+        width={width} 
+        height={height}/>
       })}
     </div>
   )
