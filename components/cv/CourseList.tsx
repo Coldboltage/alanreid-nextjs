@@ -8,7 +8,7 @@ const CourseList: NextPage = () => {
       {courses.map((course, index) => {
         const {name, title, description, socials, image, width, height} = course
         console.log(socials.homepage)
-        return <InfoCard image={image}
+        return <InfoCard image={image} key={title}
         name={name}
         title={title}
         description={

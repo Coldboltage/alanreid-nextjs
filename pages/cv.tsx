@@ -43,7 +43,7 @@ const CV: NextPage = () => {
           </p>
           <div className=" pb-10 text-lg">
             <h2 className="container-layout sm:px-36 py-5 text-xl font-bold sm:text-2xl">
-              Courses I've taken from Udemy
+              {`Courses I've taken from Udemy`}
             </h2>
             {/* Add courses */}
             <CourseList/>
