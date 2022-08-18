@@ -18,6 +18,10 @@
   .container-layout {
     @apply max-w-screen-lg px-5 mx-auto sm:px-10;
   }
+  .containerless-layout {
+    @apply sm:max-w-screen-lg sm:px-10 sm:mx-auto;
+  }
+
 
   /* MARKDOWN PART
   .markdown p,
