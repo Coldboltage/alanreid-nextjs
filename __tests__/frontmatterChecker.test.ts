@@ -52,5 +52,13 @@ describe("Test Blog Pages and Page work", () => {
       expect(typeof description).toBe("string")
     }
   });
+
+  it("Should check where posts have micro, if it's less than 201 words", () => {
+    const microPosts = posts.filter(post => post.frontmatter.micro)
+    for (let post of microPosts) {
+      console.log(`I'm being tested! Word count is ${post.stats.words}`)
+      expect(post.stats.words).toBeLessThanOrEqual(200)
+    }
+  })
   afterAll(() => console.log("Complete"));
 });

@@ -6,6 +6,7 @@ export interface FrontmatterInterface {
   name: string;
   category: string;
   description: string;
+  micro?: boolean;
 }
 
 export interface imageSizeInterface {
