@@ -7,7 +7,7 @@ jest.useRealTimers();
 jest.setTimeout(60000);
 
 describe("Test Blog Pages and Page work", () => {
-  let browser, page, files: string[], posts: string[];
+  let browser: any, page: any, files: string[], posts: string[];
   beforeAll(async () => {
     // Get all the posts.
     files = fs.readdirSync(path.join(__dirname, "..", "posts"));
@@ -26,9 +26,9 @@ describe("Test Blog Pages and Page work", () => {
 
   it("Should load every blog post", async () => {
     for await (let post of posts) {
-      console.log(post);
+      // console.log(post);
       const response = await page.goto(`http://localhost:3000/${post}`);
-      console.log("Page Loaded");
+      // console.log("Page Loaded");
       const answer = await response.ok();
       // const finalResponse = await page.waitForResponse(async response => {
       //   return await response.ok()
@@ -40,9 +40,9 @@ describe("Test Blog Pages and Page work", () => {
 
   it("Should open every page assigned", async () => {
     for await (let links of pageLinks) {
-      console.log(links.href);
+      // console.log(links.href);
       const response = await page.goto(links.href);
-      console.log("Page Loaded");
+      // console.log("Page Loaded");
       const answer = await response.ok();
       // const finalResponse = await page.waitForResponse(async response => {
       //   return await response.ok()
