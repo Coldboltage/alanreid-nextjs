@@ -22,6 +22,7 @@ const PostItem = ({ post, index }: PostItemInterfaceProps) => {
       case 1:
       case 2:
       case 3:
+      case 9:
       case 10:
       case 11:
       case 13:
@@ -31,7 +32,6 @@ const PostItem = ({ post, index }: PostItemInterfaceProps) => {
       case 5:
       case 7:
       case 8:
-      case 9:
         return "medium"
       default:
         return ""
