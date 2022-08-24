@@ -13,12 +13,9 @@ import sizeOf from "image-size"
 import type { NextPage } from 'next';
 import { PostItemInterface } from "../types/Post";
 
-
-
 interface HomeInterface {
   indexPosts: PostItemInterface[]
 }
-
 
 const Home = ({ indexPosts }: HomeInterface) => {
   return (
