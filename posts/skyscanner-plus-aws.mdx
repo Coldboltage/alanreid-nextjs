@@ -1,0 +1,35 @@
+---
+title: "Skyscanner Plus is on AWS"
+date: "2022/08/28"
+image: "/assets/blogpost-images/Skyscanner-Plus.png"
+authorImage: /assets/alan-profile-picture.jpg
+name: "Alan Reid"
+category: "Project"
+description: I got Skyscanner Plus to work on AWS and it wasn't as hard as I thought it would be!
+---
+
+One of the hardest things I had issues with, which I think still is an issue, is the cronjob and working with clusters. I'm fairly sure my code is still not 100% correct but for now, it works and that's what I want from it.
+
+### Cronjob was hard to deal with
+
+I'm not even sure what was happening before but from what I can tell, each job was starting up new cronjobs which would balloon the amount of being handled in any one time. I figure out a way to only fork a cluster when Skyscanner Plus basically needed it, creating clusters only when jobs are available and when a core was available. This was a breakthrough for me because I had a lot of difficulity getting past this point. I certainly need to learn more about PM2 but for now, this works, going to leave it.
+
+### Headful Puppeteer
+
+For Skyscanner Plus to work, I basically need to have headful Puppeteer. Headless doesn't work and is detected immediately. I'll have to learn why Puppeteer is detected but in this case, having headful puppeteer is the current solution. The problem with this is it doesn't play well with Docker or non-GUI instances, which is basically what I'm going to have to use. Thankfully I understood what Xvfb was and how it was the solution. 
+
+### Building the Docker image
+
+Docker wasn't too hard to use. I've created a Docker Image before thanks to (ZTM's Node course)[https://www.udemy.com/course/complete-nodejs-developer-zero-to-mastery/]. I would highly recommend it as this project uses all the principles I learnt from that course. 
+
+After trying to use everyone elses Docker Image and finding complications with the images, it turned out far easier to make my own Image. The image is very minimal but it works. I was quite surprised getting Puppeteer to work and as a result, now I have Skyscanner Plus as an image. Brilliant. 
+
+### AWS deployment
+
+Again, thanks to (ZTM's Node course)[https://www.udemy.com/course/complete-nodejs-developer-zero-to-mastery/], it wasn't that difficult to spin up an AWS instance, install Docker and then it was off to the racers. 
+
+### What's next?
+
+I'm going to have to learn Kubernetes. I have no real idea how it works but as it gives me the ability to scale Skyscanner Plus, this is the last thing I need to learn so to allow Skyscanner Plus to run correctly. I need to learn it because if there's more than one scan needed at any one time, I want to spin up a machine and then deal with the scan. Afterwards, I want that machine to make itself redundant, therefore only paying for what I need to use. I'm fairly sure Kubernetes allows me to complete this. 
+
+I write this in excitment, knowing there's not that much more that I need to learn and do to get Skyscanner Plus operational. I don't expect Skyscanner Plus to be a huge thing. I just want to say "here's a website you can use to get cheaper flights if you can be flexible with you holiday".
