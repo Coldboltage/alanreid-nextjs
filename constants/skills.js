@@ -58,5 +58,10 @@ export default [
     icon: "/assets/icons/google.png",
     name: "Google Analytics and SEO",
     description: "as my analytics platform"
+  },
+  {
+    icon: "/assets/icons/docker.png",
+    name: "Docker/Swarm for containerised orchestration",
+    description: "for containerised orchestration"
   }
 ]

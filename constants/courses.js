@@ -101,4 +101,17 @@ export default [
     width: 12,
     height: 7,
   },
+  {
+    image: "/assets/courses/docker-learning.jpg",
+    name: "Docker and Swarm 2022",
+    title: "Build, test, deploy containers, orchestrate services and manage swarms",
+    description:
+      "To build out Skyscanner Plus, I needed a way to automatically create containers and run it while be automatically managed. Docker was perfect for this.",
+    socials: {
+      homepage:
+        "https://www.udemy.com/course/docker-mastery/",
+    },
+    width: 12,
+    height: 7,
+  },
 ];

@@ -1,0 +1,37 @@
+---
+title: "SkyscannerPlus has dynamic scaling"
+date: "2022/09/15"
+image: "/assets/blogpost-images/postcard-material-updated.jpg"
+authorImage: /assets/alan-profile-picture.jpg
+name: "Alan Reid"
+category: "Project"
+description: "One of the harder things to do, I eventually got Skyscanner to play nicely with scaling"
+---
+
+Recently I learnt how to build Docker Images and  do the basics with Docker. This wasn't too hard and I was able to get Docker and the check added to AWS, making a start to automatically checking something. The big problem of this was, what happens if more and more people starting using the service and it takes a while to get a response? I didn't want people to wait and I wanted a way to dynamically scale Skyscanner Plus to deal with more and more people coming onto the site, so I used Docker to solve this problem 
+
+### Scaling with Docker
+
+Originally I had a lot of problems with scaling and I'm still not too sure how it properly works. One of the main issues I was having was it was deleting tasks which were being worked on. This was a big problem as if there were scans happening for an hour and then it deleted that task, the progress that scan had made would be deleted. Unfortunately I'm not able to work with MongoDB at the advance level and transverse the main nested arrays I have, which is something I'll work on very soon. 
+
+Thankfully I did some testing and manually worked on scaling Docker and there wasn't any issue, therefore it had to be something with my code. Right now, scaling seems to do a good job but at the time, I had no idea if the scaling issue had something with communicating with the Docker API. Therefore a lot of coding contengencies were added if tasks broke. 
+
+I've noticed how I'm using Docker isn't quite intended on how I should be using it, but it works and that's all I really care if I'm to be honest. 
+
+### What I've learnt
+
+What I wanted to talk about here, the the journey these two weeks of programming has taught me. At times, I thought I was going to pull out my hair and at times, it was easy to accept the issues I was coming against. So I wanted to write these things so I don't forget this for the future. 
+
+* It's a very good idea to take a break. You'll somehow find solutions when you move away from the PC. 
+* Don't rage code, it never amounts to much. Instead, step back and look at the full problem rather than what you're trying to code. 
+* You learn a lot quicker in these sessions. Trust me I had no idea how to use the Docker API, how to open ports and the risks involved if you do. I learnt how to work more and more with AWS, Linux and JS as a result of this project. 
+
+One of the main things which I've learnt about programming though is this. It's certainly about problem solving. How to transverse JS and it's tools is a learning game. How to write the code, how to structure it, that comes with experience. Problem solving and finding a way to get to the solution is a lot moer important. Being able to look at the problem and then figure, x and y will lead to z, is a good skill to have. You can write code, not get the solution but being able to be the bigger person and oversee the situation, is a skill which is absolutely needed. 
+
+As you program and become more understood with JS in this case, the more it becomes a lot easier. For me, it takes for me to keep at it everyday to make sure I keep compounding on what I've learnt. Sometimes I forget that it's not the grind that makes me a better coder. While understanding JS is great and it opens doors, JS is only as good as the ability to get to the solution. JS in this case, helps me play the game and get to that point but long game, the skils to stick to the problem and manage the issue, will probably be more valuable. 
+
+### Where do we go now with Skyscanner
+
+In my next post, I'll talk about the future of Skyscanner Plus. For the next week, I'll be figuring out what I want to do with the project. Today I've been thinking a lot of the project, most of the time to blank thoughts. As per the advice in this post. I think I'll not worry too much about it and do something else. Maybe a game of PUBG! I'll have this setup by the next post. 
+
+Thanks Marta for allowing me to use this photo!
