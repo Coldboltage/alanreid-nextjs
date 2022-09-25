@@ -18,7 +18,7 @@ export interface StatsInterface {
   text: string;
   minutes: number;
   time: number;
-  words: number
+  words: number;
 }
 
 export interface DataInterface {
@@ -72,26 +72,37 @@ export interface InfoCardInterface {
 }
 
 export interface ListOfPostsInterface {
-  postData: PostItemInterface[],
-  title?: string,
-  subTitle?: string,
-  showTitle?: boolean,
-  stop?: boolean
+  postData: PostItemInterface[];
+  title?: string;
+  subTitle?: string;
+  showTitle?: boolean;
+  stop?: boolean;
 }
 
 export interface StatsInterface {
-  text: string
+  text: string;
 }
 
 export interface SmallMetaInterface {
-  frontmatter: FrontmatterInterface, 
-  bigger?: boolean, 
-  stats: StatsInterface,
-  listpage?: boolean
+  frontmatter: FrontmatterInterface;
+  bigger?: boolean;
+  stats: StatsInterface;
+  listpage?: boolean;
 }
 
 export interface CategoryInterface {
-  posts: [],
-  categoryName: { categoryName: string }
+  posts: [];
+  categoryName: { categoryName: string };
 }
 
+export interface CourseInterface {
+  name: string;
+  title: string;
+  description: string;
+  socials: {
+    homepage: string
+  };
+  image: string;
+  width: number;
+  height: number;
+}
