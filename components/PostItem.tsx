@@ -10,14 +10,14 @@ interface PostItemInterfaceProps {
 }
 
 const PostItem = ({ post, index }: PostItemInterfaceProps) => {
-  const {slug, frontmatter, imageSize, stats, listPage} = post
+  // console.log(post.frontmatter.title)
+  const { slug, frontmatter, imageSize, stats, listPage } = post
   const spanSetup = (value: number) => {
 
     switch (value) {
       case 0:
       case 6:
       case 12:
-      case 15:
         return "big";
       case 1:
       case 2:
@@ -27,6 +27,7 @@ const PostItem = ({ post, index }: PostItemInterfaceProps) => {
       case 11:
       case 13:
       case 14:
+      case 15:
         return "small";
       case 4:
       case 5:

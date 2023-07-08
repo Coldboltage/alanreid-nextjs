@@ -53,11 +53,20 @@ export const getStaticProps: GetStaticProps = async (context) => {
     };
   });
 
+  // console.log(initialPosts.forEach(post => console.log(post.frontmatter.title)))
+
   const filteredCategories = [...new Set(initialPosts.map(post => post.frontmatter.category))]
 
   // console.log(context)
 
-  const filterPosts = initialPosts.filter((post, index) => index < 16)
+  const filterPosts = initialPosts.sort((post1, post2) => {
+    const date1 = new Date(post1.frontmatter.date) 
+    const date2 =  new Date(post2.frontmatter.date)
+    return date2.getTime() - date1.getTime()
+  }).filter((post, index) =>{
+    console.log(`${post.frontmatter.title}: ${index}`)
+    return  index < 16
+  })
   const posts = filterPosts.sort((post1, post2) => {
     const date1 = new Date(post1.frontmatter.date) 
     const date2 =  new Date(post2.frontmatter.date)

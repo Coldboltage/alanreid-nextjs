@@ -5,6 +5,7 @@ import skills from "../constants/skills";
 import CallToAction from "../components/CallToAction";
 import type { NextPage } from 'next';
 import CourseList from "../components/cv/CourseList"
+import OtherActivities from "../components/cv/OtherActivities";
 
 const CV: NextPage = () => {
   return (
@@ -46,7 +47,13 @@ const CV: NextPage = () => {
               {`Courses I've taken from Udemy`}
             </h2>
             {/* Add courses */}
-            <CourseList/>
+            <CourseList />
+          </div>
+          <div className=" pb-10 text-lg">
+            <h2 className="container-layout sm:px-36 py-5 text-xl font-bold sm:text-2xl">
+              {`Coding exercises I'm practising on`}
+            </h2>
+            <OtherActivities/>
           </div>
         </div>
       </div>
