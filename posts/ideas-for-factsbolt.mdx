@@ -1,0 +1,27 @@
+---
+title: "Factsbolt, a site which takes a video and gives us facts!"
+date: "2023/07/20"
+image: /assets/blogpost-images/factsbolt-fake-info.jpg
+authorImage: /assets/alan-profile-picture.jpg
+name: "Alan Reid"
+category: "Development"
+description: "I'm getting bored of having to second guess Youtube shorts/videos. Let's make something for this!"
+---
+
+I muts be honest, since Andrew Tate and Brexit, I've taken the opinion of controversial people quite lightly and as a result, take no account on their advice or insights. It some way is the safest to operate because the information they give in my opinion, is not trustworthy. I think I've got it right with this but I'm compelled to make something that checks if possible, the accurary of the claims being made and if needs be, have a conversation. While most people aren't willing to have a conversation, having a conversation with myself isn't a bad idea, for me that is. Funny enough, we have LLM's to have that conversation now. Therefore I can actually test out this idea!
+
+### How I'm going to try to do this
+
+So with Explorer Plus, I made the worker app, it looks at the database and then executes a job. This isn't a good idea because it can lead to race conditions and also, it's just generally not a good idea. The manager would spawn workers based upon the jobs needed and we would go from there. The issue is the job management was a bit of a mess and I never really got around to fixing this. 
+
+With Factsbolt, I think this will be a lot easier to sort. I'm aiming to employ an Web API using Nestjs, the worker also using nestjs and then a message broker, RabbitMQ, also using Nestjs. I'm not too sure if the worker needs to be Nestjs, but I'm going with it anyway for simplicity. 
+
+### A simple idea of how it'll work
+
+The WebAPI will deal with managing all of the information. If a user puts in a link which already exists, it'll give the information which already exists. In the case it doesn't then we'll create a job to the worker which will then download the audio, transcribe it and then fact check it using ChatGPT. I can always use another LLM if needs be that does the job better. At the end, the user will have the chance to have a conversation. I might be able to save the conversation in some capacity but that's not something I'm interested with.
+
+### Where to start
+
+I'd like to see if I can make the worker first. Originally I was thinking of putting it all on the API and let it do all the work, but this was a very silly idea and thankfully I never got to the point of wasting my time. The API is somewhat ready. I'm using TDD for this also! Mega hard. However I should be able to get it working by this week and then all that'll be needed is then getting the API created, setting up the RabbitMQ server and that should be that.
+
+I could do something with a bot to check the page and see if I can grab information, but I don't think that'll be needed. If it is, we'll figure out something for that in the future.
