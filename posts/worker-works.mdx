@@ -1,0 +1,25 @@
+---
+title: "The worker microservice is made!"
+date: "2023/07/23"
+image: /assets/blogpost-images/factsbolt-worker-ready.jpg
+authorImage: /assets/alan-profile-picture.jpg
+name: "Alan Reid"
+category: "Development"
+description: "After a good bit of effort and head-banging, the worker works as intended. WOO HOO"
+---
+
+Quick update! So I got the worker service working! There was a lot of things I learnt while working on this and my goodness I really do like Nestjs. It gives a lot of options to use and the modularity is bliss to use. Knowing how the microservices system works for RabbitMQ, allows me to in some way, know how it's going to work for Websockets, which is something else I'm going to have to learn, which is something I should have known a lot sooner when working with Shockbyte. 
+
+### RabbitMQ troubles
+
+I was quite sure I was going mad or something was trolling me, whenever my configuration for the microservice wasn't working correctly. My handlers weren't working correctly and I was wondering, the hell was going on. It turns out I didn't really understand microservices as well as I should have. Basically I had created a RabbitMQ service which I thought, managed all of the queues. In this case, video_queue. Then I thought I had to create another microservice and then use the same queue, so to connect to it. I write this thinking I'm stupid I am but I'll continue. Anyway, so sometimes I was able to get my messages to go through, many of times, the messagepattern or eventpattern just didn't exist and it was making me go mad. I tested out MQTT as a result to a completely different problem which I didn't even know what the craic was there. ANYWAY, I return back to RabbitMQ, making pure play microservice, maybe it was that? NOPE, still got problems.
+
+For some reason, I stumvbled onto a post on the Nestjs github talking about the problem with someone saying,  "I made a new queue for all of my microservices", and I thought this was really dumb but a few seconds later, it dawned to me. Wait a second, am I going to have to call something video_queue and then video_queue_test. Then it really dawned to me. I don't need a dedicated microservice to handle all microservices, that's handled in a application to application basis. In other words, my worker could handle the video_queue, my API could be a hybrid app with both HTTP and RabbitMQ, making the api_queue. 
+
+As soon as I figured this out, everything worked really quickly. It occured to me that this now allowed me to create multiple instances of the worker app, with the already created video_queue and if a lot of jobs comes in, it's round-robin distrubuted. I was so happy when I figured this out. 
+
+### It works
+
+The great news is, it works well. You put in a link and then the worker app grabs all the information it needs, downloads the audio version of the video, gets the audio transcribed and then we throw the audio transcription into a prompt so we can breakdown the validity of the text. 
+
+With this, I have a fairly good idea how to work with RabbitMQ now and understand the idea of this microservice. The horizontal scalability is so fantastic and something I'll need to add to Explorer Plus really soon. This would solve all my race condition issues. It's good stuff. 
