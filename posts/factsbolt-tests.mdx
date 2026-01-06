@@ -1,0 +1,31 @@
+---
+title: "Productsbolt needs tests"
+date: "2026/01/06"
+image: /assets/blogpost-images/random-code.jpg
+authorImage: /assets/alan-profile-picture.jpg
+name: "Alan Reid"
+category: "Project"
+description: "I have absolutely no idea what the best model is for my constraints. Let's test that"
+---
+
+Small post. Started working on Productsbolt again. Most of it works fine so no issues there! Will get some of the telemtary stuff worked on in the future but that's not the mega problem right now. I'm not too sure how I'm going to do this but technically speaking I could do tests via jest.
+
+### Assertations are pretty obvious
+
+So it's going to be a full e2e I think. I'll probably add a testing mode in the logic used to choose which LLM to use, where if it's in testing mode, then it'll use the env selected. Not too hard. Instead of getting the information from websites, I'll probably make about 50 different examples, where the test has to pass all of them. Will look at different sites to see their layouts and how they structure their words but basically, 50 different examples and then get an LLM to go through it. We'll know exactly what should be happening as a result as I will have literally made the page and therefore assertations are going to be mega obvious.
+
+This will be on a laptop and the goal is to get it passing on the lowest amount of power/processing required. Right now, qwen/qwen3-4b-2507@Q8_0 (yes it makes a small but needed difference) has done a great job but it can be buggy at times but it's very reliable.
+
+### Testing with different prompts
+
+Instead of winging it, I'll be able to use different prompts to make absolutely certain, the prompts are doing what I want and it's measurable and to know which tests it fails at. Technically speaking, it's going to be very hard to figure out how to change the prompt for specific use cases, so it's more to iterate over and over.
+
+### Conclusion
+
+Bit of a process because I'm going to have to make a test script to go through all of this which is more annoying, but I'll know for certain what is a good prompt and model. Technically speaking, I could have a better model but it not follow the prompt well, and rather the prompt could be optimised which is a fair case.
+
+### Further thoughts of clairty
+
+I'll probably have the 50 tests and then within that 50 tests, have 5-10 different prompts which iterate over the tests. That way, we can know the performance of each prompt via the LLM and then know which combination works best for the prompt and LLM. Again this is going to take a while but I'll know for certain for the task at hand, what is the best LLM+Prompt combo.
+
+Good craic

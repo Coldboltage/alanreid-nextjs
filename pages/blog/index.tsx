@@ -1,32 +1,31 @@
-import React from 'react'
-import Layout from '../../components/Layout';
-import BlogHero from "../../components/BlogHero"
+import React from "react";
+import Layout from "../../components/Layout";
+import BlogHero from "../../components/BlogHero";
 import fs from "fs";
 import path from "path";
 import ListOfPosts from "../../components/ListOfPosts";
 import matter from "gray-matter";
-import CallToAction from '../../components/CallToAction';
-import readingTime from 'reading-time';
-import sizeOf from 'image-size';
-import { GetStaticProps } from 'next'
-
+import CallToAction from "../../components/CallToAction";
+import readingTime from "reading-time";
+import sizeOf from "image-size";
+import { GetStaticProps } from "next";
 
 interface BlogInterface {
-  posts: [],
-  filteredCategories: string[]
+  posts: [];
+  filteredCategories: string[];
 }
 
-const Blog = ({posts, filteredCategories}: BlogInterface) => {
+const Blog = ({ posts, filteredCategories }: BlogInterface) => {
   return (
     <Layout>
-      <BlogHero name="Blog" categories={filteredCategories}/>
-      <ListOfPosts postData={posts} stop={true}/>
-      <CallToAction/>
+      <BlogHero name="Blog" categories={filteredCategories} />
+      <ListOfPosts postData={posts} stop={true} />
+      <CallToAction />
     </Layout>
-  )
-}
+  );
+};
 
-export default Blog
+export default Blog;
 
 export const getStaticProps: GetStaticProps = async (context) => {
   // Read from a directory and then grab all the posts
@@ -41,42 +40,43 @@ export const getStaticProps: GetStaticProps = async (context) => {
     );
 
     const { data: frontmatter, content } = matter(markdownWithMeta);
-    const stats = readingTime(content)
-    const imageSize = sizeOf(`public${frontmatter.image}`)
+    const stats = readingTime(content);
+    const imageSize = sizeOf(`public${frontmatter.image}`);
 
     return {
       slug,
       frontmatter,
       content,
       stats,
-      imageSize
+      imageSize,
     };
   });
 
   // console.log(initialPosts.forEach(post => console.log(post.frontmatter.title)))
 
-  const filteredCategories = [...new Set(initialPosts.map(post => post.frontmatter.category))]
+  const filteredCategories = [
+    ...new Set(initialPosts.map((post) => post.frontmatter.category)),
+  ];
 
   // console.log(context)
 
-  const filterPosts = initialPosts.sort((post1, post2) => {
-    const date1 = new Date(post1.frontmatter.date) 
-    const date2 =  new Date(post2.frontmatter.date)
-    return date2.getTime() - date1.getTime()
-  }).filter((post, index) =>{
-    console.log(`${post.frontmatter.title}: ${index}`)
-    return  index < 16
-  })
+  const filterPosts = initialPosts
+    .sort((post1, post2) => {
+      const date1 = new Date(post1.frontmatter.date);
+      const date2 = new Date(post2.frontmatter.date);
+      return date2.getTime() - date1.getTime();
+    })
+    .filter((post, index) => {
+      console.log(`${post.frontmatter.title}: ${index}`);
+      return index < 64;
+    });
   const posts = filterPosts.sort((post1, post2) => {
-    const date1 = new Date(post1.frontmatter.date) 
-    const date2 =  new Date(post2.frontmatter.date)
-    return date2.getTime() - date1.getTime()
-  })  
-
-  
+    const date1 = new Date(post1.frontmatter.date);
+    const date2 = new Date(post2.frontmatter.date);
+    return date2.getTime() - date1.getTime();
+  });
 
   return {
     props: { posts, filteredCategories },
   };
-}
-
+};

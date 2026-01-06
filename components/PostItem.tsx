@@ -5,15 +5,14 @@ import Link from "next/link";
 import { PostItemInterface } from "../types/Post";
 
 interface PostItemInterfaceProps {
-  post: PostItemInterface
-  index: number
+  post: PostItemInterface;
+  index: number;
 }
 
 const PostItem = ({ post, index }: PostItemInterfaceProps) => {
   // console.log(post.frontmatter.title)
-  const { slug, frontmatter, imageSize, stats, listPage } = post
+  const { slug, frontmatter, imageSize, stats, listPage } = post;
   const spanSetup = (value: number) => {
-
     switch (value) {
       case 0:
       case 6:
@@ -33,9 +32,9 @@ const PostItem = ({ post, index }: PostItemInterfaceProps) => {
       case 5:
       case 7:
       case 8:
-        return "medium"
+        return "medium";
       default:
-        return ""
+        return "small";
     }
   };
 
@@ -47,7 +46,6 @@ const PostItem = ({ post, index }: PostItemInterfaceProps) => {
   //   small: test === "small",
   //   medium: test === "medium",
   // });
-
 
   return (
     <div className={`${styles[test]} min-h-fit border-b-2 pb-3 border-sky-900`}>
@@ -66,16 +64,20 @@ const PostItem = ({ post, index }: PostItemInterfaceProps) => {
         </Link>
       </div>
       <div className={`${styles.meta} py-5 flex flex-col `}>
-
         <p className={styles.category}>{frontmatter.category}</p>
         <h2 className={styles.title}>{frontmatter.title}</h2>{" "}
         <p
-          className={`py-2 text-sm italic text-slate-400 ${test === "big" && "lg:hidden"
-            }`}
+          className={`py-2 text-sm italic text-slate-400 ${
+            test === "big" && "lg:hidden"
+          }`}
         >
           {frontmatter.description}
         </p>
-        <SmallMeta frontmatter={frontmatter} stats={stats} listpage={listPage} />
+        <SmallMeta
+          frontmatter={frontmatter}
+          stats={stats}
+          listpage={listPage}
+        />
       </div>
     </div>
   );
