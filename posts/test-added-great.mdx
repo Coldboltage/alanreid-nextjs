@@ -1,0 +1,55 @@
+---
+title: "Productsbolt tests have been added. Good stuff"
+date: "2026/01/08"
+image: /assets/blogpost-images/snowy-outside.jpg
+authorImage: /assets/alan-profile-picture.jpg
+name: "Alan Reid"
+category: "Project"
+description: "Thought adding tests would be problematic and it was for a day. Sleep helped and it helped a lot!"
+---
+
+Forgot to write yesterday which might say a bit of what I was going through. It was the first time working with iterating tests where I was looking through a predefined amount of information. That and also needing to loop over the same tests over and over again, to see if the temperture changes from an LLM would effect things. This however was not the real challenge!
+
+### Setup
+
+This wasn't that hard. It took a bit of time and it wasn't the 50 tests I said it was going to be. Technically it repeating the same tests would lead to that, but it wasn't the point I was making. Thankfully it was going to websites, seeing products I already knew about, getting the content of the site in all it's mess, and then using that as context. This operated as the happy path, as we know the state of the product at that very moment, so the Productsbolt failing at this point, is a major failure.
+
+After getting the happy parts of the examples done, it was time to add some sad paths, where we know that by adding different context (something else we're looking for) things should fail. Be it the name, the type of product packaging, the edition and stuff like that. This is where it got very interesting.
+
+### Lots of fails
+
+I was not expecting this. From eye level tests when creating the Productsbolt, I was fairly sure it was working well. If a product was found and it looked good, then I chalked it up as the system working well. I think when I turned on the tests for the first time, nearly every test failed. I think some of the happy paths also failed, and with a 0.2 set temperture, it wasn't going to change much.
+
+### Realisation
+
+While this project is called Productsbolt, this project is geared on a specific use case. The original plan was it to be very generalised but I don't think this is going to be possible with the constraints I have right now. My limitation is that it's to run on very cheap hardware, like a laptop with 8GB VRAM. As a result. I'm using _qwen/qwen3-4b-2507_, which works fantastically well, but I believe the instructions have to be very specific. As I'm using this for a very specific use case, I've decided it'll be geared for that use case for now. Whenever I aim to go to general workloads, I will create a new set of tests specifically for general use and prompts that will cater to this. For now, this isn't my priority
+
+### Prompt enginnering
+
+With a constraint out of the way, I could enginner the prompt to be a bit more specific, to state what I was actually wanting. Slowly I was able to get better results but some phrases I was using was too specific or strict. It seemed like relaxing some of the constraints while asking why it had chosen it's true or false statements, geared the LLM to choose the correct answers which I had asserted. I had expected to take all of today to get this sorted, but I was able to take care of it in an hour!
+
+### Success?
+
+Yes! All the tests passed. I'll have to add loads more tests but from a situation where nearly all tests failed to all tests passing, has been great success. I'll test it against other models and see which model comes out the best. I'd like to add reasoning but the time it takes is problematic and therefore strict one shot LLMs have been utilised. Qwen has been great for this process.
+
+### What's next?
+
+We're going to get this on the laptop pretty soon but I need to get to a position of being able to know that I can keep this on standby and it'll do things I want it to do. I should be able to to come back to this and go "what's available that I can buy today" and it'll just be able to tell me it. Technically it can right now but as mentioned, the tests didn't work, so it's possible the full value was never realised. Tests have been great to unearth this and I'm very happy I did it.
+
+- Organise controllers
+
+I have done a terrible job in maintaining the controllers correctly. How and what controllers do what, has been made on the moment without enough organisation. This has to change and i'll be sorting it out before the weekend arrives. I'll make it a lot easier to know what endpoint is doing and figure out what module should be responsible for what type of information I want to get back. I could technically do this as tests and start utilising on TDD, but right now I just want to get this fixed.
+
+- Adding new products easier
+
+Right now, when I add a new product, it kinda just doesn't work 😊. I have to go into the database and do a couple of things. This is pretty dumb. I'll explain why this occurs.
+
+When the CRON job fires a call to check for products, each shop looks at the product and then checks the shopProduct to check if there's links for it. Those links are then passed onto a microservice to check if the status of a page has changed. Unfortunately when added a new product, it does not automatically add the links required. Links are only checked if the sitemap has changed, as there might be a better links to check. Therefore all I have to do is when a new product is added, when the shopProduct is created for each shop, to automatically check for new links for said shopProduct. It's just annoying and I'll get that added.
+
+The reason I did this was instead of constantly checking for links over and over again, there's only one reason to check for new links, if the state of the what I'm looking for links has actually changed. Beforehand, I would have to select the best links over and over again and that process took time, everytime. This stops that and I will eventually have to make a test for this.
+
+### Conclusion
+
+I'm trying to think if there's anything else. If this is acutally able to get the products correctly and updates the state of said products correctly, then it's more a question of acting on it. I actually have something to look at the marketplace and stuff like that so that's already made. Think all I really want after that would be to easily navigate to a product and go, this is the cheapest which is available to buy, here you go and that's it.
+
+At that point I'll probably want to get it to a generalised system, but it's specific for now. I probably should look at how cheap it is to rent out GPUs, but I already have a RTX 4090 which can do the job well enough. As said previously, it's my gaming machine so I rather not be doing workloads on it and I rather have something do it as optimially as possible. These are first world issues I'll figure out more in the future.
