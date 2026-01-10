@@ -1,0 +1,37 @@
+---
+title: "More rigour and speed"
+date: "2026/01/10"
+image: /assets/blogpost-images/more-speed.jpg
+authorImage: /assets/alan-profile-picture.jpg
+name: "Alan Reid"
+category: "Project"
+description: "Tests are good but what you're testing on is the question. Something didn't settle well with me!"
+---
+
+I added tests, which I talk about in my [last post](/test-added-great), and it worked really well. Technically speaking, if I kept all things the same, then there would be no issues but something didn't sit right with me.
+
+## LLM Temperature
+
+From my understanding, it's basically how random the outcome of the LLM can be. I had it set to 0.2 which allows for a little bit of flexibility, not much but enough so that allows for some room for variability. It occured to me while you want determinism for production, the rigour of the prompts should be tested now. Therefore I changed the temperature to 0.7 to see if things would break, and somethings did break. I ended up making the prompts stronger and at 0.7, which is random enough, the tests were able to be passed. This was good!
+
+### LM Studio the right option?
+
+I frequent [r/locallama](https://www.reddit.com/r/LocalLLaMA/) whenever I want to get updated about all things local LLMs (shocker) and I seen a lot of people mentioning vLLM a lot. While LM Studio has worked very well for me, I did notice it was a bit slow because it does a single job rather than it being concurrent. I had many issues with this and had to build a queue specifically for LM Studio so only one prompt could be fired into LM Studio at any one time. This worked to be fair and I was none the wiser to how much I was missing out.
+
+On Friday (9th January 2026), I decided to give vLLM a shot. Noticed I hadn't updated my nvidia drivers for a while (not smart) but eventually got a docker image working.
+
+I threw vLLM through the tests and noticed it was actually slower. Probably because it was using the base weights while with LM Studio, it was using Q8_0, which is still close to being base but it's not. This was not the right take though. Each test was operating one by one, rather than concurrently. With LM Studio, that's expected but with vLLM, it's totally not.
+
+For the laugh, I fired up a test version of Productsbolt and got it to do a massive job. What could have taking I think an 1:15 hours, took about 10 mins with vLLM and honestly, I think it was actually quicker than that. The concurrency is a game changer.
+
+### Will this work in my laptop setup?
+
+I'm not sure. I'll have to test and see what setup works better but I'm going to have to assume that it'll be vLLM. I hardly see any point using LM Studio anymore but I'll keep it installed on my computer for now. It has the RTX 4090 so it might just leverage that better.
+
+### Renting GPU
+
+Curiosity got the better of me, so I looked into GPU renting. Pricing is pretty solid if I wanted to actually go down that route, but as said, I'm more interested using the resources I have, which would also help to learn how to manage this hardware more effectively. That said, renting out a RTX 3060 a day would run most of the update jobs I need. I have a laptop which has a RTX 3060 and I think a friend is looking to sell a computer with a 3080ti so I'll look more into this in the next few days.
+
+### What's next?
+
+Gotta get this running on the laptop. I was thinking of using my proper gaming laptop which has the power to run the workloads, but then if I want to use it, I'm kinda screwed. So I'll look to which laptops I have which can run the workloads. It is most likely the laptop will be on 24/7 while whenever I'm on my computer and not gaming, I'll load up the microservice/worker to take on jobs. I'll figure this all out by Monday.
