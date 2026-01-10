@@ -1,0 +1,33 @@
+---
+title: "Fixing more things from Products"
+date: "2026/01/10"
+image: /assets/blogpost-images/frosted-jan.jpg
+authorImage: /assets/alan-profile-picture.jpg
+name: "Alan Reid"
+category: "Project"
+description: "Sometimes you gotta roll up the sleeves and get in the dirt"
+---
+
+Adding vLLM has given me a lot of motivation for this project. I still have to get it on the laptop and the laptop but I'm too annoyed if it's running on the PC for now. The headful stuff might get annoying but I'll work around that for now.
+
+### GET Pulls from websites
+
+Noticed with some sites, getting straight get pulls which is basically just getting all the text, can be problematic because the context to which that text is about, might be missing. I'm going to guessing there is a way to prompt enginner for that, but it might also affect other parts which are working just fine. I'll add this to a test in the future and see if I can make a prompt to defend against a situation where stock allocation states that it's available when it's not but shown in HTML. This is because there would be state to not show it on the website, but it's in the HTML, which makes it difficult for a small LLM to discern.
+
+### More antibot protection
+
+Honestly, custom solutions from many of these sites don't really do much. As soon as a headful solution is used, most of these solutions go down. Cloudflare is fairly solid and it's given me interest to learn more and more about GCP in the future. If there's sites had an active API, it be a lot easier but nope, they don't so gotta go through it this way.
+
+### Bottleneck
+
+Right now, when we're checking if something has changed price or is in stock, I'm still using the queues which relate to either headful or headless, which means new jobs can't come through as we're waiting for vLLM to finish. This is silly. While I had LM Studio, this was okay because I wanted jobs which related to stock checking to be put ahead, but now it's actually become a bottleneck as I'm fairly sure my jobs won't wait in line for 10 mins. Actually I might have to think more about this. Boo.
+
+### What's next
+
+I have the feeling this is nearly it. It'll be about cleaning up the endpoints and using the correct verbs and creating the right methods rather than hijacking. This will probably take a day as I plan this out. Afterwards, a simple site is going to have to be made. Now this the annoying thing. I can go with Nextjs and use the page router but that doesn't sound like a great idea. I should use the App Router. So there's an oppurtunity for me to make this into something quite modern. I'm not the best at design but I'll just make it functional and then look at a design which I'm happy with.
+
+What I want to do is be able to click a product, have filters to specifically get the information of interest. We'll be able to do this on the frontend.
+
+I'm trying to think is there anything else? I don't think so. As long as one can get the best prices for a product, which I think I can now, then it's just about adding more shops, more products and then hoping we'll find the pages for them and it updates constantly in a way which isn't annoying. I can already communicate to the API via a chatbot, which I'll add more MCP routes in the future.
+
+Whenever this all finishes, then I'll look to generalise the project so I can use it for anything. will I make this available for other people to use, therefore have to worry about all that sort of stuff, I'm not sure but I should certainly have it running 24/7 locally or what really is the point in all of this.
