@@ -1,0 +1,25 @@
+---
+title: "Adding new products with shops are fixed!"
+date: "2026/01/13"
+image: /assets/blogpost-images/progress-sunset.jpg
+authorImage: /assets/alan-profile-picture.jpg
+name: "Alan Reid"
+category: "Project"
+description: "Had to relearn a lot of my own code. Annoying things fixed at last"
+---
+
+So the tests are good, vLLM should be grand. Need to increase the context to 48k which is annoying but it is what it is. A lot of simple automation got added to Productsbolt. Adding a new product or a new shop, automatically sets up the ground work to allow for the Cronjobs to automatically update and check for the products in question. I've got some legacy properties in some entities which I need to remove which is a bit annoying, which will force me to hunt for instances where they are still being used. This will require another branch!
+
+### I think we're getting close now
+
+If I can add new products and shops with no problems, where links are being supplied correctly and the prompts are accurate, then it's nearly ready to go. I'll probably have to do a manual test for a product, see how well Productsbolt does automatically and then afterwards, see how well I do on my own. There could be shops I need to add and this is one good way to know if the site would find the product available from elsewhere, or if my prompts are failing. I have the feeling the prompt is now safe.
+
+### What would make this usable?
+
+Well as said, as long as I can just put in a new product and shop where needed, and know it's giving me accurate answers, that would be it. I think I can test that with the method above, so I can test this whenever I'm bored.
+
+### Ramblings
+
+I'll probably figure out more that needs done whenever I'm sitting down watching more anime. Pretty sure a machine with a RTX 3060 (Laptop) should do. I would need to find out what context size is available. As said I need to fix the controllers, some naming and endpoints to get more specific things done. Then again on the frontned, we can do mutations but there's straight up information I specifically want to get.
+
+I'm struggling to figure out what more needs done. A website probably is a good idea and then adding more and more products with more shops so to create a database for the future. That's probably the play.
