@@ -1,0 +1,29 @@
+---
+title: "LLMs can be tricky to ground down"
+date: "2026/01/12"
+image: /assets/blogpost-images/problem-rubix.jpg
+authorImage: /assets/alan-profile-picture.jpg
+name: "Alan Reid"
+category: "Project"
+description: "Trying to get LLMs to pass all tests all the time can be really annoying"
+---
+
+Previously, vLLM was added to the project and the speed optimisations that come from it's concurrency makes the project a lot more viable long time. LM Studio is a thing of the past but it's come with a cavet. The prompts and the enginnering done, hasn't yielded a time where every test passes.
+
+### Happy paths are happy, but the sad paths are very sad
+
+Midway Edit: I was going to say it was quite difficult to get LLMs to work the way you want, and they can be. If they are small and are single shot, you really need tests because getting the right prompt is a time intensive task. Thankfully while writing this blog post, I decided to do a little more testing and I did decide to add some arbitary rules which won't work for generalised use, but I've stated this was always going to happen given the model I'm using (Qwen/Qwen3-4B-Instruct-2507) and so I'm going to allow this. There might be edge situations that catch me out and if an edge scenario comes up, it'll get added.
+
+> Reminds me of Psycho Pass tbh. Whenever a person couldn't be analysed correctly because of a strange trait they had, something like the Dark Triade, Sibyl decides to take that person in.
+
+I'm actually really happy to have got this sorted and the tests run 3 times each per example, so I'm very sure I can move on until a page I expected to past, doesn't. Let's hope that doesn't happen.
+
+### LLMs still tricky
+
+The issue of prompt enginnering comes from changing any part of the prompt. Because each part of the prompt is built into a larger construction, any change can effect how it sees the context given to it. So fixing one part, might affect the outcome of another. This can be annoying but logically sound. It becomes a situation of being scared of changing one thing in the fear it'll affect something a few edits down the line. What I'll probably do next time is have a better documentation process of being able to put things in and out. That being said, it kinda feels like an art rather than enginnering.
+
+### Alright so vLLM works well now, what's next?
+
+I've said what I'm going to work on next but ultimately I want to try to make it more obvious to myself what I want to do next. From my side of things, if Productsbolt is able to identify the products correctly and update it correctly, that's the hard part. It's then making sure I supply Productsbolt with shops which will house the products and getting those shops to share the correct links. I think that's done correctly. There's probably a process in the link updater which needs looke at. Long story short, we want to get the links in the fastest way possible without getting blocked. Shopify sites help a lot with their collection endpoints but if they house too many products (25,000) then I have to move to sitemaps. This process can be slow but it has to be given protections. In some cases, even the slow process of looking at sitemaps to not trigger any antibot usage hinders me, so we then have to fire a custom proxy which deals with this very well but it costs, which I'm doing everything to prevent. Thankfully it's very cheap right now. To the point, failures here can lead to misclassifications which then leads to ineffictincies. This is something I'll have to make tests for and figure if x happens, what I want to happen afterwards. Certainly an E2E test. Some sort of reset might be a good idea. I'll figure this out.
+
+The adding of more shops is probably a big thing I should be doing. I need to look at that pipeline. I'll probably work on that today so everything is extremely smooth and no brain power is needed on that anymore.
