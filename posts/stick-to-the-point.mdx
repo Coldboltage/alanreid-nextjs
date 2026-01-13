@@ -1,0 +1,37 @@
+---
+title: "Stick to the point and not the details"
+date: "2026-01-13T12:50:27.863Z"
+image: /assets/blogpost-images/dart-board-point.jpg
+authorImage: /assets/alan-profile-picture.jpg
+name: "Alan Reid"
+category: "Project"
+description: "Sometimes I think about getting the stuff I really don't care about done. I just want this done!"
+---
+
+This will be a short one! I'm getting the stuff I have been annoyed with done. That'll be the following
+
+## Points of interest
+
+- Deleting Products - Need to delete the webpages then the shopProducts then product. Will use an event.
+- Candidate Pages - Think the logic I'm using for this doesn't make much sense anymore
+- Product Active Tag - Don't need to keep searching for products we don't care about anymore.
+
+### Delete Products
+
+Sure there are things that are annoying like lack of documentation, bad naming and controller usage, but they aren't game breaking and that's the point. It's making sure I have as little friction working on this project as much as possible. Deleting a product is bloody annoying and sometimes can be scary thinking I might get it wrong, so I'm going to work on that now!
+
+### Candidate Pages
+
+The candidate page stuff, I actually don't know if the logic is correct anymore. The idea was instead of searching over and over again for a page that might be the right product where none could be found, to use it as the best candidate page and then refer to it rather than something else. However this logic doesn't work if a page is still being setup at the time of search, thus every page has the same amount of chance to be the correct page.
+
+_Quick Look_: I had a look at the entity for the candidatePage and I think I'm right. It's set as a OneToOne relationship and I'm deleting the candidate page each time when it's not considered a webpage. Therefore I'm just deleting constantly and the cache never hits. This should be a OneToMany with many candidatePages and their cache and whenever the best candidate shows up, then it's made into a webpage with the candidatePages deleted.
+
+### Product Active Tag
+
+I'm not too fussed about this because having the imformation is better than not. How good the caching is will be the play and it's something I have to do better in but unfortunately, websites don't actually need to state in their headers their intent immediately. Normal GET calls are simple, I get the information and with the hash, can make sure I'm getting the best information. A little different for headful though. This really is just a method to reduce the workload, therefore a stopgap to something more important. Making the resource worthwhile when needed.
+
+### Get to work
+
+Today I'll get the deleting products this sorted. That's important. Afterwards I'll open another branch to get the candidate pages logic sorted. It should just be a OneToMany relationship. If the page changes, track changes but if the page doesn't change and we get the same answer, add that to the entity.
+
+Glad to have figured that out. As much as it's nice to get the small things sorted which would be nice at a DX point of view, it's not what's annoying me. Getting Productsbolt to a state I'm happy with as an application, that's what matters. Hence the dartboard. Wee goal aye.
