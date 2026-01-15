@@ -1,0 +1,54 @@
+---
+title: "Laptop time. Time to work from a few places"
+date: "2026-01-15T14:46:43.559Z"
+image: /assets/blogpost-images/rog-laptop.jpg
+authorImage: /assets/alan-profile-picture.jpg
+name: "Alan Reid"
+category: "Development"
+description: "The move to laptop shouldn't be much but in my head, it kinda does"
+---
+
+It shouldn't be much to move from a computer to a laptop and to be able to go from one machine to another. I'll talk more about this as I go down and it'll make more sense.
+
+### Deleting products added
+
+This was a bit more annoying that I thought it was going to be. ManyToMany relationships need to have specific cascading setups for deleting and in a ManyToMany setup done by TypeORM, this isn't possible. The solution is to add a manual join table, which was a bit new for me. After getting the logic fixed in a few places and grasping the concept of what exactly a join table was doing for my blacklist setup, the deletion of a product cascades to delete all shopProducts, and blacklists which in hand, cascades also. I learnt more about how cascading worked here which was a good thing.
+
+### Candidate Pages
+
+I changed it from a OneToOne relationship to a OneToMany relationship. As said, it's possible to have many candidatePages for a shopProduct and as we go through them over and over again, the should be correctly cached. This wasn't happening because when a new link came, it would be replaced. The issue with this logic is until we know what page is the actual webpage we want to track, any page could be that page. I do filter whenever getting the links.
+
+Productsbolt is heavily async and needs to be to make sure the best resources are used when needed and nothing is waiting unless required. As of right now, I'm sending to my worker all of the links at one time. Then when it finds a page that loads correctly, then it sends that to be tested. The issue is, this is stateless and so if the page is a candidate page, I'm currently not looping over that. It's looking at the first most successful link that loads and then that's it, it's either the webpage or a candidate page. It's possible that down the list of links, it's the actual webpage we want or not.
+
+The reaosn this is happening is because of the async nature. There's no state so after the worker fires a new message to RabbitMQ to move from the information gathering, to the vLLM queue, we don't know the state until after it's been handled in a new queue, thus we have no state. I have a solution to this though but I need to flesh it out, so it's just thoughts.
+
+#### Link single fire
+
+Whenever the API gets a call that it's just created or updated a candidatePage, we have a few things.
+
+- ShopProduct Entity
+- CandidatePage url (link)
+
+If it's a candidatePage, we could fire again from the point the list ended from via from the API. This wouldn't be too hard as we could just use a filter on the links and then pass that through instead. This actually allows me to keep the code implementation.
+
+#### Adding more work
+
+There's trust with Produtsbolt and how we get the links, that the very best links will be at the top, so do we need to look through all the links or can we assume the candidate page we've found, is the single best page, thus unless a change in the url happens, we don't need to look further. I have to think this is the best take but I'll have to do some testing in the future to determine if this is the best route.
+
+### Now the laptop business
+
+A lot of the work I do operate on databases. Now thinking about it now, this is just having to setup a seeder to just add information. You know the more I think about this, this is just me being fearful rather than hopeful that I can resolve a simple problem. If there is a problem. Well... ok fair does. It's just the fear that something goes wrong. There's things that one can do where if something goes wrong, welp nothing comes off it. Even with that line of thinking, it's actually just a skill diff.
+
+Ultimately I just don't want to be annoyed by it but I think it is what I'm saying. It's a skill diff of being annoyed that I have to get up, maybe get the database from one machine to another and then getting stuff done where I might not know the in's and out's of how to get it done in the immediate. It's very silly this.
+
+This is turning out to be more off a rant but that's one part of this website. So anyway, I think it's more the question what I need to do.
+
+#### Productsbolt Main
+
+I think I have to decide which machine is going to be the main machine. It'll be the laptop I'm using now. That might change but for now, it's this laptop. When I'm working, I'll just turn it off. Make two databases, one for testing and the production. I did have something setup to backup databases but it's not been great, I'll figure this out more.
+
+### Conclusion
+
+Well that rant helped out. I suppose I should set up this laptop and then update if everything went well, which it should. If not, welp I'll work the problem. Whenever I'm not sure of something, I should probably learn what the craic is later on rather than outsourcing it to GPT.
+
+I do wonder if this machine will work with vLLM well. Ah that's something I have to add to the Docker compose. Welp I'll get that done.
