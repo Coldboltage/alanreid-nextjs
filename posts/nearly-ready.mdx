@@ -1,0 +1,27 @@
+---
+title: "Productsbolt is nearly ready"
+date: "2026-01-23T11:14:35.100Z"
+image: /assets/blogpost-images/chess-delete-webpages.jpg
+authorImage: /assets/alan-profile-picture.jpg
+name: "Alan Reid"
+category: "Project"
+description: "I'm starting to think Productsbolt is nearly ready. That's a cool thought"
+---
+
+The sitemap is sorted and a check to see if webpages that are saved on Productsbolt but not on the sitemaps repersenting said pages, was also created. I thought about the logic of having a test which looks at the page and decides, if the page still holds up. I'm going to write some logic in the future which allows for this small problem to get sorted but right now, I could literally just do a webpage reset every so often. It's a very easy fix to solve the problem and computationally, doesn't really add much more. I think i'm more interested to get things running and so, I'll setup something that'll do a CRON job once a week to delete all the webpages and then search for them again. That way, it'll be on top of it. Technically could do it once a day for the laugh.
+
+### What is there now to do?
+
+I think the big one now is making a way to test pages and go "is this actually doing the thing I want" because while I can tolerate issues, if I were to actually release this, I'm going to have to make sure I'm on the ball here. Is this product actually the cheapest, is this even the product in question, am I going to have to intervene constantly? The point of using an LLM, was to try to remove myself and a person from having to come up with those interventions. I'm very pleased with adding the tests a while back to see if the prompts work or not. Lots of fixes are working but I've added more and more sad paths than happy paths so I'll have to work on that again. Thankfully I save most fo the data I need for tests so it's quite straight forward to test.
+
+### Have I tried a stronger model
+
+OpenAI's OSS20B was very interesting to me but given how big it was, I determined that it wouldn't be viable longterm with the setup I was working with. I also noticed that reasoning models weren't deterministic enough. In the future, I'll look into this and see if other models will do a better job but I haven't needed to move from Qwen 4B:2507 and to be honest, being able to test the model constantly against real world situations, helps a ton.
+
+### Conclusion
+
+That's really it. It's making sure the products are as what they said they are. If I get that, this is ready. Everything else has been to get to this point but the point of Productsbotl was making sure one was getting the cheapest product somewhere which was actually available. If I'm classifying a product differently than what it is, it's a complete failure and so, today I'll figure a way to go about this. I can't believe it but I think I'm nearly there.
+
+### Jobsbolt
+
+I'm going to work on this soon. It's using the batch API but I'll write something which allows to do two things. On-Demand and batch. This would allow me to get things tested immediately and use larger models. Maybe this would be a fun time to rent out a GPU machine. Who knows. This year has been good so far.
