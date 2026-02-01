@@ -1,0 +1,45 @@
+---
+title: "Accuracy is pretty spot on"
+date: "2026-01-25T17:10:34.000Z"
+image: /assets/blogpost-images/few-days-of-work.jpg
+authorImage: /assets/alan-profile-picture.jpg
+name: "Alan Reid"
+category: "Development"
+description: "Sometimes you get on the grind and it's all you can think about. This was one"
+---
+
+A few posts back, I talked about a few strategies which was aimed to make Productsbolt more effective. A lot of prompt enginnering and strategies were put in place to try to make it, the prompt was never wrong. At some points, it was doing a fantastic job and it looked like I had cracked it, but I think deep down, I knew what I was doing was flawed. So much so, I had to evaluate the prompts and make sure, am I doing this correctly?
+
+### False positives
+
+This happened less and less but there were fringe situations which were happening constantly thanks to lazy shop owners for their websites. Basically by keeping the boiler text, without some human computation, it's very hard for a LLM to match the page correctly. Doing rules which could be flipped if the opposite situation happened, more and more issues occured that couldn't be outprompted. Therefore I had to accept a compromise. There's always going to be a need of some human intervention. The question is how much?
+
+### The change
+
+Images didn't do much and could sometimes be a false positive, so that was scrapped. The code still exists incase it can be improved upon but for right now, commented out. I'll probably have a strategy for this in the future but for now, I'm not going to sweat upon it. Thankfully I have candidatePages and while their purpose was more for caching, now I had a way to look at pages that didn't get through to be prompted to a webpage.
+
+### Getting the scope right
+
+If I'm having operate as a means of human verification, then there is an acceptance that false positives will happen and false negatives will happen. With this logic, one might have to look at every result to prove if it's correct or not. This was eating away at me. If I had to look at all of the results, this project is pointless, which was why I wanted to get the prompt as "perfect" as possible. After loads and loads of testing, it dawned to me. By checking some properties which I was saving, it was possible to narrow the scope of what to look at. If something is in the same line of products while the price was within the expected amount, but it was put into as a candidate page, this is most likely because of very strict rules which I placed and/or the store owner doing a terrible job describing the product, if at all.
+
+This is a good compromise. It is possible I'll miss out on some pages here and there, and I'll figure more ways to make that a 0. What this does is allows me to fire to end points, look at a few pages on both candidatePages and webpages and check, are they put in the right place. Instead of having to look at a huge list and then just losing all motiviation, this list takes about 5 mins at max to deal with daily, and as long as the human is on the ball, then most, if not all, will be accounted for and removed. This felt like a brilliant compromise, and I'm thankfully I figured this out.
+
+We're back to using Qwen 4b. It's fast and allows for plenty of concurrency. I was using GPT-OSS-20B and it works very well. What I will do is have it do a second look at the narrower scope and then afterwards, I take care of it afterwards. If I feel the list is small enough, I'll just take care of it but it is a way to reduce the load if the scale gets bigger and bigger.
+
+### What does this mean?
+
+I think this is pretty much at an operational level, ready. It can be optimised and bettered by no doubt and I think even at that sense, it's pretty damn close but I'll look into this more. Looking at Google and ways to look for products at the cheapest, I am pretty happy with most of the products being able to find webpages cheaper than what Google. While one could find it with Google, this does it so easily, why bother? If I want to find the cheapest site for the product in question, I can do it. The question which was annoying me for weeks/months was, well is it actually? That's where I figured about the Google test because well, if people are using it to find the cheapest websites that are in stock, then I just have to beat that. There are some cases which I still need to take care of but for the most part, it does the trick.
+
+### Is Productsbolt ready?
+
+I think it is. I recognised I was working on everything else but the actual problem in this post: [Productsbolt is nearly ready](/nearly-ready) and I do believe this is now doing what the tin says. It's finding the site which is the cheapest + in stock. You get to choose all the other shops which has it but it's that simple and quick, there's little reason for me to use Google now for this. As I add more shops, this will only get better and better, and with everything automatic bar manual review where needed, I find it hard to believe there's much more to do.
+
+### What's next?
+
+Some sites don't have sitemaps so I need to find a solution to that. Other sites have a 403 on it and even using some prevention strategies, it's still not possible. I have figured a simple strategy for that and will have it implemended soon.
+
+### Conclusion
+
+Was a tad bit annoyed not updating the site. Sometimes I go in my rut and just can't get anything else done. It's silly I know but well, it is what it is. What I thought was going to be a really simple couple of days project, has turned to something I created before leaving to Austira last year. I'm very happy to continued this and to say it in brief before I make a post about it tomorrow or the next day, I decided because I was attached to this product "I'm the only one lul", I'm repersenting myself and I want to make sure the product gets the point that I'm happy with. Yes there's a lot of things I need to do to clean it, but I ultimately need to make sure it actually gets done.
+
+Tomorrow, I got to get ready to go to Norway. I'll get the database on my laptop so I can continue where I left off. It would annoy me not to be able to work on this while I'm abroad. Pretty sure it's just about getting more and more shops added now, looking at the candidatePages and finding false positives. I'll have a lot of time to contemplate if Productsbolt is actually ready. Will mess around with the MCP server stuff again. That was fun.
