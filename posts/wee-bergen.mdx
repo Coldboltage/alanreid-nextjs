@@ -1,0 +1,31 @@
+---
+title: "Wee Bergen"
+date: "2026-02-03T20:22:43.559Z"
+image: /assets/blogpost-images/wee-bergen.jpg
+authorImage: /assets/alan-profile-picture.jpg
+name: "Alan Reid"
+category: "Project"
+description: "Flying to see the mother in Norway!"
+---
+
+### Wait does that mean I got everything on the laptop?
+
+Yes I did! I got the Docker Compose setup, realised I need one specifically for the laptop so makes docker-compose-laptop and went from there. Why the laptop version? VRAM. I've only got 8GB of it, so I needed to get a 4bit quant version of Qwen3 4B 2507. I can see small errors come up but thanks to the new workflow I've setup for Productbolt, it's really not that big of a deal anymore.
+
+### Testing on the laptop
+
+The bottle neck are sites which load up slowly. Right now I'm using puppeteer and I'm in the belief it's not caching anything. What I'll do is test this on my browser which have everything setup and see if webpages load better on it. I expect it will.
+
+It's not a fair comparison as I'm using a smaller model but I've been very happy with the updating of priority webpages. However when updating all the pages, it takes a few mins and this is without adding all of the products yet. There's a couple of issues which I'll flesh out.
+
+Overall if I'm just using the laptop and the demands was to have this run in this hardware right now, it's possible but I need to make some fixes.
+
+### Updater not using most async route!
+
+When picking up a webpage, regardless of the modes of the webpage (might be pure request or load up a headful instance), the job will pick up the page, grab the info, wait for vLLM to complete the job and move on. This is the old system and I need to create a new controller that allows us to handle the vLLM operation. This means we can get through looking at the pages quickly and then holds the onus onto vLLM. This isn't hard, just annoying to have to do but I'll get it sorted during this trip.
+
+Time which could be used loading up pages and filling up vLLM is currently lost so this will fix that.
+
+### Is there a news to upgrade from 4B? How about thr GPU?
+
+There's two ways to look at this. I've got more and more interesting in open models. For my work loads, I don't believe using frontier models are going to make a difference. Given I use the Openai SDK, I can test this! The thing is, I'm going to have to look through some odd cases and that job is very quick, so it's output and cost and see the fastest/smallest model I can use so to leverage concurrency. With cloud, this isn't a problem but it's a cost. On the RTX 4090, I think it gets through the jobs really quickly.
