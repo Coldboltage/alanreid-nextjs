@@ -8,17 +8,23 @@ const Header = () => {
       <div className="max-w-screen-lg px-5 mx-auto xl:px-0">
         {/* Nav for the top of each page */}
         {/* >> Each Section  */}
-        <nav className="grid grid-cols-2 py-4 space-between">
+        <nav className="grid grid-cols-2 py-4 space-between text-sm sm:text-base">
           {/* Divided into two section */}
           <section className="text-white">
             <Link href="/">Alan Reid</Link>
           </section>
-          <section className="flex justify-end gap-5 text-center text-white sm:gap-10">
+          <section className="flex justify-end sm:gap-10 gap-3 text-center text-white ">
             <Link href="/about">About</Link>
             <Link href="/blog">Blog</Link>
             <Link href="/cv">CV</Link>
             <Link href="/projects">Projects</Link>
-            <a target="_blank" rel="noopener noreferrer" href="https://github.com/coldboltage">GitHub</a>
+            <a
+              target="_blank"
+              rel="noopener noreferrer"
+              href="https://github.com/coldboltage"
+            >
+              GitHub
+            </a>
           </section>
         </nav>
       </div>

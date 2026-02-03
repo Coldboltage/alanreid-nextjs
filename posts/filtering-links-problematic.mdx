@@ -1,0 +1,35 @@
+---
+title: "A bug when finding new links was found"
+date: "2026-01-23T16:38:03.976Z"
+image: /assets/blogpost-images/knife-cutting-problem.jpg
+authorImage: /assets/alan-profile-picture.jpg
+name: "Alan Reid"
+category: "Project"
+description: "Prompt enginnering can be very annoying. Be nice if the LLM talked"
+---
+
+So I was going through making those tests and I got into a situation where the page itself for the product, had information which suggested it was something else, therefore putting me in a tricky position. If the page decsription describes itself as something that it's not, the LLM isn't going to know that. This happens because shops and their staff, copy and paste description information. A human can look at the page and know what that page is about immediately. In some cases, we can't and that difficulity can be the difference of using that shop or not. Funny enough though, this problem shouldn't happen much and it only did because of how I rank links!
+
+### Links were faulty
+
+The prompt used to rank the list was essentially faulty. I give the prompt context about the product and gave it links, but without being specific enough that the links had to accessed seperately rather than one URL entity (weird I know), it was treating the list of coma seperated links, as one thing. This meant if a link wasn't what I wanted but another was, it could conflate it.
+
+There was another problem where the context was being used to essentially add to the url. I had to explain the context was not to be used as addition to the URLs. A bit annoying I had to go to these lengths but I'm assuming this is the limitation of small instruct models. One has to be very specific and direct.
+
+After working on these things, things got a lot better but there's still more work.
+
+### Websites and their APIs
+
+A product can have variations. Currently I'm treating website don't have so if I'm access an API, I just get the price and description and stock status. Unfortunately some website use this functionality rather than creating a new page per product. It's actually quite annoying from a user perspective also who wants to get the information asap or the exact information. However this does allow for the collection of products. To the point, if the API responds with having many of variations, I don't think I'm going to be able to grab the information as is.
+
+#### Leverage LLM
+
+I'll probably have to make a brand new prompt which will look at the API requst for the variants and give the prompt enough information to know how to recognise which of the variants it wants. Yes I can easily do this as a person but in scale, I want this to do it on it's own. So I think it'll just be getting the variants, see if it's just one and then process as normal but if there's more than one, then to use an LLM to determine which of the two should I use. Thank goodness we can extract information automatically this way in a predictable way.
+
+This is pretty important to get done. In this situation, it could be picking the wrong product and information so I'll work on this tomorrow. While there are more tests to get done, the more prompt specific the prompt comes, the harder it'll become to make sure it passes more and more tests. Reducing the possible scenarios will help determine which tests need to be done.
+
+### Conclusion
+
+Happy to have saw the issue with the links being ranked. It'll help with reducing the amount of incorrect pages being labelled. More progress.
+
+On another note, think I need to take it easy with the lifting, bench press wasn't great so I think I need time to rest. Good craic.

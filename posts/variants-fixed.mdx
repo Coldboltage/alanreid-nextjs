@@ -1,0 +1,51 @@
+---
+title: "Variants fixed! Thank goodness for LLMs"
+date: "2026-01-24T12:11:29.970Z"
+image: /assets/blogpost-images/variants-bangor.jpg
+authorImage: /assets/alan-profile-picture.jpg
+name: "Alan Reid"
+category: "Project"
+description: "Variants have always been annoying to deal with. This sorts out a big chunk of that issue"
+---
+
+For a good wee while now, some sites have many products for a single url and this has always been annoying. To be honest I always said to myself, I'd just use the blacklist and get it sorted that way, but that has been a bad idea. It takes away from actually getting the problem sorted and the solution can sometimes be boring to figure out and code. Sometimes the solution isn't actually about the code but rather the tests to help get to that point, which I think I'll talk about in my next post tomorrow.
+
+Anyway, variants aren't exactly the hardest things to get sorted but it was just annoying to have to get it sorted. It goes against the whole async idea of Productsbolt where I gather as much of the information as possible and pass it on. There probably is a solution and if I can think of it, I will, but right now, when there's more than one variant of a product on a main page, an LLM has to be used to identify which variant to choose. I believe I need state for now.
+
+### Why is state needed?
+
+There's an if block so where a site might not be using Shopify or another technology, my if statement checks if it is a shopify site or not and does something with that. If there's no variant, go to the next step but if there is, figure out what variant there is and then go to the next step. The issue is, we need to go to the next step. This is probably the issue. I've made a function which relies on state immediately. I think there's a solution here.
+
+### Napkin solution
+
+Whenever a product has a variant, I could offload that to the LLM to sort out but then I'm going to have to creat a new pipeline of work. It would require us to determine what the variant is, pass that to the LLM service with information that isn't required for the LLM service itself but for communicating back to the API. From there, we could use a simple event emitter to throw it back where it all started but now ignore the extra variants and just use the variant we chose, thus then it would go through the if statement section of having just one variant, the one we want, and go to the next stage. This is a solution.
+
+### Does it need to be done now?
+
+Honestly, no. It's a pretty fast service and while it might have to wait on other prompts to get done, thus holding up the queue, I heavily doubt it'll be noticeable with the scale I'm currently working with. It might matter in the future so I'll write up an issue to get it done.
+
+### Are we getting closer?
+
+Yes we are. With the links being fixed and variants being looked at, it is now just about the quality of the prompt. There are situations where pages will make it near impossible to know what the page is selling. I'm not going to worry much about that but test on real world situations that Productsbolt gets worked in. As per like fixing the variants and links, I can do stuff which helps make it easier to limit the harder scenarios which shouldn't be coming up anyway.
+
+Really it's just about the quality of the analysis. Can Productsbolt identify correct the product and state of it and if so, is it all of the time. I have the feeling I'm at that point now, and a framework to test this constantly will be required.
+
+### Feedback framework
+
+I'm going to need a way to look at webpages being added and determine if they are correct or not. I'll probably add a `inspected` property on webpages to know if I've inspected the page or not. I'll create a find function which selects a random page which is `inspected === false` and then check constantly. The more this is done, the more changes I'll find a page which is slipped through, to which case I'll add it to the tests and see if all the pages can pass or not. This helps with 2 things.
+
+- Find pages which are legit getting through
+
+This is simple/annoying. Figure out why the prompt is failing and make sure it doesn't in the future. Make sure all other tests pass.
+
+- Behaviour is failing elsewhere
+
+Bit of brainwork needed here. Before answering the first issue above, I need to figure "is the page rightfully being checked for". Per like the links scenario, pages were coming through which could have been filtered out beforehand, which prevents any need for critique. Doesn't take long to figure this out.
+
+This fall under adding tests so I'll add the functionality to a branch I was using to create more tests and this should then allow one to know if the page has been changed for or not and if it has, set to true and then move on.
+
+### Conclusion
+
+Quality is now the question. I want to make sure Productsbolt is doing what I set out to get done and I think it's nearly there. I've went about this in a very silly way. I looked to optimise, get other things done, features that help with after getting products, but I haven't followed exactly what the point of Productsbolt was at it's core, and it's something I've learnt. While everything else helps get Productsbolt useful, per like a car, it's pretty pointless knowing the amount of fuel in the car, if the car doesn't do what it actually needs to do. Get from A/B in a predictable way.
+
+A document showcasing what the general goal of the project is, should be made for every project in the future.

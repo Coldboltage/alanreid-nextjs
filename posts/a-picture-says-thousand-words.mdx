@@ -1,0 +1,33 @@
+---
+title: "A picture says a thousand words"
+date: "2026-01-24T17:18:29.970Z"
+image: /assets/blogpost-images/picture-thousand.jpg
+authorImage: /assets/alan-profile-picture.jpg
+name: "Alan Reid"
+category: "Project"
+description: "Picture says a thousand words and a lot more. Learnt that the hard way"
+---
+
+There's only so much prompting you can do until the lack of evidence you can pass through it, allows the prompt to be right more times than wrong. This is problematic whenever I want the prompt to be correct all the time. There's a point where one has to accept, the human can precive issues a lot quicker where all the facts become available.
+
+### Descriptions aren't enough
+
+While I can give the LLM the title of the page, the product name discovered and the description, this is all based upon the shop owner doing the correct thing. From what I can tell, descriptions can be generic. They can be copy and pasted and even though that happens, one can still go onto the webpage and know what they are buying just from the data points one has. While the name, the description and even web url can be generic, you can look at the price and picture to get the rest of the information. While some products can go up in price to the point one thinks, is this the right price, usually the image is the dead give away, and that's where I'm going to work with.
+
+### Why the push back all this time
+
+It's possible the image could actually be problematic for the prompt but it dawned to me, it's only ever going to be a problem in variants and in that case, the variants usually surrender the information I actually need, which thinking about it, I should add in the details.
+
+Point being, in most situations, the webpage image should suffice. This does mean I have to load images again but that's whatever I'll deal with it.
+
+### Method
+
+I'm just going to get the webpage screenshot and work with that. Combined with the description of the page and the that image, the LLM should be smart enough to infer if the image is a pack, a box or something just from general understanding. It should probably be the tipping point.
+
+### Model
+
+Yep that's the problem, I'm going to have to surrender to the idea of changing the model now. I'll still be able to use Qwen 4B but it's going to be a more updated version so this could be a complete break to the application. What I'll do for now is try to get the tests as far as I can but right now, the issue is very fringe and doesn't happen too much and it's easy to recognise and blacklist for now. The lack of details is a big one though.
+
+### Could use price
+
+Tecnically speaking I could look at price also and state that if the product is really far off, it's most likely x or y. It's a bit annoying to think of that because prices of things can go up and down depending on the average. Then again I can always change that with the data I have, so I can just do a quick check myself as I'm already doing to get the average price and then go "well the product should be around this price, if too far away, just say no"

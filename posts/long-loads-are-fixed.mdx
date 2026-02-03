@@ -1,0 +1,70 @@
+---
+title: "The long load times from the sitemap are fixed"
+date: "2026-01-22T10:45:48.353Z"
+image: /assets/blogpost-images/complex-road-sitemap.jpg
+authorImage: /assets/alan-profile-picture.jpg
+name: "Alan Reid"
+category: "Project"
+description: "The logic to constantly look at sitemaps were damning for the API. So I fixed that!"
+---
+
+One of the annoying things about Productsbolt was the method which I was reducing the amount of links that had to be checked. I'll explain this process quickly
+
+- Get all the links for a site
+- Depending on the product, grab links which best suit the product
+- Check the page
+
+Very early on the project, this worked fine. I was able to get links on demand, but as the project got bigger, this became more and more problematic. So here we are!
+
+### Determining the best links beforehand
+
+Each shop has a sitemap record attached to it and shops have a OneToMany relationship with shopProducts. So we can get the sitemap and it's urls on demand, then do a check to see what are the best links for each shopProduct and then that's it. We don't have to keep checking over and over again until changes with the sitemap occur, meaning we don't need to keep looking up the sitemap, which can be a big task.
+
+### Results?
+
+It's a lot faster. Instead of having to check for the best links every single shopProduct, we only do it once per shopProduct well ahead of time. There actually is more optimisations I can do for this in the future, but I'm happy to leave this for now and look for more solutions to fix Productsbolt.
+
+### What's next to do?
+
+I believe I've mentioned this before, but when a webpage is created, it's basically there forever at the moment. At the start, this works fine but over time, I have the feeling a few situations can occur.
+
+#### Change of page Url
+
+This is problematic. It's possible a page was used for pre-orders or the url has simply changed, thus a 404 would occur. There's a few ways to fix this and I'll aim to get it sorted as one of many means to fix this problem.
+
+- Check if the Webpage Url exists in the sitemap.
+
+If it doesn't, then it's never ever going to work. This is an easy solution to this problem. However this won't fix an issue where both pages exist. Where the preorder page is kept but not easily found, but a new page is given the spotlight, that's annoying.
+
+- Recheck the best links for a shopProduct
+
+I expect this to be a pretty good solution afterwards. If a better link exists, which can only exist because it's found via our sitemap, then it's most likely the case a better page could be found, and the page we're currently using, shouldn't be the best anymore.
+
+These two solutions combined, should deal with most situations. The first is pretty simple, I'll create a set for the sitemap and then check if every shopProduct which has a webpage, we check their url. If the sitemap can't find said url, delete the webpage and allow the shopProduct to be available once again. The second could check each time the sitemap is changed. It automatically creates new links so if there's a new link which isn't the current webpage for a shopProduct, then it should go through the process to see if said link is the product of question, to which case if it is, then the current webpage is deleted and the new webpage identified is added as the webpage for that shopProduct.
+
+I'll have to think more about this but the logic seems sounds. Might need to do a lot of refactoring but that's just life.
+
+The lazy way around this is to delete all webpages periodically and technically that's the sure fire way to get this sorted, but it's not efficient as it's possible a a better link is scored, but has issues, we go down the list to find the current webpage was actually the best. I'll think more of this.
+
+> I had a quick look at the code and I think I've got a good idea. I would make it that I do check every single time the sitemap changes regardless if a shopProduct is already populated. Then it compares the findLinks. If it's the same, then most likely we're good. If it's not, we do a check to see if the new links have a better page and if so, replace the webpage and if not, the current one stands.
+
+### Laptop Laptop?
+
+The optimisation to the sitemap stuff is the bottlneck here. I'm not sure if I can do anthing better for the sitemap as we need the full sitemap. I'll look into buffering if that'll help but we need the full sitemap rather than being able to work with parts of it. Well actually I could make a pipeline that specifcally allows for the adding of new links but state becomes a bit of an issue. I'll see if there's a way to reduce the amount of ram being used.
+
+- Thought about this for a few minutes
+
+Beforehand, there were so many searches happening at one time, this was a problem. I don't think this has the same problem anymore but I'm trying to figure why it was in the first place. Call on nodejs are async but only one call at a time works so I think the RAM usage only went up whenever doing the sitemap work. There are some huge sitemaps so it's possible not having a large enough sitemap might be a problem. I don't think I can do much about the actual process of getting sitemaps, that is always going to demand resources but when dealing with the process of filtering through to reduce the amount of links, that could be done within a promise and chunked. That's possible and I assume regardless of how annoying it is to code, should be undertaken.
+
+### Conclusion
+
+So I just gotta do what this post says and I think it's pretty much all good to go. The sitemap stuff I'll do later but making sure the best webpage is been given, that seems like something I can think up.
+
+- Check sitemap if webpage exists still
+- Everytime sitemap has been updated, get new links per shopProduct. If new links are actually new, check the links and if the link comes out true, replace.
+
+Right time to cook two burgers I'm hungry. Got an anime I want to watch today.
+
+> My Gift Lvl 9999 Unlimited Gacha: Backstabbed in a Backwater Dungeon, I'm Out for Revenge!
+
+I think it's actually longer but the visuals look good, aye it's done by JC Staff so I'm wondering if it'll be a heap like One Punch Man S3 but honestly, stuff I've seen look solid. It also seems like I don't mind watching trash, so my opinion might be worthless. Oh well.

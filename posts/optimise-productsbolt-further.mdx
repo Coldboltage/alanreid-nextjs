@@ -1,0 +1,41 @@
+---
+title: "Speed Optimisations and tests"
+date: "2026-01-20T15:53:12.892Z"
+image: /assets/blogpost-images/speed-optimisation-productsbolt.jpg
+authorImage: /assets/alan-profile-picture.jpg
+name: "Alan Reid"
+category: "Project"
+description: "Added more tests because of course I had to!"
+---
+
+I've figured out a business model which can work for Productsbolt and another seperate strategy which I can use for the short/medium term. That's helped with wanting to get the project moving!
+
+### Added more tests
+
+There was some issues with certain sites not loading the website fully, but having enough information to create an evaluation if the product was in stock or not and how much it was. Given how unlikely it was to happen, a specific test was made with prompt changes, to identify the isolated issue. This removed some false positives which was annoying.
+
+Another issue was sometimes identify certain types of products incorrectly. It could technically be the same product but in a different packaged format, which wasn't made obvious to a computer because of the text, but obvious to a human thanks to our eyes. Funny enough, while this was a problem, a bigger problem was not seperating the product context to the content of the page. The product context was being conflated with what was actually on the page, so this tricked the LLM of thinking the thing it was comparing against, was actually presented on the page. This took a while to prompt enginner but eventually I got it sorted.
+
+### Candidate Pages correctly being used
+
+I spoke previously of making Canidate pages a ManyToOne relationship and this has worked well. Unfortunately when selecting the Candidate Page from the ShopProduct, I neglected to sort some find functionality out correctly where it was looking for the first Candidate Page related to the Shop, rather than the Shop Product. This was a silly mistake which made it the CandidatePageCache wasn't being used at all. This has been fixed.
+
+### Idea for speed solutions
+
+The Sitemap Entity gets used quite a bit but the actual urls in the sitemap, are rarely ever used. Anytime I need to look at a Sitemap Entity, that has to be loaded. While I could use a select clause, I'd need to do that for every property I want. The solution here is to move the sitemapUrls to a new table, so I'll be doing that in the next branch.
+
+### WebPages should be evaluated
+
+As a quick thought, whenever I change the prompt a few times to fix things, the WebPages should be judged upon. It's possible incorrect pages are being delegated it's title but actually be incorrect. Usually I would have to manually check it, but with how successful the tests have been so far, I believe I'll need to create a new function which will test the page per like it had to initially to qualify itself as a webpage rather than a candidatePage. This will assure me the current table is clean. I'll do that after the speed optimisations.
+
+### Is it on a laptop yet?
+
+No. Until this project is kinda ready, there's no rush in push this onto the laptop. I'm near the point where it'll be grand to have it going 24/7, but I'm not 100% that the results I'm getting is good enough and there might be more work if I throw it on the laptop now and create that as production.
+
+### Internet bound database
+
+Eventually the whole project will be hosted online if I go with my longterm idea, but for now, I can have this local. Main play infrastructure would be hosted somewhere, but my worker microservices will most likely always be local because of the costs assiocated. This is part of the reason to why I want to get things more optimised as I'll be wanting to host the API in the cheapest way possible. The worker stuff needs a GPU most of the time, so I think I'll just create a docker image that has an env which points to the load balancers in the future. For now, I'll take it easy.
+
+### Last words
+
+I'm getting very confident in the project. As said I made some mistakes but it's allowed for new ideas and that's a good thing. I'm very glad I got this RTX 4090 before prices went up. Tomorrow, I'll get the sitemapUrls + webpage evaluations sorted. For now, I'll have to walk outside in the rain. Not fun.

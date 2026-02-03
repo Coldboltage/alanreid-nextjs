@@ -1,0 +1,27 @@
+---
+title: "Hopefully images are helping"
+date: "2026-01-26T17:14:37.000Z"
+image: /assets/blogpost-images/time-caught-postira.jpg
+authorImage: /assets/alan-profile-picture.jpg
+name: "Alan Reid"
+category: "Project"
+description: "I'm actually not sure if adding images are helping but I sure hope it is!"
+---
+
+I added the image stuff for two parts of Productsbolt. It works for sites utilising on for page use and Shopify websites. I still have to add it for sites that I'm able to acquire with request.js but as far as I can tell, those sites don't seem problematic at all so I'm going to have to investigate that one day. Ah well.
+
+### Has adding images helped
+
+Without tests, I can't prove that. For the last day, I've been editted the prompt without going through tests. The simple rule was, are the pages being added and are in stock. If they are, I'd like to see if they are positive or false positives. This comes pretty easily as you can see the prices and the urls being suspect, so I've leveraged this for now. For the majority of things, it's working fine but there are scenarios which are silly and I need to make sure the prompt knows not to add. Iterating the prompt is pretty simple given I have all the information and functions with endpoint made available. It's simply just adding in a webpageId and shopProductId which allows me to retest individual pages on demand.
+
+### Shouldn't the images help all of the time
+
+I have the feeling images can also be wrong here and there so it's more being used as supplement to the information I was originally giving it and the prompt I'm working with. I have the feeling less false positives are coming up so I'll work on this over and over again for the next day or two to get this sorted.
+
+### Slow but surely
+
+It's slow work because it's LLMs. If I had more powerful hardware, this would be a lot faster so I'm going to have to be a bit smarter on how I'm going to fix this. Given it's LLM work, it's just grunt work getting the prompt to the right place and when it is, hoping it'll stay. I did change the model and it might require a change to a bigger model, but I really really don't want to be moving to 8B over 4B so I'm going to do everything I can to get it to work with 4B and leverage all the information.
+
+### Conclusion
+
+This is all about product accuracy and I'm really getting close now. Yep there's still some false positives but it's getting smaller and smaller to the point, I'll be able to figure out something which will allow me to do a 5 min glance per day to see new products and question if there's a false positive. For now, I'll batter my way through this.
