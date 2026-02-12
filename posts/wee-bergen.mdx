@@ -1,0 +1,77 @@
+---
+title: "Wee Bergen"
+date: "2026-02-03T20:22:43.559Z"
+image: /assets/blogpost-images/wee-bergen.jpg
+authorImage: /assets/alan-profile-picture.jpg
+name: "Alan Reid"
+category: "Project"
+description: "Flying to see the mother in Norway!"
+---
+
+### Wait does that mean I got everything on the laptop?
+
+Yes I did! I got the Docker Compose setup, realised I need one specifically for the laptop so makes docker-compose-laptop and went from there. Why the laptop version? VRAM. I've only got 8GB of it, so I needed to get a 4bit quant version of Qwen3 4B 2507. I can see small errors come up but thanks to the new workflow I've setup for Productbolt, it's really not that big of a deal anymore.
+
+### Testing on the laptop
+
+The bottle neck are sites which load up slowly. Right now I'm using puppeteer and I'm in the belief it's not caching anything. What I'll do is test this on my browser which have everything setup and see if webpages load better on it. I expect it will.
+
+It's not a fair comparison as I'm using a smaller model but I've been very happy with the updating of priority webpages. However when updating all the pages, it takes a few mins and this is without adding all of the products yet. There's a couple of issues which I'll flesh out.
+
+Overall if I'm just using the laptop and the demands was to have this run in this hardware right now, it's possible but I need to make some fixes.
+
+### Updater not using most async route!
+
+When picking up a webpage, regardless of the modes of the webpage (might be pure request or load up a headful instance), the job will pick up the page, grab the info, wait for vLLM to complete the job and move on. This is the old system and I need to create a new controller that allows us to handle the vLLM operation. This means we can get through looking at the pages quickly and then holds the onus onto vLLM. This isn't hard, just annoying to have to do but I'll get it sorted during this trip.
+
+Time which could be used loading up pages and filling up vLLM is currently lost so this will fix that.
+
+### Is there a news to upgrade from 4B? How about the GPU?
+
+There's two ways to look at this. I've got more and more interesting in open models. For my work loads, I don't believe using frontier models are going to make a difference. Given I use the Openai SDK, I can test this! The thing is, I'm going to have to look through some odd cases and that job is very quick, so it's output and cost and see the fastest/smallest model I can use so to leverage concurrency. With cloud, this isn't a problem but it's a cost. On the RTX 4090, I think it gets through the jobs really quickly. And that's because the RTX 4090 can. It's got the 24GB of memory, while being really quick in general.
+
+> At this point, I decided to research more about the subject, how good the GB10 (Nvidia Blackwell) is, the cost of it via DGX Spark and other offerings. This part of the post continues to the morning.
+
+### DGX Spark versus Openrouter
+
+I was nearly certain the DGX Spark or system that leverages the GB10, would be a good thing for Productsbolt, It may be the case in the future, I'll have that many products to follow, I'll need something that has a lot of VRAM while having a cheaper per watt output. To make best use of it, I would need to be able to get models that were NVFP4 native, which is still a subject I'm learning. I don't want to talk too much about this, but long story short, if Productsbolt required for loads of computation per day, it would make sense. The assured output would pay for itself in a few days, but right now, even my laptop would be good enough for the workloads. There's a lot of optimisation which I can do still achieve which any upgrades I bought would take advantage of. I don't want to be in a situation where I'm buying something just so I don't need to do the optimisation. That seems like a bit of a trap.
+
+### So what's next? Come on figure it out!
+
+As said, I think Productsbolt does a great job with getting the majority of all good products identified. On the laptop I'm currently using `superjob/Qwen3-4B-Instruct-2507-GPTQ-Int4` and there are times there are false positives and false negatives, but thanks to search scopes I've made, it becomes trivial to identify these mis-identified prodocuts. I've used GPT-OSS-20B and did a wee bit better, but it wasn't ground breaking. I think I should put in a wee bit of money and test the system on many different models, leveraging on Openrouter. I don't see much tests being needed but rather a simple tally and sentence trying to come up with what I'm thinking. Yes, I could codify it a lot better, but I'm just making things so bah, I'll not worry about it. Here's the craic though.
+
+Productsbolt is able to identify products pretty well and so trying to do that better and better is missing the point. It's actually doing it. I think I've got the endpoints now to determine which products, shops, shopProducts, webpages, instock, etc etc. I think the question is, what's next? What is actually required to make Productsbolt something that allows it to be used?
+
+### More products and quick bit of maintance.
+
+I'll start adding more products to Productsbolt. This would test the capacity of being able to check through more of the false positives. It also would start pushing the boundaries of time to get through pages which we don't exactly know is available or not. With more and more products added to productsbolt, we determine we need to check them a few times a day.
+
+What is currently not done on Productsbolt is to blacklist candidatePages which we are certain, do not need to be checked again. Right now, the inspection is set to false. This technically works but at a computational sense, this is making it we are checking on pages we're sure aren't ever going to be webpages. Also, this is only happening to false postitives and stuff. So here's what I'll do to get tiering sorted.
+
+#### Shift the stuff we can see now
+
+Scopes are already made so we can blacklist things that should be in view are shouldn't be in view. Having that out of the way where that's not being computed anymore, as the inspection is already set to false. Makes the most sense. It's been humanly checked and would remove that computation. It's not a lot but feels like a first move.
+
+The task that actually needs to be done, is the rest of the candidate pages. If a 404 or 429 happens, for now, we can't make a confirmation about the site. Because LLMs can be wrong, a page which imght have many incorrect things setup, but might actually be the product in question. There's a point to which it becomes silly to worry about, I'll have to figure out what that point is in the future. There should be a way to go.
+
+#### Full negatives to questionable
+
+There are situations where the product is without a question incorrect. If we can make that determination with Qwen3, where all conditions are false, we should blacklist that page immediately. We know without a shadow of a doubt, it'll not be added. It then comes to when there's a 50/50 case. If the product is named correctly and is the main product of the page, should that not be added? Well it could also be the wrong packing and and edition "which would be weird but I've seen it".
+
+In more thinking, the editionMatch is probably the biggest thing. If the product doesn't match the editionMatch, I don't think it's going to be the product and I'm pretty sure of it. I don't think I've seen a situation where if the editionMatch is set to false, that it's the false negative. I think if we say a product is identified to be from a different line, Productsbolt has been pretty good to get that correct. I'll test this but this could be a way to get the bulk of the answers out of the way. I would be game to allow for computation to happen here and there if I knew the bulk of the products being checked for, plausibly could be correct.
+
+#### Tiering priority of what to look at
+
+Right figured it out. We'll do human directed computation which will be demands to what things need to be looked at first.
+
+- Check for webpages which are false postitives in the webpage listing. They need removed asap. Endpoint has been made for that.
+- CandidatePages which should actually be webpages need to be checked next. We use the editionMatch being true and a 45% price tolerance each way to determine that the product might have been labelled incorrect somewhere, but the price and editionmatch is true.
+- EditionMatch only. Candidate pages which are deemed to have the same edition, means it's possible that somewhere down the line, the bot really got it wrong. This is a new critiera I'll need to make.
+- EditionMatch false. I am fairly certain the bot won't get this wrong but I'll check it here and there.
+- All false. No need to look, it's the wrong product. The tests have proven this won't be happening with Productsbolt, so I'll just blacklist it immediately.
+
+### Conclusion
+
+This is a big one if I can get it done, and I can, it'll just take a bit of coding, which I'll do before Sunday. This will be the last of the bottlenecks which is, searching for pages I don't need to anymore. It'll slowly filter out links which are never going to be correct and checked. If the demands for better computation are needed, then I'll look to something better than 4B or stronger hardware, but this at least means I'm not forcing the matter on hardware in the first place.
+
+Maybe thinking of problems in a different country helps. Who knows. Least this problem has been written up. I'll add this to GitHub today.
