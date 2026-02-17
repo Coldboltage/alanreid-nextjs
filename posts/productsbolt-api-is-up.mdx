@@ -1,0 +1,47 @@
+---
+title: "Productsbolt API is Up"
+date: "2026-02-17T13:10:34.000Z"
+image: /assets/blogpost-images/productsbolt-api-is-up.jpg
+authorImage: /assets/alan-profile-picture.jpg
+name: "Alan Reid"
+category: "Project"
+description: "At last, this project is starting to come to life"
+---
+
+The API is up in a state which I'm happy with. Again there's probably been quite a lot that's happened and I simply can't remember it. Kind of annoying, but I'll speak of what I can remember so we can get start to get somewhere.
+
+### I'm using Hetzner for this
+
+Quite simple, they are very cheap and I want to do this on as cheap a budget as possible. I've used them before and while I could have aimed to use AWS and apply more skills working on it, there's a couple of other things I have to do so to be lean, I want to get this sorted now and so, this is the situation.
+
+I think I pay £5 a month so that's the expenses out of the way. I've had the server up for the last 3 days with no issues.
+
+### Messing around with Docker Compose and Swarm
+
+Docker Compose I'm familiar with but Docker Swarm, I need to get back to getting used to. It wasn't too hard to get acquinted with it and I'm enjoying the more hands on feel which I get when using Docker Swarm. I'll eventually pivot to K8 but as said again, I kinda want to get my hands dirty and work with Docker directly again.
+
+Given I'm working with Linux a little more again, I made some mistakes in relation to configuration which I only caught onto now. Let's just the env was not done correctly as a result of double quotation marks. Rookie mistake. After a good bit of tinkering and getting everything setup so I can work on things long term, optimisations and learnings were at play.
+
+### Cloudflare is wise to Hetzner
+
+I'll test this more and more in the future, but I'm pretty sure the IP which Hetzner uses is registered with Cloudflare. I could look to getting this sorted but then I decided to go down the route of optimisation, to play the limits. All work that's done via browser use, is distrubuted so as long as I hit the RabbitMQ endpoint, all is good. As I'm doing all the LLM work on my PC, the same could be said about browsing the internet. Because everything is within Docker Images, I don't get windows popping up anymore. Kinda allows me to use my PC for working without all the mouse context jumping. It's good stuff!
+
+Long story short, I'm not able to evade as many sites as I want with one machine and I would have liked to be able to optimise this a lot more. There's good news though. It's going to be cheap to get machines to add to the Swarm. One machine will deal with this very easily for a long time so I don't expect to worry about this for a while. I actually noticied having different machines running Docker on the same network, doesn't create the flags I was expecting, so I'll test more of that in the future. Let's be real though, a mobile phone contract with unlimited bandwidth will do the trick. Unless I'm adding tons and tons of products and new shops, while not sweeping up pages which are 404 or not on the sitemap any further, this isn't a real problem if I'm to be honest.
+
+### Token usage
+
+I was in the belief I was using a lot of tokens but given how I try to only put in the information needed "I could do a lot better", I'm not hitting that many tokens. My computer is on most of the time and I've noticed the RTX 4090 only goes up to 300w when 100% for LLM usage. This isn't much so I can bare the cost. I'll talk about this a little more in the future but I did noticed that Nscale do 0.01c per million input and 0.03c per million output. That is very cheap so I need to know how many tokens I'm going through per day and I'll be able to figure out how much that'll be per day/month averagely. I'll then figure out how much is that via the cost. Most of my workload is input so it's very possible it's cheaper for me to Nscale. This PC has to be on anyway so the cost isn't the PC being on but the cost of the RTX 4090 going from 60w to 300w and for how long for. I believe I figured it would be 96 minutes at worse. I'll research this before my next post.
+
+### MCP stuff
+
+With the API available, I thought it would be cool to make the MCP a little more useful. To be honest I haven't done that much, but if I want to know the products being tracked, if they are in stock or not, the cheapest price which is in stock, I can! Now as much as that's cool, there doesn't seem to be widespread MCP adoption so I'm only really able to do this in LM Studio. While the smaller models were pretty alright, a lot of tokens were being used while thinking. Funny enough Qwen3 4b Instruct 2507 was actually good but because of the Instruct nature, it wasn't a great experience. The thinking side of things thought a lot and other models made up a lot of calls. GPT-OSS-20B was good on low reasoning and great in medium reasoning. I was able to interact very well and figure stuff out. To add, mcp-playwright was added so I could make sure what I was seeing, was fully updated. Very cool.
+
+I'm not too sure if the MCP is much better though in this case as people are going to be able to find the products pretty easily thanks to Google and other search engines. If bots want to use the MCP in the future, I'll have endpoints made for it and I'd like to think it be cheaper, rather than loading a page.
+
+### Website work
+
+Oh boi I'm going to have to build a website and I'm in a bit of a blank slate when it comes to it. I'm trying to picture what would make it good and I'm thinking if I want to give that responsibility to someone else. I'll figure something out with my tablet and just keep drawing sketches, thinking of how to best create the site. There's a lot work that's going to have to be involved which is why I wanted to get the MCP server up. It's a way for people to interact with the API for now. There's still quite a few things to get done so i'm not releasing it yet but the funny thing is, by using an LLM, you can figure what's maybe come in by accident!
+
+> As I said this, I decided to download the Openrouter plugin for LM Studio. Obviously not as quick as local so that was something new.
+
+Well if people want to use my API, I guess it's available. I'll work on getting some endpoints made public with rate limits. Shall be interesting.
