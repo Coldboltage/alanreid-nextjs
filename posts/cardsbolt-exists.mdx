@@ -1,0 +1,90 @@
+---
+title: "Cardsbolt Exists!"
+date: "2026-02-24T09:10:34.000Z"
+image: /assets/blogpost-images/mirror-edge-building-site.png
+authorImage: /assets/alan-profile-picture.jpg
+name: "Alan Reid"
+category: "Project"
+description: "A test for Productsbolt, or what Alpha Productsbolt is"
+---
+
+For the last few weeks, I've been working heavily on Productsbolt and at last, I have an alpha which works, which has somewhat of functionality, but is not ready for marketing. For now, I've called it Cardsbolt, a play on Productsbolt, but for cards.
+
+### The motivations
+
+Previously, I was using the idea to get boxes of cards (Trading Cards for Games aka TCG) and it was working very well. I was able to get what I wanted and things worked out pretty well. However it kinda dawned to me, I can expand this to general use and this was where Productsbolt came in. At the start, I wanted this to be very generalistic. How Shopify is a shopfront for shops, I wanted to use Productsbolt to find whatever products I want. I believe this will be the vision for the future but for now, I'm in a position where local models aren't powerful enough with the hardware I have, to make this possible. Therefore we have to go into niches.
+
+### Cardsbolt, a Productsbolt Project
+
+Cardsbolt is a specific application using the Productsbolt Infrastructure. As it's not generalistic, there are specific endpoints for Cardsbolt. The architecture which powers Cardsbolt, is mostly transferrable, abiet some edits, but this is an alpha. For now, I'm not looking to the bigger picture of Productsbolt until I can prove that Cardsbolt works. I'm using Cardsbolt as a means to prove that going into a niche and being able to optimise for as cheap as possible, leads to organic value.
+
+As I've mentioned many of times on this blog, Productsbolt aims to be as optimised as possible for the niche available. While there are very specific ways to do this better, another motivation was making this as maintainable as possible, which is why I'm leveraging on LLMs for logic compute. Making sure the project is maintainable for years using available hardware now, is a proof the project can hold up on it's two legs without myself worrying that I'm tied down to Cardsbolt forever. There are still optimisations that can be made and compute logic which can make accessing specific parts of a website more effective, thus higher chances of LLMs (logic compute) to give the right answers. I'll work on that for the future but as said, it's about getting it out there and the project has been very effective so far.
+
+Cardsbolt only tracks twenty products but it tracks those products pretty well. It's now come to a point the LLM is not the limiting factor but it's the ability to get onto websites and get the information I need. If more of these websites offered an API, that would be great but that's not the case. That's really the only time intensive task now, setting up the shops (which is right now as default, only a minute's work) but in the future, I can see this being a little more complex if shops have their own APIs which I should use for efficiencies. Still I have a general workflow which is a little more compute heavy for the LLM, but for now, this is not the limiting factor at all. This is kinda the point, I have a fallback which is technically the general workflow right now and it's pretty solid. If that's the case, this project can hold it's own and any new gains make it easier for the future. Again though, a core goal is to make this as easy as possible to maintain.
+
+#### Maintainability
+
+Apart from adding new products which should take a minute or two, addings new shops which probably takes a minute, quickly checking with the created endpoints if false positive webpages are being added or if candidate pages are adding webpages that it should be, which again takes about 1 min per day, this is pretty simple gig now. A process which will take about 5-10 mins is seeing if a shop exists which can be added to Cardsbolt. Technically speaking I could make an agent to look for that, maybe this is a good place to work with Openclaw, but the other goal should be looked at. Cost.
+
+#### Cost
+
+Apart from the electric which is used for this machine which used to play PUBG all of the time, I pay Hetzner £6 a month for a VPS. That's it. I'll speak about the website in a moment but that's a core thing. It costs me little to nothing and as I study on this more and track of many tokens I use within a week, I could even argue having it operate on Nscale using Qwen3 4b Instruct 2507, might be smarter in the long run. I'm actually nearly certain I'm right there. That might differ if I get enough products where it's blasting the LLM, so I'm going to keep things locally for now. This is costing me quite little though so that's fun.
+
+### Cardsbolt website
+
+My mind was not happy with working on this site and I kept doing everything until I actually had to work on the website. That happened last week and the site operates pretty well. It didn't take too long to get the UI setup but of course, there's a lot of making it look pretty which is still needed. There was technical hurdles though, well actually just one.
+
+### What rendering method was I going to use?
+
+I immediately started of with SSR. A SPA wasn't going to cut it for me. I want this to be SEO ready and while I could use a pre-render service, that just seems silly in my case. At least my mind thought it was silly. So off to the races with Static Site Regeneration! After making a few calls to my API, I noticed that it was taking about 130ms to create the page. Maybe even more if it needed to do a handshake. Honestly I had to learn a little bit about this but a bit of Google and ChatGPT on Study mode (I will talk about this in the future) and I had an idea what the craic was. I also figured Vercel functions were running in America and my API was located in Germany. Obviously this was a bad idea so I moved the site to Germany for now. This closed the time a lot but the handshake was still a problem. Even taking that aside, I'm having to make an SSR call to an API to make sure I'm getting the most up to date information. That thought stayed in my mind for a while as I figured, waiting 49ms or 100ms or sometimes, 300ms was unacceptable. I needed a better strat.
+
+#### Moving on from SSR to Instruct
+
+I moved to ISR like I had done with my product pages. The products page wasn't changing often so I settled to have it regenerated every 5 mins. Bit of a lazy one but I tried to apply that idea onto the pages specifically for products > webpages page. We'll call this ListPage for now. Initially, I set this to every 30 seconds to regenerate but I realised this was unacceptable. A person could come to a stale page and well it's stale! Wrong prices, unacceptable. They also could click on a page 25 seconds which is technically fresh, but the prices has changed, also unacceptable!
+
+Seeing that SSR could have a cache, I messed around with that for a bit. If it was fresh for 20 seconds, stale for 5 seconds, afterwards, the user would have to wait for the page to regenerate, but that brings us back to square one of waiting potentially for a long time, unacceptable once again. Then it kind of occured to me.
+
+> What if I ask Nextjs to build the page on demand?
+
+Looked up ISR on demand and yes, there's a way of doing it. Now I assume most people don't use this option because it means you have to access to the backend you're communicating to, which I do! Now I made a lot of mistakes here which was my fault with logic but I'll get to that in a wee moment. Basically anytime a new webpage is added or a webpage is updated, that's really the only time I need to communicate to the API. With SSR, I'm commuincating to it on every call, so calling a waiter to find out if the food is ready. This makes no sense, the meal is ready when the meal is ready. So when the webpage has a meaningful update, my Nestjs backend communicates to the Nextjs API (I'm calling this frontend) to revalidate a specific page, the product page of question which the webpage is part of. This worked like a CHARM.
+
+#### So what mistakes did I make?
+
+HA, I firstly forgot when to update the page, so I default make it update every single time a webpage was updated. Day 1, I made 70k edge calls. Note, I'm only allowed 1m edge calls per month for the Hobby Tier. Technically speaking I just allow for this and pay for a Pro tier and call it quits here but this is just silly from me. Cost is a goal! So I looked to gating this. I made an if statement which looked for changes. This helped but I didn't realise one of the properties, price in this case, was being generated as a string rather than a number and I'm using strict equality. So I used 60k edge calls the next day. Figured out that problem and it really did reduce the calls to 13k for Day 3. Still 13k, that means we're updating the pages A LOT and I noticed every 5 mins, we're updating the pages pretty much bang on the same amount each time.
+
+To note, I had made a change where a 404 page would fire a page update to make the inStock call false. I forgot to have a price of 0 added, so it was comparing a price of NaN versus the last recorded price, which actually then passed the if statement as it's not the same. I just stuck a 0 to the update so next time it fires, it's at 0. Good. Solves that. Yesterday it was 9k but right now at 10am, it's at 492 edge requests. Can't get it more optimial than this.
+
+This needs to be looked at now because no one is coming onto the website so the more and more people that use the site, the more edge calls might be neede (still figuring this out). I've also added revalidate to 1 hour automatically and even that is too much to be honest. Still it's there.
+
+### That was a lot of talking about SSR and ISR, what's the outcome?
+
+As the site uses ISR, the page of question is built ahead of time, therefore it acts like SSG while having the most up to date information I need for the users. Therefore no call to the API is required. A static page is given to the user immediately and it ran on the Vercel CDN worldwide, thus instant pages! This hits my goals of doing things as cheaply as possible, while giving the user the best experience possible. Very happy.
+
+This will allow me to add more products and shops without issues. I won't hit the Hobby limits anytime soon and if I do, then either I'm hoping users will be on the site at that point, or I'm going to have to upgrade but even at that point, I'd be researching to find out how much more optimisations can be done. I feel I've got most of this sorted at this point so I'm happy to move on.
+
+### Google Lighthouse
+
+This didn't take too long, I've never really cared too much about the mobile side of this as I only really thought Desktop mattered, but this time I went, no I'll get this to 99 at the minimal. Funny enough this was pretty simple, the images were too big most of the time so I made the images as big as they only needed to be and wala. Some changes to the CSS to keep elements in place, stoped using view heights and used dynamic view heights with a couple more things. On local testing, it was all over the place from 95-100. I reconciled and was okay for 95 locally. Few hours later, I noticed that 100 for mobile. So I'm guessing my local setup could be bettered? Good craic.
+
+### What's next?
+
+Well the API works, the Website pretty much works, it's just getting it to be a lot more pretty and do things which people would expect. This is all product led SEO, so it's making sure the goals align with what users are actually expecting versus how to make this worthwhile to maintain. Most of the functionalities of Cardsbolt will be free. I am fine with that. It is already running as cheaply as possible, and the motivations of wanting to find the cheapest boxed TCG products, comes from people doing exactly that. I want them to find what they need immediately. If they wish to tinker with the site, I think that's when I am allowed to ask for assistance in the means of gating extended use. However the whole website can be used as is. It's when a user wants to do more of the thing, more often, that's where I feel the limit goes. I think that's perfectly fine where I'm offering so much of the experience for free, extended users help pave the way.
+
+Using that as a basis, here's what I'm aiming to do.
+
+- Add a searchbar. This will happen at the end as it'll need ElasticSearch so I'll build the vectors myself. Shouldn't be expensive. I'll figure this out.
+- Better list page. For products, it's good enough, I'll improve the images and add a sorting function, but the actual page which lists out each webpage needs worked on. I'll make a table for this.
+- Homepage. It's to the point, and I'm happy with this but I guess I'm allowed to talk about what Cardsbolt is in more detail, I'm going to work on this soon.
+- Make it pretty. Yea this is boring I'll do some research to see what looks good and then make some notes. I'll do what I can for a bit and then eventually allow an LLM to help me. I'm not the smartest cat who's stuck in the cardboard box.
+- Add more products. I'll do this today with adding more shops. Looks better if the site is populated.
+- Add more shops. Again I'll see if any shops have products which Google is finding for cheaper and then add them onto Cardsbolt, pretty easy.
+- Add a release property for products so I know when products were released for sorting.
+- Currencies conversion. I'll be using either euros or dollars as the sorted currency. We'll always show the original currency used for the shop.
+
+Can't really think of much else to get done, so I guess I should shut up and get things done.
+
+### Last words
+
+I'm doing my best to learn things on the go. The frontend stuff has been great but for using Terminal, I'm actually forgetting things a lot. In short, when learning all things temrinal stuff, I've used study mode for ChatGPT and this works pretty well. It kinda helps to get you to the answer, but I have to answer it. So really stupid things that might be trivial for some, takes me some time but I'm very happy with this sort of learning and so, I'll keep er lit.
+
+Oh forgot, need to do some basic SEO work, but apart from that, I'm very happy with the direction of doing product-led SEO as the main driver, thus keeping myself in check of what it is to build the best product, than one aiming for the most market share. I think a niche matters. The Long tail is probably the long game.
