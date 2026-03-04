@@ -1,0 +1,45 @@
+---
+title: "Another step to Alpha"
+date: "2026-03-04T22:42:34.000Z"
+image: /assets/blogpost-images/another-step-trees.jpg
+authorImage: /assets/alan-profile-picture.jpg
+name: "Alan Reid"
+category: "Project"
+description: "We're really getting close now"
+---
+
+Short one, it's weird as I can barely remember what I did today, but I know there was a good bit of code done in some capacity. I really hate when I forget what I did for the day but there's somethings.
+
+### The SEO Push
+
+The functionality to make sure a product page at least is populated with with at least one listing was sorted. With that, the product pages are functional and I'm happy to show them to the internet in an alpha state (technically a pre-alpha). While there's lots of SEO strategies out there, I'm doing product-led SEO which I think has been a great idea. I'll be aiming to extract as much SEO potential from the site itself. Per like how I optimised Cardsbolt before having to scale, I'm going to do as much as I can with Cardsbolt so it has every reason to rank on it's own merits. Therefore title and description optimisations were looked at and I got to a very good place with it. Given the nature of each page only updating when they need to, the title and description updating I feel is a lovely touch.
+
+#### JSON-LD structured data
+
+It occured to me the pages I was making might not be very understood with a search engine. While the pages are rendered statically via ISR, the table itself is not easy for a bot to read. I did add some text to make it really obvious what was the best page for that product, but I remember years and years ago about structured data. I think with Generative engine optimisation, structured data is pretty good and that was part of the motivation. As I was saying, I want to give the site every reason to rank before looking to backlinking, and it felt like Structured Data would be a good place. While it's not a ranking factor, I'm going to assume that if a page can be understood, that itself has to make a play. If not, GEO wise, it's very useful. Right now it's applied only to the product pages. I'll add it to the brand pages in the future.
+
+### More TCG's and products
+
+While thinking about authority and what gives Cardsbolt the right to rank, I looked more and more into the idea of authority. Backlinks and positive interactions are big ones but it's occured to me. I'm calling this site Cardsbolt, and right now, I'm not really tracking enough. Sure I've got Magic the Gathering, One Piece, Riftbound and Pokemon, but there's plenty more out there! It's only starting to occur to me, that I might not be following enough products and if I'm going to really want to play the long tail game, I need to make sure I am tracking what I can. Right now I know this is just boxes and I have to start somewhere, but I'm not even tracking enough of the TCG's. This is certainly going to take a lot of time to add more and more to Cardsbolt. I'm very sure agentic workloads needs to be looked at but what and how is a different question. Is it going to be OpenClaw, Perplexity Computer or something else? I have no idea but I do need to figure it out.
+
+### Pipelines need to be looked at
+
+I believe it was in the last two days, I spoke about some of the pipelines being a little buggy. It's not that big of a problem, but it can be problematic. If I'm aiming to add agentic workers in Cardsbolt, I need to make sure what it's able to work on, will work. When adding a new product, sometimes the findLinks pipeline doesn't work automatically. If I fire it, no problem and I'm guessing when the CRON jobs fire, they would, but that's not good enough, so I'll get on that.
+
+### Noticing some 403 issues
+
+I'm not happy with this one, it means some products aren't being tracked well so I got to get this sorted. There's two sites I know what I need to do but the products do eventually get updated. The biggest offenders will have adapters made for them so 403 issues become a thing of the past.
+
+### Something to say
+
+To make this work longterm and get the reach I want, adding more products and shops automatically is needed and I'll have to think of a way to do this really well. I'm not too sure how I'm going to go about this, but something has to be able to figure out a new product should be added and what is the right information to put in. Something tells me I should mess around with Openclaw for the laugh for a week and let it do stuff for the craic. Maybe I'll give it only GET endpoints so it can get information it needs so it figures what products/shops we have and use the DTOs as contracts with great detail so it knows what to operate with. There's many vendors so I'll look around but there's no way I'm giving this sort of bot write operates on Cardsbolt. It'll basically create lists in JSON and that can be manually looked at by me including another bot or something, so we can confirm if the generated information is good.
+
+This seems fun to add. Just a quick update, the 404 pages stuff was already taken care of so that was lawl, I improved how the product page looks, structured data was good, adding Cardsbolt to GSC has now been done, added a new brand module to Cardsbolt and I think there was something else. I know I have to do a few more things which I've mentioned here but to be quick;
+
+- Add Pokemon products
+- Look up Openclaw stuff
+- SerpBear
+
+Yea Serpbear is going to be something I need to look up. I think it'll be as easy as getting a Docker Compose and then I'll have to hook it up to a proxy scrapper or something. It might be worth it to just use a paid service but the idea of a free SEO tool sounds cool so I'll do that. Eventually I'll need to get back into full SEO mode but the idea of using Openclaw or something very similar on Cardsbolt is so cool. Let's see what the craic is.
+
+Oh started watching "I'm a spider so what." It's good craic. Will binge it heavy tomorrow, today I just didn't feel like it.
