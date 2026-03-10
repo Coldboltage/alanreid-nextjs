@@ -8,6 +8,58 @@ category: "Project"
 description: "The design isn't too bad is it"
 ---
 
+This has been one of the weirdest entries I've wrote for a very long time. I started this post on the 7th at 21:00, but it's now the 10th at, funny enough, 09:00. It was meant to be a celebration, Cardsbolt has a design and I'm happy with it. It was the story of why I used Codex and was happy with the means I use AI. To be quick, I don't enjoy using Copilot so I'm going to remove that now, I have no use for it if I have Codex. I then talk about what I want to do next for Cardsbolt and that's where things went all sorts of directions and what I wanted to do. I'm going to keep parts of my previous post as a "previous" so you can see my original thoughts which I think is the best idea. I'll remove some things which are absolutely no needed to be talked about anymore. I might use some of those ideas in the future, but after speaking to my brother and getting some brainstorming going, I think he makes some very good points of what I could do for Cardsbolt.
+
+### My current thoughts (10th March)
+
+I enjoy how effective this website is. I have noticied some websites aiming to make it harder to do information gathering, to which I'll look to ways to better comply with them if possible. There might be a way to make a general purpose adaption layer if an API can be found or route. Apart from that, my strategy for getting 99.5% of the webpages I need has been successful and scaling to get all sealed products for TCGs with this strategy, will most likely not be deterred. I've learnt a few more things about RabbitMQ, which will allow on demand operations to go ahead in the future.
+
+> If a user wanted to search for something specifically which wasn't available on Cardsbolt, I could let them do it automatically. A problem I found yesterday though was, what happens if the current setup I have is 90% to capacity? If someone does a request, their request would be at the back of the queue. RabbitMQ allows for priority, which I didn't know about, so that problem is solved. I could push them to the front. Good job!
+
+There was a problem with some of the queues where headful operations were being used in headless queues, which would affect certain machines. This has been dealt with and so at this point, it's more of a machines issue. With the setup I currently have, it is possible at times a page could be blocked to my machines, but eventually it does work again. While a lot of people talk about using proxies, it's about the strategy of using them.
+
+> Once again this got me thinking while writing this post and I've a solution!
+
+Well the easy solution which will cost is to proxy only problematic pages which are likely to go to 403. As soon as it happens, requeue and use a proxy. This works but it's a cost that I don't need to bare yet. Also with scale, this could become problematic. Therefore the second thought. Currently I'm opening up a new browser every url. Now that works alright and having an always on browser doesn't seem to work well, but it's not much of an added process to batch it per shop. Now I think that works better because each of the most problematic shops, will have rules. I can batch each shop for now and see if it crashes, which I don't think it will. It'll simply use the same pipelines as I do, but it'll be given and array of urls rather than just one. There is some state when looking at these sites so I could create an object of arrays instead, would allow for good testing so I'm going to look this up later today because, well if I'm right, processing many of these pages will be a lot quicker, thus less need to scale. I'll do that today!
+
+### Added little things to the design
+
+A brand category page was added which does make it look better, quick for people to operate, and breadcrumbs so people can move back and fourth quickly, though I have no clue if people actually use these are not. I'l add some sort of JSON LD to that in the future. Messing around with how the component would be designed was a bit lawl and fun to do all over again. I'm getting more and more confident with React again thanks to this project, but now we go into the meat of it. The Page Router isn't enough for Cardsbolt, and this slightly annoys me but I'll explain a little more now.
+
+### SEO principles must be held!
+
+Cardsbolt technically works perfectly fine right now, but as soon as I add state and users to the mix, where it involves what the backend should do, this whole thing will collaspe and it's why I wasn't able to post. As much as I want to give Cardsbolt in it's best form for free to everyone, it's not really much of a business for me and being nice to everyone, is going to win me any awards. I also see it as a means of rate limiting because if you always have the best sites constantly over and over again with everyone having the ability to jump on the best offer, it's probably not good. Therefore I'm going to have it where there's three tiers, one paid.
+
+- Not signed in: Able to get up to date prices on products after it's been in stock for 6 hours. They'll still get a pretty good ordered list but could miss out.
+- Signed in: Notifications added. This works if you're okay with still missing out on those offers, but at least the stuff you can see, you'll get.
+- Paid: Up to date with notifications. This is the intended way to use Cardsbolt. You now can't miss out on the best offers.
+
+If one spends $4.99 on this, they're already going to make the difference. I can show them if they had access, how much they could save and if they can see that, the investment of $4.99 becomes really obvious unless they can find it themselves. If they can, all power to them. In most scenarios, prices won't change enough to justify people having to spend $4.99 and if that's the case, I'm actually very happy with this. This takes care of monetisation in the natural sense and I assume it's just about getting Stripe sorted. Now here's why I need to go to App Router.
+
+### User State and data to send
+
+Right now, Cardsbolt uses ISR which doesn't change the props unless I ask for a revaliatePath(). Problem is, I have to show everyone the information before use. This means users would be able to get all the results via Web Developer Tools, even if in the UI it's blocking. There's no solution for this unless I go SSR, and that's too slow for what I want given the limitations I have. Therefore I'll have to move to the App Router. I am still to use the App Router but from what I can understand, I can cache function calls and I can use NextAuth to authenticate JWT tokens. I can use the JWT to confirm it hasn't been tampered with, therefore know what type of user they are, get the cached function and serve it to the user. As both are happening on the server now, I'm pretty sure this shouldn't impact on load times while the shell loads instantly. There's a bit of learning,
+
+Basically would need to change the site to App Router which seems annoying. I'll get to that and I'll learn that properly as there's framework knowledge I need to know and am interested in, so we'll do that next week. As far as I can figure, it'll still load a shell and given the assets are cached also, all the results will be also, therefore the pages should still load instantly. I'll read up on this more and come back, but I'm fairly sure this strategy should work fine. Looking forward to giving it a shot in a branch.
+
+### Openclaw
+
+Think this is a good week to look this up. I've seen a couple of good guides which get through a lot of the mess. I'm in the assumption for simple tasks, use Qwen 3.5 4b, then use my OpenAI account for most of the other tasks. I kinda have an idea of what I want the bot to do and I'll figure how to structure it, but a good guide which helps me get to the point of knowing how to use it more effectively, is actually worth it so I'm looking forward to it. The site is [ClosedPaw and the Opwnclaw setup guide](https://www.closedpaw.info/openclawguide/) seems to be gated behind an email. I'll give it a shot and if it's good, I'll keep the backlink for them because well, if it's useful, that's a good thing. I think I'll be able to get around this tomorrow!
+
+### This is one hell of a long post
+
+I've never had it that I've posted for so long, but I think it's great to have all of these thoughts and then in the future, look back and go, oh my goodness! With all of this hosted within the repo, well I have it forever. Posts like these will serve will for myself in the future so be it a couple of minutes, a few hours or days to write a post, so be it. I'll laugh in the future when reading this.
+
+Cardsbolt is basically usable now. I need to do some manual work to get the products up and when looking at selling individual cards, there are competitors which do a good job at connecting the many markets together. I think it could be better and I believe my network of websites in the future will make Cardsbolt a better destination, and as I learn how to compress the load of my information gathering so that it complies better to shops, I think this project will be fun the longer it goes.
+
+### Beforehand
+
+These are the thoughts I had starting the 7th of March. Brainstorming is a good thing to do and writing helps to get one to that point. It certainly helps me and having this as documentation, shows that while you might think you have an answer on a certain day, a better answer can be found another day if one is willing to work on it and be humble.
+
+Before I go, I started watching Landman, finished ep 2 and aye, makes one question a lot of things.
+
+---
+
 I was going to write this post last night after ending I'm a spider, so what? Unfortunately I wasn't able to get the words out correctly so I'm attempting it now, 12 hours later.
 
 ### A lick of paint for Cardsbolt.com
