@@ -1,0 +1,44 @@
+---
+title: "Cardsbolt Monthly Update"
+date: "2026-04-16T19:21:33.000Z"
+image: /assets/blogpost-images/eighty-six-gpu-broke.jpg
+authorImage: /assets/alan-profile-picture.jpg
+name: "Alan Reid"
+category: "Project"
+description: "Okay I took a break, from the blog that is!"
+---
+
+Oh boi I did that thing again, I took a break from writing here, and I guess this is why I wanted to make a micro blogging system for the site, which I actually have but I never really looked into it more. That's probably something I should look into for the future. I wanted to write a few things here and there in the month and I did here and there but it was all just for the sake of writing and not for the expression, which I didn't enjoy, hence why I'm writing now, I feel I have something to talk about!
+
+### RTX 4090 broke
+
+This wasn't fun, if I recall, I was doing a very long lasting job of setting each shopProduct up with it's links. I might have mentioned it before, but the idea was to get the best links for each ShopProduct and then instead of looking through the sitemaps each time, we've already got it done. WELL, that process can take a while and as a result, the top 4 rails wanted to melt. Now to be honest, I thought something smelt funny and I had a look, didn't see anything or smell anything, probably my lack of smell coming to bite me in the ass, but unfortunately, it broke. Boi me this caught me out.
+
+I got the laptop setup, Docker and the images required with the .env and off to the racers. LM Studio with Qwen3 4B Instruct 2507 @ Q8_0. This was painfully slow and forced me to change my CRON setup. It had to reduce a lot of the workload but it was required because it was now taking hours to get the biggest things done and don't get me started with looking over links.
+
+For a while, I had looked at _Nscale_ but as I said previously, didn't want to use them. After lots of thinking, it became really apparent, unless I was saturating the RTX 4090 for nearly 8 hours a day at max capacity, this was going to cost me more, which was silly of me. As soon as I figured that out, I went onto nscale, started using their inference endpoint, and the rest is history. I spend about 7p a day and I'm pretty sure I can get that lower.
+
+Basically while I could use the RTX 4090 all the time, well what's the point? Unless I want to continually check the websites all the time, thus get more use out of my GPU, that's a terrible way to look at things. Rather it's about how little can I get using the hardware I need without sacrificing the service. The changes I made still makes Cardsbolt fantastic to use, but it's extremely cheap to use. at 7p a day, I'm fairly sure just having the computer on with the RTX 4090, was far more than that! So that's that sorted.
+
+### Probably a lot of things I did which I can't remember
+
+I'd have to look over my GitHub Project and commits to remember the many of things I did. I know I had to move sitemapUrls from a simple array to it's own entity, disconnect a lot of joins via relations, setup a pipeline for removing candidatePages in a way which was easy to do each day (which I see as a big thing), fixed blacklisting and I'm guessing there's a lot of other small things I worked on but added together, makes the whole system work very well together.
+
+Overall, Cardsbolt works and with the little work I've done to add more and more cool things to it, I've wanted to see how well Cardsbolt runs whenever I do very minimal things to it. I find that important because as long as I'm involved with it for 10 mins a day, which keeps me thinking about the project, or even for a few days, it means I can do other things which I find mega important. I do know there's somethings I have to work on, which I'll throw some out of the top of my head;
+
+- Add more products. Pokemon needs more products so I'll look up the last 6 months of products back and fourth. One Piece I just need to update and see what's missing.
+- VariantId's weren't being added correctly whenever I promoted from candidatePage to webpage manually. That has been fixed but I'll need to either delete webpages which don't have a variantId or whichever don't, I just push them through some sort of system again. I think I'll write up a ticket for this one so I figure out the situation clearly.
+
+Apart from that, it becomes more about advertising Cardsbolt in a way which is very organic. That is another thing I'll need to write up about because I don't want to pretend to be something I'm not. I think I'll be very honest to say what the project is about, why I made it and what people should expect from it.
+
+### What else is the craic
+
+Honestly I've been pretty chill, I needed to reflect a little about myself and see what I wanted to do. The metal laptop I'm currently using, I'm not happy with. It runs out of battery far to quickly. I've been typing for about 30 mins and it's went from 95% to 69%. I don't think that's good craic and it's not a great laptop anymore. I was hoping this would be a far better laptop than what I got it for, but it's not so I'm going to sell it with another laptop which I don't really care for anymore, and get a M1 or M2 Macbook Pro. I feel I want to create solutions but anywhere I go. That seems really cool but I feel like I'm just not enjoying it on this laptop. There's a few other reasons but I just think it's a good move to make so that's that!. I have the full computer setup whenever I really want to get into things, and I'll have my laptop when I want to be away from the house, and create solutions while I'm out and about.
+
+### Git + SQL + Cloud
+
+While I have an idea of all three of these things, I want to have better mastery of them. Git I feel like I have an elementary knowledge of which I'll be looking to get sorted. SQL has been really good to know and I've noticed with general typeorm use, it's restrictive so knowing how to use queryRunner and with that, transactions, seems like a really good idea. Lastly with cloud, while I have a good idea with AWS and K8, I could be better so I'm actually interested to know more and more about it, but right now, I have no real need to know more about it. This might force Cardsbolt to become soemthing it's not so I think for my next project, it'll be cloud native from the get go. I'll have to figure something for that but I know with Nestjs, it can be cloud, it's just not meant to be if you know what I mean, more of a hack with the single endpoint thing. I'll look more into this.
+
+### Last words
+
+I'll probably write more again, I just felt like I was confining myself for some reason but I'm in a better place now. Being proactive and getting things done rather than leaving things and letting it fester, doesn't do me any good, so I'll do better and get things sorted asap.
